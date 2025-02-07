@@ -1,0 +1,3517 @@
+{
+ "Resources": {
+  "VPCConstructVPC3A049706": {
+   "Type": "AWS::EC2::VPC",
+   "Properties": {
+    "CidrBlock": "10.0.0.0/16",
+    "EnableDnsHostnames": true,
+    "EnableDnsSupport": true,
+    "InstanceTenancy": "default",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "OptimusStack/VPCConstruct/VPC"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/VPCConstruct/VPC/Resource"
+   }
+  },
+  "VPCConstructVPCPublicSubnet1Subnet8CB03D42": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "us-west-1a",
+    "CidrBlock": "10.0.0.0/24",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Public"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "OptimusStack/VPCConstruct/VPC/PublicSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "VPCConstructVPC3A049706"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/VPCConstruct/VPC/PublicSubnet1/Subnet"
+   }
+  },
+  "VPCConstructVPCPublicSubnet1RouteTable46231F4D": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "OptimusStack/VPCConstruct/VPC/PublicSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "VPCConstructVPC3A049706"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/VPCConstruct/VPC/PublicSubnet1/RouteTable"
+   }
+  },
+  "VPCConstructVPCPublicSubnet1RouteTableAssociation27D5E21A": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "VPCConstructVPCPublicSubnet1RouteTable46231F4D"
+    },
+    "SubnetId": {
+     "Ref": "VPCConstructVPCPublicSubnet1Subnet8CB03D42"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/VPCConstruct/VPC/PublicSubnet1/RouteTableAssociation"
+   }
+  },
+  "VPCConstructVPCPublicSubnet1DefaultRoute4CF34A89": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "VPCConstructVPCIGWBBAD2E97"
+    },
+    "RouteTableId": {
+     "Ref": "VPCConstructVPCPublicSubnet1RouteTable46231F4D"
+    }
+   },
+   "DependsOn": [
+    "VPCConstructVPCVPCGWF9DBDABE"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/VPCConstruct/VPC/PublicSubnet1/DefaultRoute"
+   }
+  },
+  "VPCConstructVPCIGWBBAD2E97": {
+   "Type": "AWS::EC2::InternetGateway",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "OptimusStack/VPCConstruct/VPC"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/VPCConstruct/VPC/IGW"
+   }
+  },
+  "VPCConstructVPCVPCGWF9DBDABE": {
+   "Type": "AWS::EC2::VPCGatewayAttachment",
+   "Properties": {
+    "InternetGatewayId": {
+     "Ref": "VPCConstructVPCIGWBBAD2E97"
+    },
+    "VpcId": {
+     "Ref": "VPCConstructVPC3A049706"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/VPCConstruct/VPC/VPCGW"
+   }
+  },
+  "S3ConstructOptimusAPIBucket581D3580": {
+   "Type": "AWS::S3::Bucket",
+   "Properties": {
+    "AccessControl": "Private",
+    "BucketEncryption": {
+     "ServerSideEncryptionConfiguration": [
+      {
+       "ServerSideEncryptionByDefault": {
+        "SSEAlgorithm": "AES256"
+       }
+      }
+     ]
+    },
+    "PublicAccessBlockConfiguration": {
+     "BlockPublicAcls": true,
+     "BlockPublicPolicy": true,
+     "IgnorePublicAcls": true,
+     "RestrictPublicBuckets": true
+    },
+    "Tags": [
+     {
+      "Key": "aws-cdk:auto-delete-objects",
+      "Value": "true"
+     }
+    ],
+    "VersioningConfiguration": {
+     "Status": "Enabled"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/S3Construct/OptimusAPIBucket/Resource"
+   }
+  },
+  "S3ConstructOptimusAPIBucketPolicyFA761216": {
+   "Type": "AWS::S3::BucketPolicy",
+   "Properties": {
+    "Bucket": {
+     "Ref": "S3ConstructOptimusAPIBucket581D3580"
+    },
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:PutBucketPolicy",
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:DeleteObject*"
+       ],
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": {
+         "Fn::GetAtt": [
+          "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+          "Arn"
+         ]
+        }
+       },
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "S3ConstructOptimusAPIBucket581D3580",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "S3ConstructOptimusAPIBucket581D3580",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/S3Construct/OptimusAPIBucket/Policy/Resource"
+   }
+  },
+  "S3ConstructOptimusAPIBucketAutoDeleteObjectsCustomResourceC002F9EB": {
+   "Type": "Custom::S3AutoDeleteObjects",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
+      "Arn"
+     ]
+    },
+    "BucketName": {
+     "Ref": "S3ConstructOptimusAPIBucket581D3580"
+    }
+   },
+   "DependsOn": [
+    "S3ConstructOptimusAPIBucketPolicyFA761216"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/S3Construct/OptimusAPIBucket/AutoDeleteObjectsCustomResource/Default"
+   }
+  },
+  "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Version": "2012-10-17",
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ]
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Sub": "arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role"
+   }
+  },
+  "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-619326977873-us-west-1",
+     "S3Key": "faa95a81ae7d7373f3e1f242268f904eb748d8d0fdd306e8a6fe515a1905a7d6.zip"
+    },
+    "Timeout": 900,
+    "MemorySize": 128,
+    "Handler": "index.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs20.x",
+    "Description": {
+     "Fn::Join": [
+      "",
+      [
+       "Lambda function for auto-deleting objects in ",
+       {
+        "Ref": "S3ConstructOptimusAPIBucket581D3580"
+       },
+       " S3 bucket."
+      ]
+     ]
+    }
+   },
+   "DependsOn": [
+    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler",
+    "aws:asset:path": "asset.faa95a81ae7d7373f3e1f242268f904eb748d8d0fdd306e8a6fe515a1905a7d6",
+    "aws:asset:property": "Code"
+   }
+  },
+  "KlineTable986A720B": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "pk",
+      "AttributeType": "S"
+     },
+     {
+      "AttributeName": "sk",
+      "AttributeType": "N"
+     },
+     {
+      "AttributeName": "exchange",
+      "AttributeType": "S"
+     },
+     {
+      "AttributeName": "timestamp",
+      "AttributeType": "N"
+     }
+    ],
+    "BillingMode": "PAY_PER_REQUEST",
+    "GlobalSecondaryIndexes": [
+     {
+      "IndexName": "exchange-timestamp-index",
+      "KeySchema": [
+       {
+        "AttributeName": "exchange",
+        "KeyType": "HASH"
+       },
+       {
+        "AttributeName": "timestamp",
+        "KeyType": "RANGE"
+       }
+      ],
+      "Projection": {
+       "ProjectionType": "ALL"
+      }
+     }
+    ],
+    "KeySchema": [
+     {
+      "AttributeName": "pk",
+      "KeyType": "HASH"
+     },
+     {
+      "AttributeName": "sk",
+      "KeyType": "RANGE"
+     }
+    ],
+    "StreamSpecification": {
+     "StreamViewType": "NEW_AND_OLD_IMAGES"
+    },
+    "TableName": "OptimusTable"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/KlineTable/Table/Resource"
+   }
+  },
+  "IAMRolesLambdaRole3969EFC6": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Description": "Role for Lambda functions with DynamoDB access",
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/IAMRoles/LambdaRole/Resource"
+   }
+  },
+  "IAMRolesLambdaRoleDefaultPolicy833CF6E2": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "dynamodb:Query",
+        "dynamodb:Scan",
+        "dynamodb:GetItem"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "KlineTable986A720B",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "KlineTable986A720B",
+             "Arn"
+            ]
+           },
+           "/index/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "dynamodb:BatchGetItem",
+        "dynamodb:GetRecords",
+        "dynamodb:GetShardIterator",
+        "dynamodb:Query",
+        "dynamodb:GetItem",
+        "dynamodb:Scan",
+        "dynamodb:ConditionCheckItem",
+        "dynamodb:DescribeTable"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "KlineTable986A720B",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "KlineTable986A720B",
+             "Arn"
+            ]
+           },
+           "/index/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "IAMRolesLambdaRoleDefaultPolicy833CF6E2",
+    "Roles": [
+     {
+      "Ref": "IAMRolesLambdaRole3969EFC6"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/IAMRoles/LambdaRole/DefaultPolicy/Resource"
+   }
+  },
+  "IAMRolesEC2RoleC881058A": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "ec2.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/AmazonSSMManagedInstanceCore"
+       ]
+      ]
+     },
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/AWSCodeDeployFullAccess"
+       ]
+      ]
+     },
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/CloudWatchAgentServerPolicy"
+       ]
+      ]
+     }
+    ],
+    "Policies": [
+     {
+      "PolicyDocument": {
+       "Statement": [
+        {
+         "Action": [
+          "dynamodb:PutItem",
+          "dynamodb:GetItem",
+          "dynamodb:UpdateItem",
+          "dynamodb:DeleteItem",
+          "dynamodb:BatchGetItem",
+          "dynamodb:BatchWriteItem",
+          "dynamodb:Query",
+          "dynamodb:Scan",
+          "dynamodb:DescribeTable",
+          "dynamodb:CreateTable",
+          "dynamodb:DeleteTable",
+          "dynamodb:ListTables"
+         ],
+         "Effect": "Allow",
+         "Resource": [
+          {
+           "Fn::GetAtt": [
+            "KlineTable986A720B",
+            "Arn"
+           ]
+          },
+          {
+           "Fn::Join": [
+            "",
+            [
+             {
+              "Fn::GetAtt": [
+               "KlineTable986A720B",
+               "Arn"
+              ]
+             },
+             "/*"
+            ]
+           ]
+          },
+          "arn:aws:dynamodb:us-west-1:619326977873:table/*"
+         ]
+        }
+       ],
+       "Version": "2012-10-17"
+      },
+      "PolicyName": "DynamoDBFullAccess"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/IAMRoles/EC2Role/Resource"
+   }
+  },
+  "IAMRolesEC2RoleDefaultPolicyF8890C98": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "codedeploy:*",
+        "ec2:DescribeInstances",
+        "ec2:DescribeTags",
+        "ec2:DescribeInstanceStatus",
+        "tag:GetResources",
+        "tag:GetTagKeys",
+        "tag:GetTagValues",
+        "s3:Get*",
+        "s3:List*",
+        "s3:PutObject",
+        "s3:PutObjectAcl",
+        "s3:DeleteObject"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "ec2:DescribeInstanceAttribute",
+        "ec2:DescribeInstanceStatus",
+        "ec2:DescribeInstances",
+        "ec2:DescribeTags"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "iam:GetRole",
+        "iam:PassRole",
+        "iam:ListRoles"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "s3:GetObject",
+        "s3:ListBucket",
+        "s3:PutObject",
+        "s3:GetObjectVersion"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "S3ConstructOptimusAPIBucket581D3580",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "S3ConstructOptimusAPIBucket581D3580",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "dynamodb:PutItem",
+        "dynamodb:GetItem",
+        "dynamodb:UpdateItem",
+        "dynamodb:DeleteItem",
+        "dynamodb:BatchGetItem",
+        "dynamodb:BatchWriteItem",
+        "dynamodb:Query",
+        "dynamodb:Scan",
+        "dynamodb:DescribeTable"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "KlineTable986A720B",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "KlineTable986A720B",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents",
+        "logs:DescribeLogStreams",
+        "logs:DescribeLogGroups"
+       ],
+       "Effect": "Allow",
+       "Resource": "arn:aws:logs:us-west-1:619326977873:log-group:*"
+      },
+      {
+       "Action": "*",
+       "Condition": {
+        "Bool": {
+         "aws:SecureTransport": false
+        }
+       },
+       "Effect": "Deny",
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "dynamodb:BatchGetItem",
+        "dynamodb:GetRecords",
+        "dynamodb:GetShardIterator",
+        "dynamodb:Query",
+        "dynamodb:GetItem",
+        "dynamodb:Scan",
+        "dynamodb:ConditionCheckItem",
+        "dynamodb:BatchWriteItem",
+        "dynamodb:PutItem",
+        "dynamodb:UpdateItem",
+        "dynamodb:DeleteItem",
+        "dynamodb:DescribeTable"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "KlineTable986A720B",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "KlineTable986A720B",
+             "Arn"
+            ]
+           },
+           "/index/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "IAMRolesEC2RoleDefaultPolicyF8890C98",
+    "Roles": [
+     {
+      "Ref": "IAMRolesEC2RoleC881058A"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/IAMRoles/EC2Role/DefaultPolicy/Resource"
+   }
+  },
+  "IAMRolesBuildRoleD76DE982": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "codebuild.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/AWSCodeBuildAdminAccess"
+       ]
+      ]
+     },
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/AmazonS3FullAccess"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/IAMRoles/BuildRole/Resource"
+   }
+  },
+  "IAMRolesBuildRoleDefaultPolicy33425913": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:DeleteObject*",
+        "s3:PutObject",
+        "s3:PutObjectLegalHold",
+        "s3:PutObjectRetention",
+        "s3:PutObjectTagging",
+        "s3:PutObjectVersionTagging",
+        "s3:Abort*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "S3ConstructOptimusAPIBucket581D3580",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "S3ConstructOptimusAPIBucket581D3580",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "s3:PutObject",
+        "s3:GetObject",
+        "s3:ListBucket",
+        "codedeploy:CreateDeployment",
+        "codedeploy:GetDeployment",
+        "codedeploy:GetDeploymentConfig",
+        "codedeploy:RegisterApplicationRevision",
+        "codedeploy:GetApplicationRevision",
+        "codedeploy:GetDeploymentTarget",
+        "codedeploy:ListDeployments"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "S3ConstructOptimusAPIBucket581D3580",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        },
+        {
+         "Fn::GetAtt": [
+          "S3ConstructOptimusAPIBucket581D3580",
+          "Arn"
+         ]
+        },
+        "arn:aws:codedeploy:us-west-1:619326977873:deploymentgroup:OptimusApplication/OptimusDeploymentGroup",
+        "arn:aws:codedeploy:us-west-1:619326977873:application:OptimusApplication",
+        "arn:aws:codedeploy:us-west-1:619326977873:deploymentconfig:*"
+       ]
+      },
+      {
+       "Action": [
+        "codecommit:GitPull",
+        "codecommit:GitPush",
+        "codecommit:GitBranch",
+        "codecommit:ListBranches",
+        "codecommit:CreateCommit",
+        "codecommit:GetCommit",
+        "codecommit:GetRepository",
+        "codecommit:ListRepositories"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents",
+        "logs:DescribeLogStreams",
+        "logs:DescribeLogGroups"
+       ],
+       "Effect": "Allow",
+       "Resource": "arn:aws:logs:us-west-1:619326977873:log-group:*"
+      },
+      {
+       "Action": "*",
+       "Condition": {
+        "Bool": {
+         "aws:SecureTransport": false
+        }
+       },
+       "Effect": "Deny",
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":logs:us-west-1:619326977873:log-group:/aws/codebuild/",
+           {
+            "Ref": "BuildProject097C5DB7"
+           }
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":logs:us-west-1:619326977873:log-group:/aws/codebuild/",
+           {
+            "Ref": "BuildProject097C5DB7"
+           },
+           ":*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "codebuild:CreateReportGroup",
+        "codebuild:CreateReport",
+        "codebuild:UpdateReport",
+        "codebuild:BatchPutTestCases",
+        "codebuild:BatchPutCodeCoverages"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":codebuild:us-west-1:619326977873:report-group/",
+          {
+           "Ref": "BuildProject097C5DB7"
+          },
+          "-*"
+         ]
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "IAMRolesBuildRoleDefaultPolicy33425913",
+    "Roles": [
+     {
+      "Ref": "IAMRolesBuildRoleD76DE982"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/IAMRoles/BuildRole/DefaultPolicy/Resource"
+   }
+  },
+  "IAMRolesCodeDeployServiceRole5E16DA96": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "codedeploy.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSCodeDeployRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/IAMRoles/CodeDeployServiceRole/Resource"
+   }
+  },
+  "IAMRolesCodeDeployServiceRoleDefaultPolicy98C02197": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "ec2:Describe*",
+        "tag:GetTags",
+        "tag:GetResources",
+        "tag:GetTagValues",
+        "tag:GetTagKeys",
+        "autoscaling:*",
+        "ec2:RunInstances",
+        "ec2:CreateTags",
+        "iam:PassRole"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents",
+        "logs:DescribeLogStreams",
+        "logs:DescribeLogGroups"
+       ],
+       "Effect": "Allow",
+       "Resource": "arn:aws:logs:us-west-1:619326977873:log-group:*"
+      },
+      {
+       "Action": "*",
+       "Condition": {
+        "Bool": {
+         "aws:SecureTransport": false
+        }
+       },
+       "Effect": "Deny",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "IAMRolesCodeDeployServiceRoleDefaultPolicy98C02197",
+    "Roles": [
+     {
+      "Ref": "IAMRolesCodeDeployServiceRole5E16DA96"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/IAMRoles/CodeDeployServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "WaitHandle": {
+   "Type": "AWS::CloudFormation::WaitConditionHandle",
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/WaitHandle"
+   }
+  },
+  "EC2ConstructSecurityGroupFDCA78E4": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "Security group with WebSocket support",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow all outbound traffic by default",
+      "IpProtocol": "-1"
+     }
+    ],
+    "SecurityGroupIngress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow SSH access",
+      "FromPort": 22,
+      "IpProtocol": "tcp",
+      "ToPort": 22
+     },
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow HTTP/WebSocket access",
+      "FromPort": 80,
+      "IpProtocol": "tcp",
+      "ToPort": 80
+     },
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow HTTPS/Secure WebSocket access",
+      "FromPort": 443,
+      "IpProtocol": "tcp",
+      "ToPort": 443
+     }
+    ],
+    "VpcId": {
+     "Ref": "VPCConstructVPC3A049706"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/EC2Construct/SecurityGroup/Resource"
+   }
+  },
+  "EC2ConstructEC2LaunchTemplate57D08D2E": {
+   "Type": "AWS::EC2::LaunchTemplate",
+   "Properties": {
+    "LaunchTemplateData": {
+     "ImageId": {
+      "Ref": "SsmParameterValueawsserviceamiamazonlinuxlatestal2023amikernel61x8664C96584B6F00A464EAD1953AFF4B05118Parameter"
+     },
+     "InstanceType": "t2.micro",
+     "MetadataOptions": {
+      "HttpEndpoint": "enabled",
+      "HttpPutResponseHopLimit": 2,
+      "HttpTokens": "optional",
+      "InstanceMetadataTags": "enabled"
+     },
+     "TagSpecifications": [
+      {
+       "ResourceType": "instance",
+       "Tags": [
+        {
+         "Key": "Environment",
+         "Value": "Development"
+        },
+        {
+         "Key": "Name",
+         "Value": "WebSocket-Client"
+        }
+       ]
+      }
+     ],
+     "UserData": {
+      "Fn::Base64": {
+       "Fn::Join": [
+        "",
+        [
+         "#!/bin/bash\nfunction signal_cf() {\n  local status=$1\n  local message=$2\n  echo \"Signaling with status: $status, message: $message\"\n  curl -X PUT -H 'Content-Type:' --data-binary '{\"Status\":\"'$status'\",\"Reason\":\"'$message'\",\"UniqueId\":\"'$status'\",\"Data\":\"'$message'\"}' \"",
+         {
+          "Ref": "WaitHandle"
+         },
+         "\"\n}\nfunction handle_error() {\n  local error_message=$1\n  echo \"Error: $error_message\"\n  signal_cf FAILURE \"$error_message\"\n  exit 1\n}\ntrap 'handle_error \"Script interrupted\"' INT TERM\n#!/bin/bash\nset -e\nset -o pipefail\nexec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1\necho \"Starting user data script execution...\"\nset -x\nfunction error_exit() {\n    echo \"${1:-\\\"Unknown Error\\\"}\" 1>&2\n    exit 1\n}\nyum update -y || error_exit \"Failed to update system packages\"\nyum install -y ruby wget cronie || error_exit \"Failed to install base packages\"\nsystemctl start crond || error_exit \"Failed to start crond service\"\nsystemctl enable crond || error_exit \"Failed to enable crond service\"\nsudo mkdir -p /home/ec2-user/.nvm\nsudo mkdir -p /home/ec2-user/.pm2\nsudo mkdir -p /home/ec2-user/app\nsudo chown -R ec2-user:ec2-user /home/ec2-user/.nvm\nsudo chown -R ec2-user:ec2-user /home/ec2-user/.pm2\nsudo chown -R ec2-user:ec2-user /home/ec2-user/app\nsudo -u ec2-user bash << 'EOF'\nexport NVM_DIR=\"/home/ec2-user/.nvm\"\ncurl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash\nsource $NVM_DIR/nvm.sh\nnvm install 20\nnvm use 20\nnvm alias default 20\n\nnpm install -g pm2 yarn\n\nexport PM2_HOME=\"/home/ec2-user/.pm2\"\npm2 install pm2-logrotate\npm2 set pm2-logrotate:max_size 10M\npm2 set pm2-logrotate:retain 5\npm2 set pm2-logrotate:compress true\nEOF\necho \"Installing CodeDeploy agent...\"\nsudo systemctl stop codedeploy-agent || true\nsudo rm -rf /opt/codedeploy-agent\nsudo rm -f /etc/init.d/codedeploy-agent\nsudo rm -f /etc/systemd/system/codedeploy-agent.service\nsudo mkdir -p /opt/codedeploy-agent/deployment-root\nsudo mkdir -p /etc/codedeploy-agent/conf\nsudo mkdir -p /var/log/aws/codedeploy-agent\nsudo chmod 755 /opt/codedeploy-agent/deployment-root\nsudo chmod 755 /var/log/aws/codedeploy-agent\ncd /home/ec2-user\nregion=$(curl -s http://169.254.169.254/latest/meta-data/placement/region)\nsudo wget \"https://aws-codedeploy-${region}.s3.${region}.amazonaws.com/latest/install\"\nsudo chmod +x ./install\nsudo ./install auto || error_exit \"Failed to install CodeDeploy agent\"\ncat << 'EOF' | sudo tee /etc/systemd/system/codedeploy-agent.service\n[Unit]\nDescription=AWS CodeDeploy Host Agent\nAfter=network.target\n\n[Service]\nType=simple\nExecStart=/opt/codedeploy-agent/bin/codedeploy-agent start\nExecStop=/opt/codedeploy-agent/bin/codedeploy-agent stop\nUser=root\nRestart=always\nRestartSec=10\n\n[Install]\nWantedBy=multi-user.target\nEOF\nsudo systemctl daemon-reload\nsudo systemctl enable codedeploy-agent\nsudo systemctl start codedeploy-agent\necho \"Verifying complete environment setup...\"\nif ! sudo -u ec2-user bash -c 'source $HOME/.nvm/nvm.sh && node --version'; then\n  handle_error \"Node.js not properly installed\"\nfi\nif ! sudo -u ec2-user bash -c 'source $HOME/.nvm/nvm.sh && npm --version'; then\n  handle_error \"NPM not properly installed\"\nfi\nif ! sudo -u ec2-user bash -c 'source $HOME/.nvm/nvm.sh && pm2 --version'; then\n  handle_error \"PM2 not properly installed\"\nfi\necho \"Verifying CodeDeploy agent...\"\nif ! systemctl is-active --quiet codedeploy-agent; then\n  handle_error \"CodeDeploy agent is not running\"\nfi\necho \"Verifying CodeDeploy agent logs...\"\nif ! test -f /var/log/aws/codedeploy-agent/codedeploy-agent.log; then\n  handle_error \"CodeDeploy agent log file not found\"\nfi\necho \"All verifications passed, signaling success...\"\ncurl -X PUT -H 'Content-Type:' --data-binary '{\"Status\":\"SUCCESS\",\"Reason\":\"Configuration Complete\",\"UniqueId\":\"ConfigComplete\",\"Data\":\"Instance setup completed successfully\"}' \"",
+         {
+          "Ref": "WaitHandle"
+         },
+         "\""
+        ]
+       ]
+      }
+     }
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/EC2Construct/EC2LaunchTemplate"
+   }
+  },
+  "EC2ConstructInstanceInstanceProfile349BDF7D": {
+   "Type": "AWS::IAM::InstanceProfile",
+   "Properties": {
+    "Roles": [
+     {
+      "Ref": "IAMRolesEC2RoleC881058A"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/EC2Construct/Instance/InstanceProfile"
+   }
+  },
+  "EC2ConstructInstance87AD88E2": {
+   "Type": "AWS::EC2::Instance",
+   "Properties": {
+    "AvailabilityZone": "us-west-1a",
+    "BlockDeviceMappings": [
+     {
+      "DeviceName": "/dev/xvda",
+      "Ebs": {
+       "DeleteOnTermination": true,
+       "VolumeSize": 8,
+       "VolumeType": "gp2"
+      }
+     }
+    ],
+    "IamInstanceProfile": {
+     "Ref": "EC2ConstructInstanceInstanceProfile349BDF7D"
+    },
+    "ImageId": {
+     "Ref": "SsmParameterValueawsserviceamiamazonlinuxlatestal2023amikernel61x8664C96584B6F00A464EAD1953AFF4B05118Parameter"
+    },
+    "InstanceInitiatedShutdownBehavior": "stop",
+    "InstanceType": "t2.micro",
+    "KeyName": "galvitron-key-2",
+    "LaunchTemplate": {
+     "LaunchTemplateId": {
+      "Ref": "EC2ConstructEC2LaunchTemplate57D08D2E"
+     },
+     "Version": {
+      "Fn::GetAtt": [
+       "EC2ConstructEC2LaunchTemplate57D08D2E",
+       "LatestVersionNumber"
+      ]
+     }
+    },
+    "Monitoring": false,
+    "SecurityGroupIds": [
+     {
+      "Fn::GetAtt": [
+       "EC2ConstructSecurityGroupFDCA78E4",
+       "GroupId"
+      ]
+     }
+    ],
+    "SubnetId": {
+     "Ref": "VPCConstructVPCPublicSubnet1Subnet8CB03D42"
+    },
+    "Tags": [
+     {
+      "Key": "Environment",
+      "Value": "Development"
+     },
+     {
+      "Key": "Name",
+      "Value": "WebSocket-Client"
+     }
+    ],
+    "UserData": {
+     "Fn::Base64": {
+      "Fn::Join": [
+       "",
+       [
+        "#!/bin/bash\nfunction signal_cf() {\n  local status=$1\n  local message=$2\n  echo \"Signaling with status: $status, message: $message\"\n  curl -X PUT -H 'Content-Type:' --data-binary '{\"Status\":\"'$status'\",\"Reason\":\"'$message'\",\"UniqueId\":\"'$status'\",\"Data\":\"'$message'\"}' \"",
+        {
+         "Ref": "WaitHandle"
+        },
+        "\"\n}\nfunction handle_error() {\n  local error_message=$1\n  echo \"Error: $error_message\"\n  signal_cf FAILURE \"$error_message\"\n  exit 1\n}\ntrap 'handle_error \"Script interrupted\"' INT TERM\n#!/bin/bash\nset -e\nset -o pipefail\nexec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1\necho \"Starting user data script execution...\"\nset -x\nfunction error_exit() {\n    echo \"${1:-\\\"Unknown Error\\\"}\" 1>&2\n    exit 1\n}\nyum update -y || error_exit \"Failed to update system packages\"\nyum install -y ruby wget cronie || error_exit \"Failed to install base packages\"\nsystemctl start crond || error_exit \"Failed to start crond service\"\nsystemctl enable crond || error_exit \"Failed to enable crond service\"\nsudo mkdir -p /home/ec2-user/.nvm\nsudo mkdir -p /home/ec2-user/.pm2\nsudo mkdir -p /home/ec2-user/app\nsudo chown -R ec2-user:ec2-user /home/ec2-user/.nvm\nsudo chown -R ec2-user:ec2-user /home/ec2-user/.pm2\nsudo chown -R ec2-user:ec2-user /home/ec2-user/app\nsudo -u ec2-user bash << 'EOF'\nexport NVM_DIR=\"/home/ec2-user/.nvm\"\ncurl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash\nsource $NVM_DIR/nvm.sh\nnvm install 20\nnvm use 20\nnvm alias default 20\n\nnpm install -g pm2 yarn\n\nexport PM2_HOME=\"/home/ec2-user/.pm2\"\npm2 install pm2-logrotate\npm2 set pm2-logrotate:max_size 10M\npm2 set pm2-logrotate:retain 5\npm2 set pm2-logrotate:compress true\nEOF\necho \"Installing CodeDeploy agent...\"\nsudo systemctl stop codedeploy-agent || true\nsudo rm -rf /opt/codedeploy-agent\nsudo rm -f /etc/init.d/codedeploy-agent\nsudo rm -f /etc/systemd/system/codedeploy-agent.service\nsudo mkdir -p /opt/codedeploy-agent/deployment-root\nsudo mkdir -p /etc/codedeploy-agent/conf\nsudo mkdir -p /var/log/aws/codedeploy-agent\nsudo chmod 755 /opt/codedeploy-agent/deployment-root\nsudo chmod 755 /var/log/aws/codedeploy-agent\ncd /home/ec2-user\nregion=$(curl -s http://169.254.169.254/latest/meta-data/placement/region)\nsudo wget \"https://aws-codedeploy-${region}.s3.${region}.amazonaws.com/latest/install\"\nsudo chmod +x ./install\nsudo ./install auto || error_exit \"Failed to install CodeDeploy agent\"\ncat << 'EOF' | sudo tee /etc/systemd/system/codedeploy-agent.service\n[Unit]\nDescription=AWS CodeDeploy Host Agent\nAfter=network.target\n\n[Service]\nType=simple\nExecStart=/opt/codedeploy-agent/bin/codedeploy-agent start\nExecStop=/opt/codedeploy-agent/bin/codedeploy-agent stop\nUser=root\nRestart=always\nRestartSec=10\n\n[Install]\nWantedBy=multi-user.target\nEOF\nsudo systemctl daemon-reload\nsudo systemctl enable codedeploy-agent\nsudo systemctl start codedeploy-agent\necho \"Verifying complete environment setup...\"\nif ! sudo -u ec2-user bash -c 'source $HOME/.nvm/nvm.sh && node --version'; then\n  handle_error \"Node.js not properly installed\"\nfi\nif ! sudo -u ec2-user bash -c 'source $HOME/.nvm/nvm.sh && npm --version'; then\n  handle_error \"NPM not properly installed\"\nfi\nif ! sudo -u ec2-user bash -c 'source $HOME/.nvm/nvm.sh && pm2 --version'; then\n  handle_error \"PM2 not properly installed\"\nfi\necho \"Verifying CodeDeploy agent...\"\nif ! systemctl is-active --quiet codedeploy-agent; then\n  handle_error \"CodeDeploy agent is not running\"\nfi\necho \"Verifying CodeDeploy agent logs...\"\nif ! test -f /var/log/aws/codedeploy-agent/codedeploy-agent.log; then\n  handle_error \"CodeDeploy agent log file not found\"\nfi\necho \"All verifications passed, signaling success...\"\ncurl -X PUT -H 'Content-Type:' --data-binary '{\"Status\":\"SUCCESS\",\"Reason\":\"Configuration Complete\",\"UniqueId\":\"ConfigComplete\",\"Data\":\"Instance setup completed successfully\"}' \"",
+        {
+         "Ref": "WaitHandle"
+        },
+        "\""
+       ]
+      ]
+     }
+    }
+   },
+   "DependsOn": [
+    "IAMRolesEC2RoleDefaultPolicyF8890C98",
+    "IAMRolesEC2RoleC881058A"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/EC2Construct/Instance/Resource"
+   }
+  },
+  "CodeDeployApplicationE587C27C": {
+   "Type": "AWS::CodeDeploy::Application",
+   "Properties": {
+    "ApplicationName": "OptimusApplication",
+    "ComputePlatform": "Server"
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/CodeDeployApplication/Resource"
+   }
+  },
+  "CodeDeployDeploymentGroupA33AC6C7": {
+   "Type": "AWS::CodeDeploy::DeploymentGroup",
+   "Properties": {
+    "ApplicationName": {
+     "Ref": "CodeDeployApplicationE587C27C"
+    },
+    "AutoRollbackConfiguration": {
+     "Enabled": true,
+     "Events": [
+      "DEPLOYMENT_FAILURE"
+     ]
+    },
+    "DeploymentConfigName": "CodeDeployDefault.AllAtOnce",
+    "DeploymentGroupName": "OptimusDeploymentGroup",
+    "Ec2TagSet": {
+     "Ec2TagSetList": [
+      {
+       "Ec2TagGroup": [
+        {
+         "Key": "Environment",
+         "Type": "KEY_AND_VALUE",
+         "Value": "Development"
+        },
+        {
+         "Key": "Name",
+         "Type": "KEY_AND_VALUE",
+         "Value": "WebSocket-Client"
+        }
+       ]
+      }
+     ]
+    },
+    "ServiceRoleArn": {
+     "Fn::GetAtt": [
+      "IAMRolesCodeDeployServiceRole5E16DA96",
+      "Arn"
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/CodeDeployDeploymentGroup/Resource"
+   }
+  },
+  "BuildProject097C5DB7": {
+   "Type": "AWS::CodeBuild::Project",
+   "Properties": {
+    "Artifacts": {
+     "Type": "CODEPIPELINE"
+    },
+    "Cache": {
+     "Type": "NO_CACHE"
+    },
+    "EncryptionKey": "alias/aws/s3",
+    "Environment": {
+     "ComputeType": "BUILD_GENERAL1_SMALL",
+     "EnvironmentVariables": [
+      {
+       "Name": "OPTIMUS_BUCKET",
+       "Type": "PLAINTEXT",
+       "Value": {
+        "Ref": "S3ConstructOptimusAPIBucket581D3580"
+       }
+      }
+     ],
+     "Image": "aws/codebuild/standard:7.0",
+     "ImagePullCredentialsType": "CODEBUILD",
+     "PrivilegedMode": true,
+     "Type": "LINUX_CONTAINER"
+    },
+    "ServiceRole": {
+     "Fn::GetAtt": [
+      "IAMRolesBuildRoleD76DE982",
+      "Arn"
+     ]
+    },
+    "Source": {
+     "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"rm -rf /tmp/workspace/*\",\n        \"mkdir -p /tmp/workspace\",\n        \"cp -r . /tmp/workspace/optimus-core\",\n        \"cd /tmp/workspace\",\n        \"git clone https://github.com/mzienert/optimus-api.git || (cd optimus-api && git pull)\"\n      ]\n    },\n    \"pre_build\": {\n      \"commands\": [\n        \"cd /tmp/workspace/optimus-api/lambdas/optimus\",\n        \"rm -rf node_modules dist\",\n        \"npm ci\",\n        \"npm run build\",\n        \"cp -r node_modules dist/\",\n        \"cp package*.json dist/\",\n        \"cd /tmp/workspace/\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"rm -rf node_modules dist\",\n        \"npm ci\",\n        \"npm run build\",\n        \"mkdir -p dist/node_modules\",\n        \"cp -r node_modules/* dist/node_modules/\",\n        \"cp package*.json dist/\"\n      ]\n    },\n    \"post_build\": {\n      \"commands\": [\n        \"mkdir -p dist/logs\",\n        \"chmod -R 755 dist\"\n      ]\n    }\n  },\n  \"artifacts\": {\n    \"base-directory\": \"/tmp/workspace/optimus-api\",\n    \"files\": [\n      \"appspec.yml\",\n      \"scripts/**/*\",\n      \"ecosystem.config.js\",\n      \"package*.json\",\n      \"dist/**/*\",\n      \"lambdas/optimus/dist/**/*\"\n    ]\n  }\n}",
+     "Type": "CODEPIPELINE"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/BuildProject/Resource"
+   }
+  },
+  "CodePipelineConstructPipelineRoleBFCEF5C1": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "codepipeline.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "DependsOn": [
+    "WaitCondition"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/CodePipelineConstruct/Pipeline/Role/Resource"
+   }
+  },
+  "CodePipelineConstructPipelineRoleDefaultPolicyE4495F31": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:DeleteObject*",
+        "s3:PutObject",
+        "s3:PutObjectLegalHold",
+        "s3:PutObjectRetention",
+        "s3:PutObjectTagging",
+        "s3:PutObjectVersionTagging",
+        "s3:Abort*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "S3ConstructOptimusAPIBucket581D3580",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "S3ConstructOptimusAPIBucket581D3580",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "CodePipelineConstructPipelineBuildCodePipelineActionRoleAEFFFE96",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "CodePipelineConstructPipelineDeployCodePipelineActionRoleD589F03E",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "CodePipelineConstructPipelineRoleDefaultPolicyE4495F31",
+    "Roles": [
+     {
+      "Ref": "CodePipelineConstructPipelineRoleBFCEF5C1"
+     }
+    ]
+   },
+   "DependsOn": [
+    "WaitCondition"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/CodePipelineConstruct/Pipeline/Role/DefaultPolicy/Resource"
+   }
+  },
+  "CodePipelineConstructPipeline3651447E": {
+   "Type": "AWS::CodePipeline::Pipeline",
+   "Properties": {
+    "ArtifactStore": {
+     "Location": {
+      "Ref": "S3ConstructOptimusAPIBucket581D3580"
+     },
+     "Type": "S3"
+    },
+    "Name": "OptimusAPIPipeline",
+    "RestartExecutionOnUpdate": true,
+    "RoleArn": {
+     "Fn::GetAtt": [
+      "CodePipelineConstructPipelineRoleBFCEF5C1",
+      "Arn"
+     ]
+    },
+    "Stages": [
+     {
+      "Actions": [
+       {
+        "ActionTypeId": {
+         "Category": "Source",
+         "Owner": "ThirdParty",
+         "Provider": "GitHub",
+         "Version": "1"
+        },
+        "Configuration": {
+         "Owner": "mzienert",
+         "Repo": "optimus-api",
+         "Branch": "master",
+         "OAuthToken": "{{resolve:secretsmanager:github-token-secret-name:SecretString:::}}",
+         "PollForSourceChanges": false
+        },
+        "Name": "GitHub_Source",
+        "OutputArtifacts": [
+         {
+          "Name": "SourceOutput"
+         }
+        ],
+        "RunOrder": 1
+       }
+      ],
+      "Name": "Source"
+     },
+     {
+      "Actions": [
+       {
+        "ActionTypeId": {
+         "Category": "Build",
+         "Owner": "AWS",
+         "Provider": "CodeBuild",
+         "Version": "1"
+        },
+        "Configuration": {
+         "ProjectName": {
+          "Ref": "BuildProject097C5DB7"
+         }
+        },
+        "InputArtifacts": [
+         {
+          "Name": "SourceOutput"
+         }
+        ],
+        "Name": "Build",
+        "OutputArtifacts": [
+         {
+          "Name": "BuildOutput"
+         }
+        ],
+        "RoleArn": {
+         "Fn::GetAtt": [
+          "CodePipelineConstructPipelineBuildCodePipelineActionRoleAEFFFE96",
+          "Arn"
+         ]
+        },
+        "RunOrder": 1
+       }
+      ],
+      "Name": "Build"
+     },
+     {
+      "Actions": [
+       {
+        "ActionTypeId": {
+         "Category": "Deploy",
+         "Owner": "AWS",
+         "Provider": "CodeDeploy",
+         "Version": "1"
+        },
+        "Configuration": {
+         "ApplicationName": {
+          "Ref": "CodeDeployApplicationE587C27C"
+         },
+         "DeploymentGroupName": {
+          "Ref": "CodeDeployDeploymentGroupA33AC6C7"
+         }
+        },
+        "InputArtifacts": [
+         {
+          "Name": "BuildOutput"
+         }
+        ],
+        "Name": "Deploy",
+        "Namespace": "DeployVariables",
+        "RoleArn": {
+         "Fn::GetAtt": [
+          "CodePipelineConstructPipelineDeployCodePipelineActionRoleD589F03E",
+          "Arn"
+         ]
+        },
+        "RunOrder": 1
+       }
+      ],
+      "Name": "Deploy"
+     }
+    ]
+   },
+   "DependsOn": [
+    "CodePipelineConstructPipelineRoleDefaultPolicyE4495F31",
+    "CodePipelineConstructPipelineRoleBFCEF5C1",
+    "WaitCondition"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/CodePipelineConstruct/Pipeline/Resource"
+   }
+  },
+  "CodePipelineConstructPipelineSourceGitHubSourceWebhookResource30B41DE2": {
+   "Type": "AWS::CodePipeline::Webhook",
+   "Properties": {
+    "Authentication": "GITHUB_HMAC",
+    "AuthenticationConfiguration": {
+     "SecretToken": "{{resolve:secretsmanager:github-token-secret-name:SecretString:::}}"
+    },
+    "Filters": [
+     {
+      "JsonPath": "$.ref",
+      "MatchEquals": "refs/heads/{Branch}"
+     }
+    ],
+    "RegisterWithThirdParty": true,
+    "TargetAction": "GitHub_Source",
+    "TargetPipeline": {
+     "Ref": "CodePipelineConstructPipeline3651447E"
+    },
+    "TargetPipelineVersion": 1
+   },
+   "DependsOn": [
+    "WaitCondition"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/CodePipelineConstruct/Pipeline/Source/GitHub_Source/WebhookResource"
+   }
+  },
+  "CodePipelineConstructPipelineBuildCodePipelineActionRoleAEFFFE96": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":iam::619326977873:root"
+          ]
+         ]
+        }
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "DependsOn": [
+    "WaitCondition"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/CodePipelineConstruct/Pipeline/Build/Build/CodePipelineActionRole/Resource"
+   }
+  },
+  "CodePipelineConstructPipelineBuildCodePipelineActionRoleDefaultPolicyBA10977B": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "codebuild:BatchGetBuilds",
+        "codebuild:StartBuild",
+        "codebuild:StopBuild"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "BuildProject097C5DB7",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "CodePipelineConstructPipelineBuildCodePipelineActionRoleDefaultPolicyBA10977B",
+    "Roles": [
+     {
+      "Ref": "CodePipelineConstructPipelineBuildCodePipelineActionRoleAEFFFE96"
+     }
+    ]
+   },
+   "DependsOn": [
+    "WaitCondition"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/CodePipelineConstruct/Pipeline/Build/Build/CodePipelineActionRole/DefaultPolicy/Resource"
+   }
+  },
+  "CodePipelineConstructPipelineDeployCodePipelineActionRoleD589F03E": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":iam::619326977873:root"
+          ]
+         ]
+        }
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "DependsOn": [
+    "WaitCondition"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/CodePipelineConstruct/Pipeline/Deploy/Deploy/CodePipelineActionRole/Resource"
+   }
+  },
+  "CodePipelineConstructPipelineDeployCodePipelineActionRoleDefaultPolicyF9B6C32C": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "codedeploy:GetApplicationRevision",
+        "codedeploy:RegisterApplicationRevision"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":codedeploy:us-west-1:619326977873:application:",
+          {
+           "Ref": "CodeDeployApplicationE587C27C"
+          }
+         ]
+        ]
+       }
+      },
+      {
+       "Action": [
+        "codedeploy:CreateDeployment",
+        "codedeploy:GetDeployment"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":codedeploy:us-west-1:619326977873:deploymentgroup:",
+          {
+           "Ref": "CodeDeployApplicationE587C27C"
+          },
+          "/",
+          {
+           "Ref": "CodeDeployDeploymentGroupA33AC6C7"
+          }
+         ]
+        ]
+       }
+      },
+      {
+       "Action": "codedeploy:GetDeploymentConfig",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":codedeploy:us-west-1:619326977873:deploymentconfig:CodeDeployDefault.AllAtOnce"
+         ]
+        ]
+       }
+      },
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "S3ConstructOptimusAPIBucket581D3580",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "S3ConstructOptimusAPIBucket581D3580",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "CodePipelineConstructPipelineDeployCodePipelineActionRoleDefaultPolicyF9B6C32C",
+    "Roles": [
+     {
+      "Ref": "CodePipelineConstructPipelineDeployCodePipelineActionRoleD589F03E"
+     }
+    ]
+   },
+   "DependsOn": [
+    "WaitCondition"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/CodePipelineConstruct/Pipeline/Deploy/Deploy/CodePipelineActionRole/DefaultPolicy/Resource"
+   }
+  },
+  "NextJSPipelineConstructWebsiteBucket01B5A639": {
+   "Type": "AWS::S3::Bucket",
+   "Properties": {
+    "CorsConfiguration": {
+     "CorsRules": [
+      {
+       "AllowedHeaders": [
+        "*"
+       ],
+       "AllowedMethods": [
+        "GET"
+       ],
+       "AllowedOrigins": [
+        "*"
+       ]
+      }
+     ]
+    },
+    "PublicAccessBlockConfiguration": {
+     "BlockPublicAcls": false,
+     "BlockPublicPolicy": false,
+     "IgnorePublicAcls": false,
+     "RestrictPublicBuckets": false
+    },
+    "Tags": [
+     {
+      "Key": "aws-cdk:auto-delete-objects",
+      "Value": "true"
+     }
+    ],
+    "WebsiteConfiguration": {
+     "ErrorDocument": "404.html",
+     "IndexDocument": "index.html"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/NextJSPipelineConstruct/WebsiteBucket/Resource"
+   }
+  },
+  "NextJSPipelineConstructWebsiteBucketPolicy36BC8C19": {
+   "Type": "AWS::S3::BucketPolicy",
+   "Properties": {
+    "Bucket": {
+     "Ref": "NextJSPipelineConstructWebsiteBucket01B5A639"
+    },
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "s3:GetObject",
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": "*"
+       },
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          {
+           "Fn::GetAtt": [
+            "NextJSPipelineConstructWebsiteBucket01B5A639",
+            "Arn"
+           ]
+          },
+          "/*"
+         ]
+        ]
+       }
+      },
+      {
+       "Action": [
+        "s3:PutBucketPolicy",
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:DeleteObject*"
+       ],
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": {
+         "Fn::GetAtt": [
+          "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+          "Arn"
+         ]
+        }
+       },
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "NextJSPipelineConstructWebsiteBucket01B5A639",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "NextJSPipelineConstructWebsiteBucket01B5A639",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/NextJSPipelineConstruct/WebsiteBucket/Policy/Resource"
+   }
+  },
+  "NextJSPipelineConstructWebsiteBucketAutoDeleteObjectsCustomResource6CAC92CA": {
+   "Type": "Custom::S3AutoDeleteObjects",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
+      "Arn"
+     ]
+    },
+    "BucketName": {
+     "Ref": "NextJSPipelineConstructWebsiteBucket01B5A639"
+    }
+   },
+   "DependsOn": [
+    "NextJSPipelineConstructWebsiteBucketPolicy36BC8C19"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/NextJSPipelineConstruct/WebsiteBucket/AutoDeleteObjectsCustomResource/Default"
+   }
+  },
+  "NextJSPipelineConstructWebsiteCachePolicy27310B96": {
+   "Type": "AWS::CloudFront::CachePolicy",
+   "Properties": {
+    "CachePolicyConfig": {
+     "DefaultTTL": 86400,
+     "MaxTTL": 31536000,
+     "MinTTL": 0,
+     "Name": "OptimusStackNextJSPipelineConstructWebsiteCachePolicyF45BB767-us-west-1",
+     "ParametersInCacheKeyAndForwardedToOrigin": {
+      "CookiesConfig": {
+       "CookieBehavior": "none"
+      },
+      "EnableAcceptEncodingBrotli": true,
+      "EnableAcceptEncodingGzip": true,
+      "HeadersConfig": {
+       "HeaderBehavior": "none"
+      },
+      "QueryStringsConfig": {
+       "QueryStringBehavior": "none"
+      }
+     }
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/NextJSPipelineConstruct/WebsiteCachePolicy/Resource"
+   }
+  },
+  "NextJSPipelineConstructWebsiteDistribution07BB2742": {
+   "Type": "AWS::CloudFront::Distribution",
+   "Properties": {
+    "DistributionConfig": {
+     "CustomErrorResponses": [
+      {
+       "ErrorCode": 404,
+       "ResponseCode": 404,
+       "ResponsePagePath": "/404.html"
+      }
+     ],
+     "DefaultCacheBehavior": {
+      "CachePolicyId": {
+       "Ref": "NextJSPipelineConstructWebsiteCachePolicy27310B96"
+      },
+      "Compress": true,
+      "TargetOriginId": "OptimusStackNextJSPipelineConstructWebsiteDistributionOrigin101DC7AF6",
+      "ViewerProtocolPolicy": "redirect-to-https"
+     },
+     "DefaultRootObject": "index.html",
+     "Enabled": true,
+     "HttpVersion": "http2",
+     "IPV6Enabled": true,
+     "Origins": [
+      {
+       "CustomOriginConfig": {
+        "OriginProtocolPolicy": "http-only",
+        "OriginSSLProtocols": [
+         "TLSv1.2"
+        ]
+       },
+       "DomainName": {
+        "Fn::Select": [
+         2,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::GetAtt": [
+             "NextJSPipelineConstructWebsiteBucket01B5A639",
+             "WebsiteURL"
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "Id": "OptimusStackNextJSPipelineConstructWebsiteDistributionOrigin101DC7AF6"
+      }
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/NextJSPipelineConstruct/WebsiteDistribution/Resource"
+   }
+  },
+  "NextJSPipelineConstructNextJSBuildRole997ED1CC": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "codebuild.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/NextJSPipelineConstruct/NextJSBuild/Role/Resource"
+   }
+  },
+  "NextJSPipelineConstructNextJSBuildRoleDefaultPolicyEFD360AB": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":logs:us-west-1:619326977873:log-group:/aws/codebuild/",
+           {
+            "Ref": "NextJSPipelineConstructNextJSBuild91545C5D"
+           }
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":logs:us-west-1:619326977873:log-group:/aws/codebuild/",
+           {
+            "Ref": "NextJSPipelineConstructNextJSBuild91545C5D"
+           },
+           ":*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "codebuild:CreateReportGroup",
+        "codebuild:CreateReport",
+        "codebuild:UpdateReport",
+        "codebuild:BatchPutTestCases",
+        "codebuild:BatchPutCodeCoverages"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":codebuild:us-west-1:619326977873:report-group/",
+          {
+           "Ref": "NextJSPipelineConstructNextJSBuild91545C5D"
+          },
+          "-*"
+         ]
+        ]
+       }
+      },
+      {
+       "Action": "cloudfront:CreateInvalidation",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:aws:cloudfront::619326977873:distribution/",
+          {
+           "Ref": "NextJSPipelineConstructWebsiteDistribution07BB2742"
+          }
+         ]
+        ]
+       }
+      },
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:DeleteObject*",
+        "s3:PutObject",
+        "s3:PutObjectLegalHold",
+        "s3:PutObjectRetention",
+        "s3:PutObjectTagging",
+        "s3:PutObjectVersionTagging",
+        "s3:Abort*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "NextJSPipelineConstructWebsiteBucket01B5A639",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "NextJSPipelineConstructWebsiteBucket01B5A639",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:DeleteObject*",
+        "s3:PutObject",
+        "s3:PutObjectLegalHold",
+        "s3:PutObjectRetention",
+        "s3:PutObjectTagging",
+        "s3:PutObjectVersionTagging",
+        "s3:Abort*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "NextJSPipelineConstructNextJSPipelineArtifactsBucketE6915442",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "NextJSPipelineConstructNextJSPipelineArtifactsBucketE6915442",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "NextJSPipelineConstructNextJSBuildRoleDefaultPolicyEFD360AB",
+    "Roles": [
+     {
+      "Ref": "NextJSPipelineConstructNextJSBuildRole997ED1CC"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/NextJSPipelineConstruct/NextJSBuild/Role/DefaultPolicy/Resource"
+   }
+  },
+  "NextJSPipelineConstructNextJSBuild91545C5D": {
+   "Type": "AWS::CodeBuild::Project",
+   "Properties": {
+    "Artifacts": {
+     "Type": "CODEPIPELINE"
+    },
+    "Cache": {
+     "Type": "NO_CACHE"
+    },
+    "EncryptionKey": "alias/aws/s3",
+    "Environment": {
+     "ComputeType": "BUILD_GENERAL1_SMALL",
+     "EnvironmentVariables": [
+      {
+       "Name": "CLOUDFRONT_DISTRIBUTION_ID",
+       "Type": "PLAINTEXT",
+       "Value": {
+        "Ref": "NextJSPipelineConstructWebsiteDistribution07BB2742"
+       }
+      }
+     ],
+     "Image": "aws/codebuild/standard:7.0",
+     "ImagePullCredentialsType": "CODEBUILD",
+     "PrivilegedMode": true,
+     "Type": "LINUX_CONTAINER"
+    },
+    "ServiceRole": {
+     "Fn::GetAtt": [
+      "NextJSPipelineConstructNextJSBuildRole997ED1CC",
+      "Arn"
+     ]
+    },
+    "Source": {
+     "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"n 20\",\n        \"npm ci --force\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"echo \\\"Building Next.js application...\\\"\",\n        \"npm run build\",\n        \"ls -la\",\n        \"ls -la .next/\"\n      ]\n    },\n    \"post_build\": {\n      \"commands\": [\n        \"echo \\\"Setting cache control headers...\\\"\",\n        \"cd .next\",\n        \"aws s3 sync . s3://${WEBSITE_BUCKET} --delete --cache-control \\\"public, max-age=31536000, immutable\\\"\",\n        \"cd ../public\",\n        \"aws s3 sync . s3://${WEBSITE_BUCKET} --cache-control \\\"public, max-age=31536000, immutable\\\"\",\n        \"echo \\\"Creating CloudFront invalidation...\\\"\",\n        \"aws cloudfront create-invalidation --distribution-id ${CLOUDFRONT_DISTRIBUTION_ID} --paths \\\"/*\\\"\"\n      ]\n    }\n  },\n  \"artifacts\": {\n    \"base-directory\": \"out\",\n    \"files\": [\n      \"**/*\"\n    ]\n  },\n  \"cache\": {\n    \"paths\": [\n      \"node_modules/**/*\"\n    ]\n  }\n}",
+     "Type": "CODEPIPELINE"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/NextJSPipelineConstruct/NextJSBuild/Resource"
+   }
+  },
+  "NextJSPipelineConstructNextJSPipelineArtifactsBucketE6915442": {
+   "Type": "AWS::S3::Bucket",
+   "Properties": {
+    "BucketEncryption": {
+     "ServerSideEncryptionConfiguration": [
+      {
+       "ServerSideEncryptionByDefault": {
+        "SSEAlgorithm": "aws:kms"
+       }
+      }
+     ]
+    },
+    "PublicAccessBlockConfiguration": {
+     "BlockPublicAcls": true,
+     "BlockPublicPolicy": true,
+     "IgnorePublicAcls": true,
+     "RestrictPublicBuckets": true
+    }
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/ArtifactsBucket/Resource"
+   }
+  },
+  "NextJSPipelineConstructNextJSPipelineArtifactsBucketPolicyE15D5828": {
+   "Type": "AWS::S3::BucketPolicy",
+   "Properties": {
+    "Bucket": {
+     "Ref": "NextJSPipelineConstructNextJSPipelineArtifactsBucketE6915442"
+    },
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "s3:*",
+       "Condition": {
+        "Bool": {
+         "aws:SecureTransport": "false"
+        }
+       },
+       "Effect": "Deny",
+       "Principal": {
+        "AWS": "*"
+       },
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "NextJSPipelineConstructNextJSPipelineArtifactsBucketE6915442",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "NextJSPipelineConstructNextJSPipelineArtifactsBucketE6915442",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/ArtifactsBucket/Policy/Resource"
+   }
+  },
+  "NextJSPipelineConstructNextJSPipelineRole89F27E42": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "codepipeline.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Role/Resource"
+   }
+  },
+  "NextJSPipelineConstructNextJSPipelineRoleDefaultPolicy8BE21068": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:DeleteObject*",
+        "s3:PutObject",
+        "s3:PutObjectLegalHold",
+        "s3:PutObjectRetention",
+        "s3:PutObjectTagging",
+        "s3:PutObjectVersionTagging",
+        "s3:Abort*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "NextJSPipelineConstructNextJSPipelineArtifactsBucketE6915442",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "NextJSPipelineConstructNextJSPipelineArtifactsBucketE6915442",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "NextJSPipelineConstructNextJSPipelineBuildCodePipelineActionRoleB2BC70A4",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "NextJSPipelineConstructNextJSPipelineDeployCodePipelineActionRoleF12A5608",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "NextJSPipelineConstructNextJSPipelineRoleDefaultPolicy8BE21068",
+    "Roles": [
+     {
+      "Ref": "NextJSPipelineConstructNextJSPipelineRole89F27E42"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Role/DefaultPolicy/Resource"
+   }
+  },
+  "NextJSPipelineConstructNextJSPipeline60E99A24": {
+   "Type": "AWS::CodePipeline::Pipeline",
+   "Properties": {
+    "ArtifactStore": {
+     "Location": {
+      "Ref": "NextJSPipelineConstructNextJSPipelineArtifactsBucketE6915442"
+     },
+     "Type": "S3"
+    },
+    "Name": "OptimusUIPipeline",
+    "RestartExecutionOnUpdate": true,
+    "RoleArn": {
+     "Fn::GetAtt": [
+      "NextJSPipelineConstructNextJSPipelineRole89F27E42",
+      "Arn"
+     ]
+    },
+    "Stages": [
+     {
+      "Actions": [
+       {
+        "ActionTypeId": {
+         "Category": "Source",
+         "Owner": "ThirdParty",
+         "Provider": "GitHub",
+         "Version": "1"
+        },
+        "Configuration": {
+         "Owner": "mzienert",
+         "Repo": "optimus-ui",
+         "Branch": "main",
+         "OAuthToken": "{{resolve:secretsmanager:github-token-secret-name:SecretString:::}}",
+         "PollForSourceChanges": false
+        },
+        "Name": "GitHub_Source",
+        "OutputArtifacts": [
+         {
+          "Name": "SourceOutput"
+         }
+        ],
+        "RunOrder": 1
+       }
+      ],
+      "Name": "Source"
+     },
+     {
+      "Actions": [
+       {
+        "ActionTypeId": {
+         "Category": "Build",
+         "Owner": "AWS",
+         "Provider": "CodeBuild",
+         "Version": "1"
+        },
+        "Configuration": {
+         "ProjectName": {
+          "Ref": "NextJSPipelineConstructNextJSBuild91545C5D"
+         },
+         "EnvironmentVariables": {
+          "Fn::Join": [
+           "",
+           [
+            "[{\"name\":\"WEBSITE_BUCKET\",\"type\":\"PLAINTEXT\",\"value\":\"",
+            {
+             "Ref": "NextJSPipelineConstructWebsiteBucket01B5A639"
+            },
+            "\"}]"
+           ]
+          ]
+         }
+        },
+        "InputArtifacts": [
+         {
+          "Name": "SourceOutput"
+         }
+        ],
+        "Name": "Build",
+        "OutputArtifacts": [
+         {
+          "Name": "BuildOutput"
+         }
+        ],
+        "RoleArn": {
+         "Fn::GetAtt": [
+          "NextJSPipelineConstructNextJSPipelineBuildCodePipelineActionRoleB2BC70A4",
+          "Arn"
+         ]
+        },
+        "RunOrder": 1
+       }
+      ],
+      "Name": "Build"
+     },
+     {
+      "Actions": [
+       {
+        "ActionTypeId": {
+         "Category": "Deploy",
+         "Owner": "AWS",
+         "Provider": "S3",
+         "Version": "1"
+        },
+        "Configuration": {
+         "BucketName": {
+          "Ref": "NextJSPipelineConstructWebsiteBucket01B5A639"
+         },
+         "Extract": "true"
+        },
+        "InputArtifacts": [
+         {
+          "Name": "BuildOutput"
+         }
+        ],
+        "Name": "Deploy",
+        "RoleArn": {
+         "Fn::GetAtt": [
+          "NextJSPipelineConstructNextJSPipelineDeployCodePipelineActionRoleF12A5608",
+          "Arn"
+         ]
+        },
+        "RunOrder": 1
+       }
+      ],
+      "Name": "Deploy"
+     }
+    ]
+   },
+   "DependsOn": [
+    "NextJSPipelineConstructNextJSPipelineRoleDefaultPolicy8BE21068",
+    "NextJSPipelineConstructNextJSPipelineRole89F27E42"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Resource"
+   }
+  },
+  "NextJSPipelineConstructNextJSPipelineSourceGitHubSourceWebhookResource77275066": {
+   "Type": "AWS::CodePipeline::Webhook",
+   "Properties": {
+    "Authentication": "GITHUB_HMAC",
+    "AuthenticationConfiguration": {
+     "SecretToken": "{{resolve:secretsmanager:github-token-secret-name:SecretString:::}}"
+    },
+    "Filters": [
+     {
+      "JsonPath": "$.ref",
+      "MatchEquals": "refs/heads/{Branch}"
+     }
+    ],
+    "RegisterWithThirdParty": true,
+    "TargetAction": "GitHub_Source",
+    "TargetPipeline": {
+     "Ref": "NextJSPipelineConstructNextJSPipeline60E99A24"
+    },
+    "TargetPipelineVersion": 1
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Source/GitHub_Source/WebhookResource"
+   }
+  },
+  "NextJSPipelineConstructNextJSPipelineBuildCodePipelineActionRoleB2BC70A4": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":iam::619326977873:root"
+          ]
+         ]
+        }
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Build/Build/CodePipelineActionRole/Resource"
+   }
+  },
+  "NextJSPipelineConstructNextJSPipelineBuildCodePipelineActionRoleDefaultPolicyB30F7907": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "codebuild:BatchGetBuilds",
+        "codebuild:StartBuild",
+        "codebuild:StopBuild"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "NextJSPipelineConstructNextJSBuild91545C5D",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "NextJSPipelineConstructNextJSPipelineBuildCodePipelineActionRoleDefaultPolicyB30F7907",
+    "Roles": [
+     {
+      "Ref": "NextJSPipelineConstructNextJSPipelineBuildCodePipelineActionRoleB2BC70A4"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Build/Build/CodePipelineActionRole/DefaultPolicy/Resource"
+   }
+  },
+  "NextJSPipelineConstructNextJSPipelineDeployCodePipelineActionRoleF12A5608": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":iam::619326977873:root"
+          ]
+         ]
+        }
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Deploy/Deploy/CodePipelineActionRole/Resource"
+   }
+  },
+  "NextJSPipelineConstructNextJSPipelineDeployCodePipelineActionRoleDefaultPolicyB7D330D6": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:DeleteObject*",
+        "s3:PutObject",
+        "s3:PutObjectLegalHold",
+        "s3:PutObjectRetention",
+        "s3:PutObjectTagging",
+        "s3:PutObjectVersionTagging",
+        "s3:Abort*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "NextJSPipelineConstructWebsiteBucket01B5A639",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "NextJSPipelineConstructWebsiteBucket01B5A639",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "NextJSPipelineConstructNextJSPipelineArtifactsBucketE6915442",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "NextJSPipelineConstructNextJSPipelineArtifactsBucketE6915442",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "NextJSPipelineConstructNextJSPipelineDeployCodePipelineActionRoleDefaultPolicyB7D330D6",
+    "Roles": [
+     {
+      "Ref": "NextJSPipelineConstructNextJSPipelineDeployCodePipelineActionRoleF12A5608"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Deploy/Deploy/CodePipelineActionRole/DefaultPolicy/Resource"
+   }
+  },
+  "optimusFunction18897E2B": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-619326977873-us-west-1",
+     "S3Key": "1fca847a6d22d2ab7fa43275d0ba732198d20d82fabf132380539c54de55c98b.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "NODE_ENV": "production",
+      "DYNAMODB_TABLE": {
+       "Ref": "KlineTable986A720B"
+      }
+     }
+    },
+    "Handler": "dist/index.handler",
+    "MemorySize": 256,
+    "Role": {
+     "Fn::GetAtt": [
+      "IAMRolesLambdaRole3969EFC6",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs20.x",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "IAMRolesLambdaRoleDefaultPolicy833CF6E2",
+    "IAMRolesLambdaRole3969EFC6"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/optimusFunction/Resource",
+    "aws:asset:path": "asset.1fca847a6d22d2ab7fa43275d0ba732198d20d82fabf132380539c54de55c98b",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "optimusApi903D60A1": {
+   "Type": "AWS::ApiGateway::RestApi",
+   "Properties": {
+    "Name": "optimusApi"
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/optimusApi/Resource"
+   }
+  },
+  "optimusApiCloudWatchRole920BB937": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "apigateway.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs"
+       ]
+      ]
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/optimusApi/CloudWatchRole/Resource"
+   }
+  },
+  "optimusApiAccount08D842F9": {
+   "Type": "AWS::ApiGateway::Account",
+   "Properties": {
+    "CloudWatchRoleArn": {
+     "Fn::GetAtt": [
+      "optimusApiCloudWatchRole920BB937",
+      "Arn"
+     ]
+    }
+   },
+   "DependsOn": [
+    "optimusApi903D60A1"
+   ],
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/optimusApi/Account"
+   }
+  },
+  "optimusApiDeployment275CD8503215a3daf27b0377003eec89a809940b": {
+   "Type": "AWS::ApiGateway::Deployment",
+   "Properties": {
+    "Description": "Automatically created by the RestApi construct",
+    "RestApiId": {
+     "Ref": "optimusApi903D60A1"
+    }
+   },
+   "DependsOn": [
+    "optimusApioptimusGET593A09F8",
+    "optimusApioptimus46B22252"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/optimusApi/Deployment/Resource"
+   }
+  },
+  "optimusApiDeploymentStageprod15345340": {
+   "Type": "AWS::ApiGateway::Stage",
+   "Properties": {
+    "DeploymentId": {
+     "Ref": "optimusApiDeployment275CD8503215a3daf27b0377003eec89a809940b"
+    },
+    "RestApiId": {
+     "Ref": "optimusApi903D60A1"
+    },
+    "StageName": "prod"
+   },
+   "DependsOn": [
+    "optimusApiAccount08D842F9"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/optimusApi/DeploymentStage.prod/Resource"
+   }
+  },
+  "optimusApioptimus46B22252": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Fn::GetAtt": [
+      "optimusApi903D60A1",
+      "RootResourceId"
+     ]
+    },
+    "PathPart": "optimus",
+    "RestApiId": {
+     "Ref": "optimusApi903D60A1"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/optimusApi/Default/optimus/Resource"
+   }
+  },
+  "optimusApioptimusGETApiPermissionOptimusStackoptimusApiE927145FGEToptimus7F556B55": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "optimusFunction18897E2B",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:us-west-1:619326977873:",
+       {
+        "Ref": "optimusApi903D60A1"
+       },
+       "/",
+       {
+        "Ref": "optimusApiDeploymentStageprod15345340"
+       },
+       "/GET/optimus"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/optimusApi/Default/optimus/GET/ApiPermission.OptimusStackoptimusApiE927145F.GET..optimus"
+   }
+  },
+  "optimusApioptimusGETApiPermissionTestOptimusStackoptimusApiE927145FGEToptimus968FFD13": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "optimusFunction18897E2B",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:us-west-1:619326977873:",
+       {
+        "Ref": "optimusApi903D60A1"
+       },
+       "/test-invoke-stage/GET/optimus"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/optimusApi/Default/optimus/GET/ApiPermission.Test.OptimusStackoptimusApiE927145F.GET..optimus"
+   }
+  },
+  "optimusApioptimusGET593A09F8": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "GET",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":apigateway:us-west-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "optimusFunction18897E2B",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "optimusApioptimus46B22252"
+    },
+    "RestApiId": {
+     "Ref": "optimusApi903D60A1"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/optimusApi/Default/optimus/GET/Resource"
+   }
+  },
+  "MyCognitoPoolsmsRole2DD4266C": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Condition": {
+        "StringEquals": {
+         "sts:ExternalId": "OptimusStackMyCognitoPoolC9A3352C"
+        }
+       },
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "cognito-idp.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Policies": [
+     {
+      "PolicyDocument": {
+       "Statement": [
+        {
+         "Action": "sns:Publish",
+         "Effect": "Allow",
+         "Resource": "*"
+        }
+       ],
+       "Version": "2012-10-17"
+      },
+      "PolicyName": "sns-publish"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/MyCognitoPool/CognitoPool/smsRole/Resource"
+   }
+  },
+  "MyCognitoPoolC77DE011": {
+   "Type": "AWS::Cognito::UserPool",
+   "Properties": {
+    "AccountRecoverySetting": {
+     "RecoveryMechanisms": [
+      {
+       "Name": "verified_email",
+       "Priority": 1
+      },
+      {
+       "Name": "verified_phone_number",
+       "Priority": 2
+      }
+     ]
+    },
+    "AdminCreateUserConfig": {
+     "AllowAdminCreateUserOnly": false
+    },
+    "AutoVerifiedAttributes": [
+     "email"
+    ],
+    "EmailVerificationMessage": "Hello, Thanks for registering in My cool app! Verification code is {####}.",
+    "EmailVerificationSubject": "Hello from My Cool App!",
+    "Policies": {
+     "PasswordPolicy": {
+      "MinimumLength": 8,
+      "RequireLowercase": true,
+      "RequireNumbers": true,
+      "RequireSymbols": true
+     }
+    },
+    "Schema": [
+     {
+      "Mutable": true,
+      "Name": "name",
+      "Required": true
+     },
+     {
+      "Mutable": true,
+      "Name": "email",
+      "Required": true
+     },
+     {
+      "AttributeDataType": "String",
+      "Mutable": true,
+      "Name": "company"
+     }
+    ],
+    "SmsConfiguration": {
+     "ExternalId": "OptimusStackMyCognitoPoolC9A3352C",
+     "SnsCallerArn": {
+      "Fn::GetAtt": [
+       "MyCognitoPoolsmsRole2DD4266C",
+       "Arn"
+      ]
+     }
+    },
+    "SmsVerificationMessage": "The verification code to your new account is {####}",
+    "UserPoolName": "Beta-CognitoPool",
+    "UsernameAttributes": [
+     "email",
+     "phone_number"
+    ],
+    "UsernameConfiguration": {
+     "CaseSensitive": false
+    },
+    "VerificationMessageTemplate": {
+     "DefaultEmailOption": "CONFIRM_WITH_CODE",
+     "EmailMessage": "Hello, Thanks for registering in My cool app! Verification code is {####}.",
+     "EmailSubject": "Hello from My Cool App!",
+     "SmsMessage": "The verification code to your new account is {####}"
+    }
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/MyCognitoPool/CognitoPool/Resource"
+   }
+  },
+  "MyCognitoPoolMyAppClientF485F915": {
+   "Type": "AWS::Cognito::UserPoolClient",
+   "Properties": {
+    "AccessTokenValidity": 30,
+    "AllowedOAuthFlows": [
+     "code"
+    ],
+    "AllowedOAuthFlowsUserPoolClient": true,
+    "AllowedOAuthScopes": [
+     "openid"
+    ],
+    "CallbackURLs": [
+     "https://bellerustica.com"
+    ],
+    "ClientName": "MyAppClient",
+    "IdTokenValidity": 30,
+    "RefreshTokenValidity": 60,
+    "SupportedIdentityProviders": [
+     "COGNITO"
+    ],
+    "TokenValidityUnits": {
+     "AccessToken": "minutes",
+     "IdToken": "minutes",
+     "RefreshToken": "minutes"
+    },
+    "UserPoolId": {
+     "Ref": "MyCognitoPoolC77DE011"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/MyCognitoPool/CognitoPool/MyAppClient/Resource"
+   }
+  },
+  "WaitCondition": {
+   "Type": "AWS::CloudFormation::WaitCondition",
+   "Properties": {
+    "Count": 1,
+    "Handle": {
+     "Ref": "WaitHandle"
+    },
+    "Timeout": "300"
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/WaitCondition"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/21SXW/bIBT9LX0nrEmlvrup1lXqNCvpuscKw01yEwwWXBJFyP99Ahw76fbEOYfj+3HMgs8fH/n9nTj5mVSHmcaGxzUJeWDi5D8jyAWPH51ky435qJesDo1GuQ6NAUrahFY2ELyLRsOkT1rlvZUoCK0ZzQm8GgJngF4EwUmchzYDq4iE3LVgiK1BBod0fnE2dLnBV+FNBCN379B2WhCwV+NJGDk0Kbhn/oHHpyAPZeQBlaO2GuV5kgdeyJPw0DN1NqK1quFx3DODnqFoeVzZouVzKjehyxy1sxtMn0mrQEGn7ZnHNbgjuKrrNMoxp2taDM/ZnjIZN/8ilbJNQK14rLEDjSa13IPMWw+w2LrhfnJmyxX+A83O2kPPpLZBbZw1xONSyB1Mi13TZ/TksAmXFa55z7RoGyV4/B6MvDiucQ2uRe+z1z98Cu+BPK/SwUSH2/IweHzLdVbgqeowhz7BSkobDLEpl9uU2JrEtrzSDFbgbXAS0k8eyVCz4J9AO6uSVFDKbmuQLI+/PbjaWp0uR3wBS41D91ul76/6BE+2/W/b26va2SMqcHnMnEgaH802/yWBtLRGYQryhzCqPMVaONECgUvkV6Au0D/unhmrgO/9t+Niwedzfn+394gzFwxhC3xVzr+6KLAAKgQAAA=="
+   },
+   "Metadata": {
+    "aws:cdk:path": "OptimusStack/CDKMetadata/Default"
+   }
+  }
+ },
+ "Parameters": {
+  "SsmParameterValueawsserviceamiamazonlinuxlatestal2023amikernel61x8664C96584B6F00A464EAD1953AFF4B05118Parameter": {
+   "Type": "AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>",
+   "Default": "/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-6.1-x86_64"
+  },
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Outputs": {
+  "NextJSPipelineConstructWebsiteURLD235105A": {
+   "Description": "Website URL",
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "https://",
+      {
+       "Fn::GetAtt": [
+        "NextJSPipelineConstructWebsiteDistribution07BB2742",
+        "DomainName"
+       ]
+      }
+     ]
+    ]
+   }
+  },
+  "NextJSPipelineConstructWebsiteBucketName99BC5DC6": {
+   "Description": "Website bucket name",
+   "Value": {
+    "Ref": "NextJSPipelineConstructWebsiteBucket01B5A639"
+   }
+  },
+  "optimusApiEndpointF031850E": {
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "https://",
+      {
+       "Ref": "optimusApi903D60A1"
+      },
+      ".execute-api.us-west-1.",
+      {
+       "Ref": "AWS::URLSuffix"
+      },
+      "/",
+      {
+       "Ref": "optimusApiDeploymentStageprod15345340"
+      },
+      "/"
+     ]
+    ]
+   }
+  },
+  "InstancePublicIP": {
+   "Description": "Public IP address of the EC2 instance",
+   "Value": {
+    "Fn::GetAtt": [
+     "EC2ConstructInstance87AD88E2",
+     "PublicIp"
+    ]
+   }
+  },
+  "SSHCommand": {
+   "Description": "Command to SSH into the instance",
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "ssh -i ~/.ssh/optimus-core-key-2 ec2-user@",
+      {
+       "Fn::GetAtt": [
+        "EC2ConstructInstance87AD88E2",
+        "PublicIp"
+       ]
+      }
+     ]
+    ]
+   }
+  },
+  "DynamoDBTableName": {
+   "Description": "Name of the DynamoDB table",
+   "Value": {
+    "Ref": "KlineTable986A720B"
+   },
+   "Export": {
+    "Name": "OptimusTableName"
+   }
+  },
+  "OptimusBucketName": {
+   "Description": "Name of the S3 bucket for deployments",
+   "Value": {
+    "Ref": "S3ConstructOptimusAPIBucket581D3580"
+   }
+  },
+  "DeploymentGroupTags": {
+   "Description": "EC2 tags that deployment group looks for",
+   "Value": "{\"Environment\":\"Development\",\"Name\":\"WebSocket-Client\"}"
+  },
+  "DeploymentGroupArn": {
+   "Description": "Deployment Group ARN",
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "arn:",
+      {
+       "Ref": "AWS::Partition"
+      },
+      ":codedeploy:us-west-1:619326977873:deploymentgroup:",
+      {
+       "Ref": "CodeDeployApplicationE587C27C"
+      },
+      "/",
+      {
+       "Ref": "CodeDeployDeploymentGroupA33AC6C7"
+      }
+     ]
+    ]
+   }
+  },
+  "PipelineArn": {
+   "Description": "Pipeline ARN",
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "arn:",
+      {
+       "Ref": "AWS::Partition"
+      },
+      ":codepipeline:us-west-1:619326977873:",
+      {
+       "Ref": "CodePipelineConstructPipeline3651447E"
+      }
+     ]
+    ]
+   }
+  },
+  "LambdaFunctionArn": {
+   "Description": "ARN of the optimus Lambda function",
+   "Value": {
+    "Fn::GetAtt": [
+     "optimusFunction18897E2B",
+     "Arn"
+    ]
+   },
+   "Export": {
+    "Name": "optimusLambdaArn"
+   }
+  },
+  "ApiGatewayUrl": {
+   "Description": "URL of the API Gateway endpoint",
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "https://",
+      {
+       "Ref": "optimusApi903D60A1"
+      },
+      ".execute-api.us-west-1.",
+      {
+       "Ref": "AWS::URLSuffix"
+      },
+      "/",
+      {
+       "Ref": "optimusApiDeploymentStageprod15345340"
+      },
+      "/"
+     ]
+    ]
+   },
+   "Export": {
+    "Name": "optimusApiUrl"
+   }
+  },
+  "NextJSWebsiteURL": {
+   "Description": "Next.js Website URL",
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "https://",
+      {
+       "Fn::GetAtt": [
+        "NextJSPipelineConstructWebsiteDistribution07BB2742",
+        "DomainName"
+       ]
+      }
+     ]
+    ]
+   }
+  },
+  "NextJSPipelineArn": {
+   "Description": "Next.js Pipeline ARN",
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "arn:",
+      {
+       "Ref": "AWS::Partition"
+      },
+      ":codepipeline:us-west-1:619326977873:",
+      {
+       "Ref": "NextJSPipelineConstructNextJSPipeline60E99A24"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}
