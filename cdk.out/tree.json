@@ -4,21 +4,21 @@
     "id": "App",
     "path": "",
     "children": {
-      "OptimusStack": {
-        "id": "OptimusStack",
-        "path": "OptimusStack",
+      "asaRacingStack": {
+        "id": "asaRacingStack",
+        "path": "asaRacingStack",
         "children": {
           "VPCConstruct": {
             "id": "VPCConstruct",
-            "path": "OptimusStack/VPCConstruct",
+            "path": "asaRacingStack/VPCConstruct",
             "children": {
               "VPC": {
                 "id": "VPC",
-                "path": "OptimusStack/VPCConstruct/VPC",
+                "path": "asaRacingStack/VPCConstruct/VPC",
                 "children": {
                   "Resource": {
                     "id": "Resource",
-                    "path": "OptimusStack/VPCConstruct/VPC/Resource",
+                    "path": "asaRacingStack/VPCConstruct/VPC/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::EC2::VPC",
                       "aws:cdk:cloudformation:props": {
@@ -29,7 +29,7 @@
                         "tags": [
                           {
                             "key": "Name",
-                            "value": "OptimusStack/VPCConstruct/VPC"
+                            "value": "asaRacingStack/VPCConstruct/VPC"
                           }
                         ]
                       }
@@ -41,11 +41,11 @@
                   },
                   "PublicSubnet1": {
                     "id": "PublicSubnet1",
-                    "path": "OptimusStack/VPCConstruct/VPC/PublicSubnet1",
+                    "path": "asaRacingStack/VPCConstruct/VPC/PublicSubnet1",
                     "children": {
                       "Subnet": {
                         "id": "Subnet",
-                        "path": "OptimusStack/VPCConstruct/VPC/PublicSubnet1/Subnet",
+                        "path": "asaRacingStack/VPCConstruct/VPC/PublicSubnet1/Subnet",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
                           "aws:cdk:cloudformation:props": {
@@ -63,7 +63,7 @@
                               },
                               {
                                 "key": "Name",
-                                "value": "OptimusStack/VPCConstruct/VPC/PublicSubnet1"
+                                "value": "asaRacingStack/VPCConstruct/VPC/PublicSubnet1"
                               }
                             ],
                             "vpcId": {
@@ -78,7 +78,7 @@
                       },
                       "Acl": {
                         "id": "Acl",
-                        "path": "OptimusStack/VPCConstruct/VPC/PublicSubnet1/Acl",
+                        "path": "asaRacingStack/VPCConstruct/VPC/PublicSubnet1/Acl",
                         "constructInfo": {
                           "fqn": "aws-cdk-lib.Resource",
                           "version": "2.166.0"
@@ -86,14 +86,14 @@
                       },
                       "RouteTable": {
                         "id": "RouteTable",
-                        "path": "OptimusStack/VPCConstruct/VPC/PublicSubnet1/RouteTable",
+                        "path": "asaRacingStack/VPCConstruct/VPC/PublicSubnet1/RouteTable",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
                           "aws:cdk:cloudformation:props": {
                             "tags": [
                               {
                                 "key": "Name",
-                                "value": "OptimusStack/VPCConstruct/VPC/PublicSubnet1"
+                                "value": "asaRacingStack/VPCConstruct/VPC/PublicSubnet1"
                               }
                             ],
                             "vpcId": {
@@ -108,7 +108,7 @@
                       },
                       "RouteTableAssociation": {
                         "id": "RouteTableAssociation",
-                        "path": "OptimusStack/VPCConstruct/VPC/PublicSubnet1/RouteTableAssociation",
+                        "path": "asaRacingStack/VPCConstruct/VPC/PublicSubnet1/RouteTableAssociation",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
                           "aws:cdk:cloudformation:props": {
@@ -127,7 +127,7 @@
                       },
                       "DefaultRoute": {
                         "id": "DefaultRoute",
-                        "path": "OptimusStack/VPCConstruct/VPC/PublicSubnet1/DefaultRoute",
+                        "path": "asaRacingStack/VPCConstruct/VPC/PublicSubnet1/DefaultRoute",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::EC2::Route",
                           "aws:cdk:cloudformation:props": {
@@ -153,14 +153,14 @@
                   },
                   "IGW": {
                     "id": "IGW",
-                    "path": "OptimusStack/VPCConstruct/VPC/IGW",
+                    "path": "asaRacingStack/VPCConstruct/VPC/IGW",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::EC2::InternetGateway",
                       "aws:cdk:cloudformation:props": {
                         "tags": [
                           {
                             "key": "Name",
-                            "value": "OptimusStack/VPCConstruct/VPC"
+                            "value": "asaRacingStack/VPCConstruct/VPC"
                           }
                         ]
                       }
@@ -172,7 +172,7 @@
                   },
                   "VPCGW": {
                     "id": "VPCGW",
-                    "path": "OptimusStack/VPCConstruct/VPC/VPCGW",
+                    "path": "asaRacingStack/VPCConstruct/VPC/VPCGW",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::EC2::VPCGatewayAttachment",
                       "aws:cdk:cloudformation:props": {
@@ -203,15 +203,15 @@
           },
           "S3Construct": {
             "id": "S3Construct",
-            "path": "OptimusStack/S3Construct",
+            "path": "asaRacingStack/S3Construct",
             "children": {
-              "OptimusAPIBucket": {
-                "id": "OptimusAPIBucket",
-                "path": "OptimusStack/S3Construct/OptimusAPIBucket",
+              "asaRacingAPIBucket": {
+                "id": "asaRacingAPIBucket",
+                "path": "asaRacingStack/S3Construct/asaRacingAPIBucket",
                 "children": {
                   "Resource": {
                     "id": "Resource",
-                    "path": "OptimusStack/S3Construct/OptimusAPIBucket/Resource",
+                    "path": "asaRacingStack/S3Construct/asaRacingAPIBucket/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
                       "aws:cdk:cloudformation:props": {
@@ -249,16 +249,16 @@
                   },
                   "Policy": {
                     "id": "Policy",
-                    "path": "OptimusStack/S3Construct/OptimusAPIBucket/Policy",
+                    "path": "asaRacingStack/S3Construct/asaRacingAPIBucket/Policy",
                     "children": {
                       "Resource": {
                         "id": "Resource",
-                        "path": "OptimusStack/S3Construct/OptimusAPIBucket/Policy/Resource",
+                        "path": "asaRacingStack/S3Construct/asaRacingAPIBucket/Policy/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::S3::BucketPolicy",
                           "aws:cdk:cloudformation:props": {
                             "bucket": {
-                              "Ref": "S3ConstructOptimusAPIBucket581D3580"
+                              "Ref": "S3ConstructasaRacingAPIBucket581D3580"
                             },
                             "policyDocument": {
                               "Statement": [
@@ -281,7 +281,7 @@
                                   "Resource": [
                                     {
                                       "Fn::GetAtt": [
-                                        "S3ConstructOptimusAPIBucket581D3580",
+                                        "S3ConstructasaRacingAPIBucket581D3580",
                                         "Arn"
                                       ]
                                     },
@@ -291,7 +291,7 @@
                                         [
                                           {
                                             "Fn::GetAtt": [
-                                              "S3ConstructOptimusAPIBucket581D3580",
+                                              "S3ConstructasaRacingAPIBucket581D3580",
                                               "Arn"
                                             ]
                                           },
@@ -319,11 +319,11 @@
                   },
                   "AutoDeleteObjectsCustomResource": {
                     "id": "AutoDeleteObjectsCustomResource",
-                    "path": "OptimusStack/S3Construct/OptimusAPIBucket/AutoDeleteObjectsCustomResource",
+                    "path": "asaRacingStack/S3Construct/asaRacingAPIBucket/AutoDeleteObjectsCustomResource",
                     "children": {
                       "Default": {
                         "id": "Default",
-                        "path": "OptimusStack/S3Construct/OptimusAPIBucket/AutoDeleteObjectsCustomResource/Default",
+                        "path": "asaRacingStack/S3Construct/asaRacingAPIBucket/AutoDeleteObjectsCustomResource/Default",
                         "constructInfo": {
                           "fqn": "aws-cdk-lib.CfnResource",
                           "version": "2.166.0"
@@ -349,11 +349,11 @@
           },
           "Custom::S3AutoDeleteObjectsCustomResourceProvider": {
             "id": "Custom::S3AutoDeleteObjectsCustomResourceProvider",
-            "path": "OptimusStack/Custom::S3AutoDeleteObjectsCustomResourceProvider",
+            "path": "asaRacingStack/Custom::S3AutoDeleteObjectsCustomResourceProvider",
             "children": {
               "Staging": {
                 "id": "Staging",
-                "path": "OptimusStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Staging",
+                "path": "asaRacingStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Staging",
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.AssetStaging",
                   "version": "2.166.0"
@@ -361,7 +361,7 @@
               },
               "Role": {
                 "id": "Role",
-                "path": "OptimusStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role",
+                "path": "asaRacingStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role",
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.CfnResource",
                   "version": "2.166.0"
@@ -369,7 +369,7 @@
               },
               "Handler": {
                 "id": "Handler",
-                "path": "OptimusStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler",
+                "path": "asaRacingStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler",
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.CfnResource",
                   "version": "2.166.0"
@@ -383,15 +383,15 @@
           },
           "KlineTable": {
             "id": "KlineTable",
-            "path": "OptimusStack/KlineTable",
+            "path": "asaRacingStack/KlineTable",
             "children": {
               "Table": {
                 "id": "Table",
-                "path": "OptimusStack/KlineTable/Table",
+                "path": "asaRacingStack/KlineTable/Table",
                 "children": {
                   "Resource": {
                     "id": "Resource",
-                    "path": "OptimusStack/KlineTable/Table/Resource",
+                    "path": "asaRacingStack/KlineTable/Table/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::DynamoDB::Table",
                       "aws:cdk:cloudformation:props": {
@@ -445,7 +445,7 @@
                         "streamSpecification": {
                           "streamViewType": "NEW_AND_OLD_IMAGES"
                         },
-                        "tableName": "OptimusTable"
+                        "tableName": "asaRacingTable"
                       }
                     },
                     "constructInfo": {
@@ -455,7 +455,7 @@
                   },
                   "ScalingRole": {
                     "id": "ScalingRole",
-                    "path": "OptimusStack/KlineTable/Table/ScalingRole",
+                    "path": "asaRacingStack/KlineTable/Table/ScalingRole",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.Resource",
                       "version": "2.166.0"
@@ -475,15 +475,15 @@
           },
           "IAMRoles": {
             "id": "IAMRoles",
-            "path": "OptimusStack/IAMRoles",
+            "path": "asaRacingStack/IAMRoles",
             "children": {
               "LambdaRole": {
                 "id": "LambdaRole",
-                "path": "OptimusStack/IAMRoles/LambdaRole",
+                "path": "asaRacingStack/IAMRoles/LambdaRole",
                 "children": {
                   "ImportLambdaRole": {
                     "id": "ImportLambdaRole",
-                    "path": "OptimusStack/IAMRoles/LambdaRole/ImportLambdaRole",
+                    "path": "asaRacingStack/IAMRoles/LambdaRole/ImportLambdaRole",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.Resource",
                       "version": "2.166.0"
@@ -491,7 +491,7 @@
                   },
                   "Resource": {
                     "id": "Resource",
-                    "path": "OptimusStack/IAMRoles/LambdaRole/Resource",
+                    "path": "asaRacingStack/IAMRoles/LambdaRole/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                       "aws:cdk:cloudformation:props": {
@@ -531,11 +531,11 @@
                   },
                   "DefaultPolicy": {
                     "id": "DefaultPolicy",
-                    "path": "OptimusStack/IAMRoles/LambdaRole/DefaultPolicy",
+                    "path": "asaRacingStack/IAMRoles/LambdaRole/DefaultPolicy",
                     "children": {
                       "Resource": {
                         "id": "Resource",
-                        "path": "OptimusStack/IAMRoles/LambdaRole/DefaultPolicy/Resource",
+                        "path": "asaRacingStack/IAMRoles/LambdaRole/DefaultPolicy/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                           "aws:cdk:cloudformation:props": {
@@ -636,11 +636,11 @@
               },
               "EC2Role": {
                 "id": "EC2Role",
-                "path": "OptimusStack/IAMRoles/EC2Role",
+                "path": "asaRacingStack/IAMRoles/EC2Role",
                 "children": {
                   "ImportEC2Role": {
                     "id": "ImportEC2Role",
-                    "path": "OptimusStack/IAMRoles/EC2Role/ImportEC2Role",
+                    "path": "asaRacingStack/IAMRoles/EC2Role/ImportEC2Role",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.Resource",
                       "version": "2.166.0"
@@ -648,7 +648,7 @@
                   },
                   "Resource": {
                     "id": "Resource",
-                    "path": "OptimusStack/IAMRoles/EC2Role/Resource",
+                    "path": "asaRacingStack/IAMRoles/EC2Role/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                       "aws:cdk:cloudformation:props": {
@@ -761,11 +761,11 @@
                   },
                   "DefaultPolicy": {
                     "id": "DefaultPolicy",
-                    "path": "OptimusStack/IAMRoles/EC2Role/DefaultPolicy",
+                    "path": "asaRacingStack/IAMRoles/EC2Role/DefaultPolicy",
                     "children": {
                       "Resource": {
                         "id": "Resource",
-                        "path": "OptimusStack/IAMRoles/EC2Role/DefaultPolicy/Resource",
+                        "path": "asaRacingStack/IAMRoles/EC2Role/DefaultPolicy/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                           "aws:cdk:cloudformation:props": {
@@ -819,7 +819,7 @@
                                   "Resource": [
                                     {
                                       "Fn::GetAtt": [
-                                        "S3ConstructOptimusAPIBucket581D3580",
+                                        "S3ConstructasaRacingAPIBucket581D3580",
                                         "Arn"
                                       ]
                                     },
@@ -829,7 +829,7 @@
                                         [
                                           {
                                             "Fn::GetAtt": [
-                                              "S3ConstructOptimusAPIBucket581D3580",
+                                              "S3ConstructasaRacingAPIBucket581D3580",
                                               "Arn"
                                             ]
                                           },
@@ -965,11 +965,11 @@
               },
               "BuildRole": {
                 "id": "BuildRole",
-                "path": "OptimusStack/IAMRoles/BuildRole",
+                "path": "asaRacingStack/IAMRoles/BuildRole",
                 "children": {
                   "ImportBuildRole": {
                     "id": "ImportBuildRole",
-                    "path": "OptimusStack/IAMRoles/BuildRole/ImportBuildRole",
+                    "path": "asaRacingStack/IAMRoles/BuildRole/ImportBuildRole",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.Resource",
                       "version": "2.166.0"
@@ -977,7 +977,7 @@
                   },
                   "Resource": {
                     "id": "Resource",
-                    "path": "OptimusStack/IAMRoles/BuildRole/Resource",
+                    "path": "asaRacingStack/IAMRoles/BuildRole/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                       "aws:cdk:cloudformation:props": {
@@ -1028,11 +1028,11 @@
                   },
                   "DefaultPolicy": {
                     "id": "DefaultPolicy",
-                    "path": "OptimusStack/IAMRoles/BuildRole/DefaultPolicy",
+                    "path": "asaRacingStack/IAMRoles/BuildRole/DefaultPolicy",
                     "children": {
                       "Resource": {
                         "id": "Resource",
-                        "path": "OptimusStack/IAMRoles/BuildRole/DefaultPolicy/Resource",
+                        "path": "asaRacingStack/IAMRoles/BuildRole/DefaultPolicy/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                           "aws:cdk:cloudformation:props": {
@@ -1055,7 +1055,7 @@
                                   "Resource": [
                                     {
                                       "Fn::GetAtt": [
-                                        "S3ConstructOptimusAPIBucket581D3580",
+                                        "S3ConstructasaRacingAPIBucket581D3580",
                                         "Arn"
                                       ]
                                     },
@@ -1065,7 +1065,7 @@
                                         [
                                           {
                                             "Fn::GetAtt": [
-                                              "S3ConstructOptimusAPIBucket581D3580",
+                                              "S3ConstructasaRacingAPIBucket581D3580",
                                               "Arn"
                                             ]
                                           },
@@ -1096,7 +1096,7 @@
                                         [
                                           {
                                             "Fn::GetAtt": [
-                                              "S3ConstructOptimusAPIBucket581D3580",
+                                              "S3ConstructasaRacingAPIBucket581D3580",
                                               "Arn"
                                             ]
                                           },
@@ -1106,12 +1106,12 @@
                                     },
                                     {
                                       "Fn::GetAtt": [
-                                        "S3ConstructOptimusAPIBucket581D3580",
+                                        "S3ConstructasaRacingAPIBucket581D3580",
                                         "Arn"
                                       ]
                                     },
-                                    "arn:aws:codedeploy:us-west-1:619326977873:deploymentgroup:OptimusApplication/OptimusDeploymentGroup",
-                                    "arn:aws:codedeploy:us-west-1:619326977873:application:OptimusApplication",
+                                    "arn:aws:codedeploy:us-west-1:619326977873:deploymentgroup:asaRacingApplication/asaRacingDeploymentGroup",
+                                    "arn:aws:codedeploy:us-west-1:619326977873:application:asaRacingApplication",
                                     "arn:aws:codedeploy:us-west-1:619326977873:deploymentconfig:*"
                                   ]
                                 },
@@ -1247,11 +1247,11 @@
               },
               "CodeDeployServiceRole": {
                 "id": "CodeDeployServiceRole",
-                "path": "OptimusStack/IAMRoles/CodeDeployServiceRole",
+                "path": "asaRacingStack/IAMRoles/CodeDeployServiceRole",
                 "children": {
                   "ImportCodeDeployServiceRole": {
                     "id": "ImportCodeDeployServiceRole",
-                    "path": "OptimusStack/IAMRoles/CodeDeployServiceRole/ImportCodeDeployServiceRole",
+                    "path": "asaRacingStack/IAMRoles/CodeDeployServiceRole/ImportCodeDeployServiceRole",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.Resource",
                       "version": "2.166.0"
@@ -1259,7 +1259,7 @@
                   },
                   "Resource": {
                     "id": "Resource",
-                    "path": "OptimusStack/IAMRoles/CodeDeployServiceRole/Resource",
+                    "path": "asaRacingStack/IAMRoles/CodeDeployServiceRole/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                       "aws:cdk:cloudformation:props": {
@@ -1298,11 +1298,11 @@
                   },
                   "DefaultPolicy": {
                     "id": "DefaultPolicy",
-                    "path": "OptimusStack/IAMRoles/CodeDeployServiceRole/DefaultPolicy",
+                    "path": "asaRacingStack/IAMRoles/CodeDeployServiceRole/DefaultPolicy",
                     "children": {
                       "Resource": {
                         "id": "Resource",
-                        "path": "OptimusStack/IAMRoles/CodeDeployServiceRole/DefaultPolicy/Resource",
+                        "path": "asaRacingStack/IAMRoles/CodeDeployServiceRole/DefaultPolicy/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                           "aws:cdk:cloudformation:props": {
@@ -1380,7 +1380,7 @@
           },
           "WaitHandle": {
             "id": "WaitHandle",
-            "path": "OptimusStack/WaitHandle",
+            "path": "asaRacingStack/WaitHandle",
             "attributes": {
               "aws:cdk:cloudformation:type": "AWS::CloudFormation::WaitConditionHandle",
               "aws:cdk:cloudformation:props": {}
@@ -1392,15 +1392,15 @@
           },
           "EC2Construct": {
             "id": "EC2Construct",
-            "path": "OptimusStack/EC2Construct",
+            "path": "asaRacingStack/EC2Construct",
             "children": {
               "SecurityGroup": {
                 "id": "SecurityGroup",
-                "path": "OptimusStack/EC2Construct/SecurityGroup",
+                "path": "asaRacingStack/EC2Construct/SecurityGroup",
                 "children": {
                   "Resource": {
                     "id": "Resource",
-                    "path": "OptimusStack/EC2Construct/SecurityGroup/Resource",
+                    "path": "asaRacingStack/EC2Construct/SecurityGroup/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
                       "aws:cdk:cloudformation:props": {
@@ -1453,7 +1453,7 @@
               },
               "EC2LaunchTemplate": {
                 "id": "EC2LaunchTemplate",
-                "path": "OptimusStack/EC2Construct/EC2LaunchTemplate",
+                "path": "asaRacingStack/EC2Construct/EC2LaunchTemplate",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::EC2::LaunchTemplate",
                   "aws:cdk:cloudformation:props": {
@@ -1511,11 +1511,11 @@
               },
               "Instance": {
                 "id": "Instance",
-                "path": "OptimusStack/EC2Construct/Instance",
+                "path": "asaRacingStack/EC2Construct/Instance",
                 "children": {
                   "InstanceProfile": {
                     "id": "InstanceProfile",
-                    "path": "OptimusStack/EC2Construct/Instance/InstanceProfile",
+                    "path": "asaRacingStack/EC2Construct/Instance/InstanceProfile",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::IAM::InstanceProfile",
                       "aws:cdk:cloudformation:props": {
@@ -1533,7 +1533,7 @@
                   },
                   "Resource": {
                     "id": "Resource",
-                    "path": "OptimusStack/EC2Construct/Instance/Resource",
+                    "path": "asaRacingStack/EC2Construct/Instance/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::EC2::Instance",
                       "aws:cdk:cloudformation:props": {
@@ -1617,7 +1617,7 @@
           },
           "SsmParameterValue:--aws--service--ami-amazon-linux-latest--al2023-ami-kernel-6.1-x86_64:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter": {
             "id": "SsmParameterValue:--aws--service--ami-amazon-linux-latest--al2023-ami-kernel-6.1-x86_64:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter",
-            "path": "OptimusStack/SsmParameterValue:--aws--service--ami-amazon-linux-latest--al2023-ami-kernel-6.1-x86_64:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter",
+            "path": "asaRacingStack/SsmParameterValue:--aws--service--ami-amazon-linux-latest--al2023-ami-kernel-6.1-x86_64:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter",
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnParameter",
               "version": "2.166.0"
@@ -1625,7 +1625,7 @@
           },
           "SsmParameterValue:--aws--service--ami-amazon-linux-latest--al2023-ami-kernel-6.1-x86_64:C96584B6-F00A-464E-AD19-53AFF4B05118": {
             "id": "SsmParameterValue:--aws--service--ami-amazon-linux-latest--al2023-ami-kernel-6.1-x86_64:C96584B6-F00A-464E-AD19-53AFF4B05118",
-            "path": "OptimusStack/SsmParameterValue:--aws--service--ami-amazon-linux-latest--al2023-ami-kernel-6.1-x86_64:C96584B6-F00A-464E-AD19-53AFF4B05118",
+            "path": "asaRacingStack/SsmParameterValue:--aws--service--ami-amazon-linux-latest--al2023-ami-kernel-6.1-x86_64:C96584B6-F00A-464E-AD19-53AFF4B05118",
             "constructInfo": {
               "fqn": "aws-cdk-lib.Resource",
               "version": "2.166.0"
@@ -1633,15 +1633,15 @@
           },
           "CodeDeployApplication": {
             "id": "CodeDeployApplication",
-            "path": "OptimusStack/CodeDeployApplication",
+            "path": "asaRacingStack/CodeDeployApplication",
             "children": {
               "Resource": {
                 "id": "Resource",
-                "path": "OptimusStack/CodeDeployApplication/Resource",
+                "path": "asaRacingStack/CodeDeployApplication/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::CodeDeploy::Application",
                   "aws:cdk:cloudformation:props": {
-                    "applicationName": "OptimusApplication",
+                    "applicationName": "asaRacingApplication",
                     "computePlatform": "Server"
                   }
                 },
@@ -1658,11 +1658,11 @@
           },
           "CodeDeployDeploymentGroup": {
             "id": "CodeDeployDeploymentGroup",
-            "path": "OptimusStack/CodeDeployDeploymentGroup",
+            "path": "asaRacingStack/CodeDeployDeploymentGroup",
             "children": {
               "Bucket": {
                 "id": "Bucket",
-                "path": "OptimusStack/CodeDeployDeploymentGroup/Bucket",
+                "path": "asaRacingStack/CodeDeployDeploymentGroup/Bucket",
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.aws_s3.BucketBase",
                   "version": "2.166.0"
@@ -1670,7 +1670,7 @@
               },
               "Resource": {
                 "id": "Resource",
-                "path": "OptimusStack/CodeDeployDeploymentGroup/Resource",
+                "path": "asaRacingStack/CodeDeployDeploymentGroup/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::CodeDeploy::DeploymentGroup",
                   "aws:cdk:cloudformation:props": {
@@ -1684,7 +1684,7 @@
                       ]
                     },
                     "deploymentConfigName": "CodeDeployDefault.AllAtOnce",
-                    "deploymentGroupName": "OptimusDeploymentGroup",
+                    "deploymentGroupName": "asaRacingDeploymentGroup",
                     "ec2TagSet": {
                       "ec2TagSetList": [
                         {
@@ -1724,11 +1724,11 @@
           },
           "BuildProject": {
             "id": "BuildProject",
-            "path": "OptimusStack/BuildProject",
+            "path": "asaRacingStack/BuildProject",
             "children": {
               "Resource": {
                 "id": "Resource",
-                "path": "OptimusStack/BuildProject/Resource",
+                "path": "asaRacingStack/BuildProject/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::CodeBuild::Project",
                   "aws:cdk:cloudformation:props": {
@@ -1747,10 +1747,10 @@
                       "computeType": "BUILD_GENERAL1_SMALL",
                       "environmentVariables": [
                         {
-                          "name": "OPTIMUS_BUCKET",
+                          "name": "asaRacing_BUCKET",
                           "type": "PLAINTEXT",
                           "value": {
-                            "Ref": "S3ConstructOptimusAPIBucket581D3580"
+                            "Ref": "S3ConstructasaRacingAPIBucket581D3580"
                           }
                         }
                       ]
@@ -1763,7 +1763,7 @@
                     },
                     "source": {
                       "type": "CODEPIPELINE",
-                      "buildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"rm -rf /tmp/workspace/*\",\n        \"mkdir -p /tmp/workspace\",\n        \"cp -r . /tmp/workspace/optimus-core\",\n        \"cd /tmp/workspace\",\n        \"git clone https://github.com/mzienert/optimus-api.git || (cd optimus-api && git pull)\"\n      ]\n    },\n    \"pre_build\": {\n      \"commands\": [\n        \"cd /tmp/workspace/optimus-api/lambdas/optimus\",\n        \"rm -rf node_modules dist\",\n        \"npm ci\",\n        \"npm run build\",\n        \"cp -r node_modules dist/\",\n        \"cp package*.json dist/\",\n        \"cd /tmp/workspace/\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"rm -rf node_modules dist\",\n        \"npm ci\",\n        \"npm run build\",\n        \"mkdir -p dist/node_modules\",\n        \"cp -r node_modules/* dist/node_modules/\",\n        \"cp package*.json dist/\"\n      ]\n    },\n    \"post_build\": {\n      \"commands\": [\n        \"mkdir -p dist/logs\",\n        \"chmod -R 755 dist\"\n      ]\n    }\n  },\n  \"artifacts\": {\n    \"base-directory\": \"/tmp/workspace/optimus-api\",\n    \"files\": [\n      \"appspec.yml\",\n      \"scripts/**/*\",\n      \"ecosystem.config.js\",\n      \"package*.json\",\n      \"dist/**/*\",\n      \"lambdas/optimus/dist/**/*\"\n    ]\n  }\n}"
+                      "buildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"rm -rf /tmp/workspace/*\",\n        \"mkdir -p /tmp/workspace\",\n        \"cp -r . /tmp/workspace/asaRacing-core\",\n        \"cd /tmp/workspace\",\n        \"git clone https://github.com/mzienert/asaRacing-api.git || (cd asaRacing-api && git pull)\"\n      ]\n    },\n    \"pre_build\": {\n      \"commands\": [\n        \"cd /tmp/workspace/asaRacing-api/lambdas/asaRacing\",\n        \"rm -rf node_modules dist\",\n        \"npm ci\",\n        \"npm run build\",\n        \"cp -r node_modules dist/\",\n        \"cp package*.json dist/\",\n        \"cd /tmp/workspace/\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"rm -rf node_modules dist\",\n        \"npm ci\",\n        \"npm run build\",\n        \"mkdir -p dist/node_modules\",\n        \"cp -r node_modules/* dist/node_modules/\",\n        \"cp package*.json dist/\"\n      ]\n    },\n    \"post_build\": {\n      \"commands\": [\n        \"mkdir -p dist/logs\",\n        \"chmod -R 755 dist\"\n      ]\n    }\n  },\n  \"artifacts\": {\n    \"base-directory\": \"/tmp/workspace/asaRacing-api\",\n    \"files\": [\n      \"appspec.yml\",\n      \"scripts/**/*\",\n      \"ecosystem.config.js\",\n      \"package*.json\",\n      \"dist/**/*\",\n      \"lambdas/asaRacing/dist/**/*\"\n    ]\n  }\n}"
                     }
                   }
                 },
@@ -1780,19 +1780,19 @@
           },
           "CodePipelineConstruct": {
             "id": "CodePipelineConstruct",
-            "path": "OptimusStack/CodePipelineConstruct",
+            "path": "asaRacingStack/CodePipelineConstruct",
             "children": {
               "Pipeline": {
                 "id": "Pipeline",
-                "path": "OptimusStack/CodePipelineConstruct/Pipeline",
+                "path": "asaRacingStack/CodePipelineConstruct/Pipeline",
                 "children": {
                   "Role": {
                     "id": "Role",
-                    "path": "OptimusStack/CodePipelineConstruct/Pipeline/Role",
+                    "path": "asaRacingStack/CodePipelineConstruct/Pipeline/Role",
                     "children": {
                       "ImportRole": {
                         "id": "ImportRole",
-                        "path": "OptimusStack/CodePipelineConstruct/Pipeline/Role/ImportRole",
+                        "path": "asaRacingStack/CodePipelineConstruct/Pipeline/Role/ImportRole",
                         "constructInfo": {
                           "fqn": "aws-cdk-lib.Resource",
                           "version": "2.166.0"
@@ -1800,7 +1800,7 @@
                       },
                       "Resource": {
                         "id": "Resource",
-                        "path": "OptimusStack/CodePipelineConstruct/Pipeline/Role/Resource",
+                        "path": "asaRacingStack/CodePipelineConstruct/Pipeline/Role/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                           "aws:cdk:cloudformation:props": {
@@ -1825,11 +1825,11 @@
                       },
                       "DefaultPolicy": {
                         "id": "DefaultPolicy",
-                        "path": "OptimusStack/CodePipelineConstruct/Pipeline/Role/DefaultPolicy",
+                        "path": "asaRacingStack/CodePipelineConstruct/Pipeline/Role/DefaultPolicy",
                         "children": {
                           "Resource": {
                             "id": "Resource",
-                            "path": "OptimusStack/CodePipelineConstruct/Pipeline/Role/DefaultPolicy/Resource",
+                            "path": "asaRacingStack/CodePipelineConstruct/Pipeline/Role/DefaultPolicy/Resource",
                             "attributes": {
                               "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                               "aws:cdk:cloudformation:props": {
@@ -1852,7 +1852,7 @@
                                       "Resource": [
                                         {
                                           "Fn::GetAtt": [
-                                            "S3ConstructOptimusAPIBucket581D3580",
+                                            "S3ConstructasaRacingAPIBucket581D3580",
                                             "Arn"
                                           ]
                                         },
@@ -1862,7 +1862,7 @@
                                             [
                                               {
                                                 "Fn::GetAtt": [
-                                                  "S3ConstructOptimusAPIBucket581D3580",
+                                                  "S3ConstructasaRacingAPIBucket581D3580",
                                                   "Arn"
                                                 ]
                                               },
@@ -1922,17 +1922,17 @@
                   },
                   "Resource": {
                     "id": "Resource",
-                    "path": "OptimusStack/CodePipelineConstruct/Pipeline/Resource",
+                    "path": "asaRacingStack/CodePipelineConstruct/Pipeline/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::CodePipeline::Pipeline",
                       "aws:cdk:cloudformation:props": {
                         "artifactStore": {
                           "type": "S3",
                           "location": {
-                            "Ref": "S3ConstructOptimusAPIBucket581D3580"
+                            "Ref": "S3ConstructasaRacingAPIBucket581D3580"
                           }
                         },
-                        "name": "OptimusAPIPipeline",
+                        "name": "asaRacingAPIPipeline",
                         "restartExecutionOnUpdate": true,
                         "roleArn": {
                           "Fn::GetAtt": [
@@ -1959,7 +1959,7 @@
                                 },
                                 "configuration": {
                                   "Owner": "mzienert",
-                                  "Repo": "optimus-api",
+                                  "Repo": "asaRacing-api",
                                   "Branch": "master",
                                   "OAuthToken": "{{resolve:secretsmanager:github-token-secret-name:SecretString:::}}",
                                   "PollForSourceChanges": false
@@ -2049,15 +2049,15 @@
                   },
                   "Source": {
                     "id": "Source",
-                    "path": "OptimusStack/CodePipelineConstruct/Pipeline/Source",
+                    "path": "asaRacingStack/CodePipelineConstruct/Pipeline/Source",
                     "children": {
                       "GitHub_Source": {
                         "id": "GitHub_Source",
-                        "path": "OptimusStack/CodePipelineConstruct/Pipeline/Source/GitHub_Source",
+                        "path": "asaRacingStack/CodePipelineConstruct/Pipeline/Source/GitHub_Source",
                         "children": {
                           "WebhookResource": {
                             "id": "WebhookResource",
-                            "path": "OptimusStack/CodePipelineConstruct/Pipeline/Source/GitHub_Source/WebhookResource",
+                            "path": "asaRacingStack/CodePipelineConstruct/Pipeline/Source/GitHub_Source/WebhookResource",
                             "attributes": {
                               "aws:cdk:cloudformation:type": "AWS::CodePipeline::Webhook",
                               "aws:cdk:cloudformation:props": {
@@ -2098,19 +2098,19 @@
                   },
                   "Build": {
                     "id": "Build",
-                    "path": "OptimusStack/CodePipelineConstruct/Pipeline/Build",
+                    "path": "asaRacingStack/CodePipelineConstruct/Pipeline/Build",
                     "children": {
                       "Build": {
                         "id": "Build",
-                        "path": "OptimusStack/CodePipelineConstruct/Pipeline/Build/Build",
+                        "path": "asaRacingStack/CodePipelineConstruct/Pipeline/Build/Build",
                         "children": {
                           "CodePipelineActionRole": {
                             "id": "CodePipelineActionRole",
-                            "path": "OptimusStack/CodePipelineConstruct/Pipeline/Build/Build/CodePipelineActionRole",
+                            "path": "asaRacingStack/CodePipelineConstruct/Pipeline/Build/Build/CodePipelineActionRole",
                             "children": {
                               "ImportCodePipelineActionRole": {
                                 "id": "ImportCodePipelineActionRole",
-                                "path": "OptimusStack/CodePipelineConstruct/Pipeline/Build/Build/CodePipelineActionRole/ImportCodePipelineActionRole",
+                                "path": "asaRacingStack/CodePipelineConstruct/Pipeline/Build/Build/CodePipelineActionRole/ImportCodePipelineActionRole",
                                 "constructInfo": {
                                   "fqn": "aws-cdk-lib.Resource",
                                   "version": "2.166.0"
@@ -2118,7 +2118,7 @@
                               },
                               "Resource": {
                                 "id": "Resource",
-                                "path": "OptimusStack/CodePipelineConstruct/Pipeline/Build/Build/CodePipelineActionRole/Resource",
+                                "path": "asaRacingStack/CodePipelineConstruct/Pipeline/Build/Build/CodePipelineActionRole/Resource",
                                 "attributes": {
                                   "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                                   "aws:cdk:cloudformation:props": {
@@ -2154,11 +2154,11 @@
                               },
                               "DefaultPolicy": {
                                 "id": "DefaultPolicy",
-                                "path": "OptimusStack/CodePipelineConstruct/Pipeline/Build/Build/CodePipelineActionRole/DefaultPolicy",
+                                "path": "asaRacingStack/CodePipelineConstruct/Pipeline/Build/Build/CodePipelineActionRole/DefaultPolicy",
                                 "children": {
                                   "Resource": {
                                     "id": "Resource",
-                                    "path": "OptimusStack/CodePipelineConstruct/Pipeline/Build/Build/CodePipelineActionRole/DefaultPolicy/Resource",
+                                    "path": "asaRacingStack/CodePipelineConstruct/Pipeline/Build/Build/CodePipelineActionRole/DefaultPolicy/Resource",
                                     "attributes": {
                                       "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                                       "aws:cdk:cloudformation:props": {
@@ -2220,19 +2220,19 @@
                   },
                   "Deploy": {
                     "id": "Deploy",
-                    "path": "OptimusStack/CodePipelineConstruct/Pipeline/Deploy",
+                    "path": "asaRacingStack/CodePipelineConstruct/Pipeline/Deploy",
                     "children": {
                       "Deploy": {
                         "id": "Deploy",
-                        "path": "OptimusStack/CodePipelineConstruct/Pipeline/Deploy/Deploy",
+                        "path": "asaRacingStack/CodePipelineConstruct/Pipeline/Deploy/Deploy",
                         "children": {
                           "CodePipelineActionRole": {
                             "id": "CodePipelineActionRole",
-                            "path": "OptimusStack/CodePipelineConstruct/Pipeline/Deploy/Deploy/CodePipelineActionRole",
+                            "path": "asaRacingStack/CodePipelineConstruct/Pipeline/Deploy/Deploy/CodePipelineActionRole",
                             "children": {
                               "ImportCodePipelineActionRole": {
                                 "id": "ImportCodePipelineActionRole",
-                                "path": "OptimusStack/CodePipelineConstruct/Pipeline/Deploy/Deploy/CodePipelineActionRole/ImportCodePipelineActionRole",
+                                "path": "asaRacingStack/CodePipelineConstruct/Pipeline/Deploy/Deploy/CodePipelineActionRole/ImportCodePipelineActionRole",
                                 "constructInfo": {
                                   "fqn": "aws-cdk-lib.Resource",
                                   "version": "2.166.0"
@@ -2240,7 +2240,7 @@
                               },
                               "Resource": {
                                 "id": "Resource",
-                                "path": "OptimusStack/CodePipelineConstruct/Pipeline/Deploy/Deploy/CodePipelineActionRole/Resource",
+                                "path": "asaRacingStack/CodePipelineConstruct/Pipeline/Deploy/Deploy/CodePipelineActionRole/Resource",
                                 "attributes": {
                                   "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                                   "aws:cdk:cloudformation:props": {
@@ -2276,11 +2276,11 @@
                               },
                               "DefaultPolicy": {
                                 "id": "DefaultPolicy",
-                                "path": "OptimusStack/CodePipelineConstruct/Pipeline/Deploy/Deploy/CodePipelineActionRole/DefaultPolicy",
+                                "path": "asaRacingStack/CodePipelineConstruct/Pipeline/Deploy/Deploy/CodePipelineActionRole/DefaultPolicy",
                                 "children": {
                                   "Resource": {
                                     "id": "Resource",
-                                    "path": "OptimusStack/CodePipelineConstruct/Pipeline/Deploy/Deploy/CodePipelineActionRole/DefaultPolicy/Resource",
+                                    "path": "asaRacingStack/CodePipelineConstruct/Pipeline/Deploy/Deploy/CodePipelineActionRole/DefaultPolicy/Resource",
                                     "attributes": {
                                       "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                                       "aws:cdk:cloudformation:props": {
@@ -2360,7 +2360,7 @@
                                               "Resource": [
                                                 {
                                                   "Fn::GetAtt": [
-                                                    "S3ConstructOptimusAPIBucket581D3580",
+                                                    "S3ConstructasaRacingAPIBucket581D3580",
                                                     "Arn"
                                                   ]
                                                 },
@@ -2370,7 +2370,7 @@
                                                     [
                                                       {
                                                         "Fn::GetAtt": [
-                                                          "S3ConstructOptimusAPIBucket581D3580",
+                                                          "S3ConstructasaRacingAPIBucket581D3580",
                                                           "Arn"
                                                         ]
                                                       },
@@ -2434,15 +2434,15 @@
           },
           "NextJSPipelineConstruct": {
             "id": "NextJSPipelineConstruct",
-            "path": "OptimusStack/NextJSPipelineConstruct",
+            "path": "asaRacingStack/NextJSPipelineConstruct",
             "children": {
               "WebsiteBucket": {
                 "id": "WebsiteBucket",
-                "path": "OptimusStack/NextJSPipelineConstruct/WebsiteBucket",
+                "path": "asaRacingStack/NextJSPipelineConstruct/WebsiteBucket",
                 "children": {
                   "Resource": {
                     "id": "Resource",
-                    "path": "OptimusStack/NextJSPipelineConstruct/WebsiteBucket/Resource",
+                    "path": "asaRacingStack/NextJSPipelineConstruct/WebsiteBucket/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
                       "aws:cdk:cloudformation:props": {
@@ -2486,11 +2486,11 @@
                   },
                   "Policy": {
                     "id": "Policy",
-                    "path": "OptimusStack/NextJSPipelineConstruct/WebsiteBucket/Policy",
+                    "path": "asaRacingStack/NextJSPipelineConstruct/WebsiteBucket/Policy",
                     "children": {
                       "Resource": {
                         "id": "Resource",
-                        "path": "OptimusStack/NextJSPipelineConstruct/WebsiteBucket/Policy/Resource",
+                        "path": "asaRacingStack/NextJSPipelineConstruct/WebsiteBucket/Policy/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::S3::BucketPolicy",
                           "aws:cdk:cloudformation:props": {
@@ -2577,11 +2577,11 @@
                   },
                   "AutoDeleteObjectsCustomResource": {
                     "id": "AutoDeleteObjectsCustomResource",
-                    "path": "OptimusStack/NextJSPipelineConstruct/WebsiteBucket/AutoDeleteObjectsCustomResource",
+                    "path": "asaRacingStack/NextJSPipelineConstruct/WebsiteBucket/AutoDeleteObjectsCustomResource",
                     "children": {
                       "Default": {
                         "id": "Default",
-                        "path": "OptimusStack/NextJSPipelineConstruct/WebsiteBucket/AutoDeleteObjectsCustomResource/Default",
+                        "path": "asaRacingStack/NextJSPipelineConstruct/WebsiteBucket/AutoDeleteObjectsCustomResource/Default",
                         "constructInfo": {
                           "fqn": "aws-cdk-lib.CfnResource",
                           "version": "2.166.0"
@@ -2601,16 +2601,16 @@
               },
               "WebsiteCachePolicy": {
                 "id": "WebsiteCachePolicy",
-                "path": "OptimusStack/NextJSPipelineConstruct/WebsiteCachePolicy",
+                "path": "asaRacingStack/NextJSPipelineConstruct/WebsiteCachePolicy",
                 "children": {
                   "Resource": {
                     "id": "Resource",
-                    "path": "OptimusStack/NextJSPipelineConstruct/WebsiteCachePolicy/Resource",
+                    "path": "asaRacingStack/NextJSPipelineConstruct/WebsiteCachePolicy/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::CloudFront::CachePolicy",
                       "aws:cdk:cloudformation:props": {
                         "cachePolicyConfig": {
-                          "name": "OptimusStackNextJSPipelineConstructWebsiteCachePolicyF45BB767-us-west-1",
+                          "name": "asaRacingStackNextJSPipelineConstructWebsiteCachePolicyF45BB767-us-west-1",
                           "minTtl": 0,
                           "maxTtl": 31536000,
                           "defaultTtl": 86400,
@@ -2643,11 +2643,11 @@
               },
               "WebsiteDistribution": {
                 "id": "WebsiteDistribution",
-                "path": "OptimusStack/NextJSPipelineConstruct/WebsiteDistribution",
+                "path": "asaRacingStack/NextJSPipelineConstruct/WebsiteDistribution",
                 "children": {
                   "Origin1": {
                     "id": "Origin1",
-                    "path": "OptimusStack/NextJSPipelineConstruct/WebsiteDistribution/Origin1",
+                    "path": "asaRacingStack/NextJSPipelineConstruct/WebsiteDistribution/Origin1",
                     "constructInfo": {
                       "fqn": "constructs.Construct",
                       "version": "10.4.2"
@@ -2655,7 +2655,7 @@
                   },
                   "Resource": {
                     "id": "Resource",
-                    "path": "OptimusStack/NextJSPipelineConstruct/WebsiteDistribution/Resource",
+                    "path": "asaRacingStack/NextJSPipelineConstruct/WebsiteDistribution/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::CloudFront::Distribution",
                       "aws:cdk:cloudformation:props": {
@@ -2679,7 +2679,7 @@
                                   }
                                 ]
                               },
-                              "id": "OptimusStackNextJSPipelineConstructWebsiteDistributionOrigin101DC7AF6",
+                              "id": "asaRacingStackNextJSPipelineConstructWebsiteDistributionOrigin101DC7AF6",
                               "customOriginConfig": {
                                 "originSslProtocols": [
                                   "TLSv1.2"
@@ -2690,7 +2690,7 @@
                           ],
                           "defaultCacheBehavior": {
                             "pathPattern": "*",
-                            "targetOriginId": "OptimusStackNextJSPipelineConstructWebsiteDistributionOrigin101DC7AF6",
+                            "targetOriginId": "asaRacingStackNextJSPipelineConstructWebsiteDistributionOrigin101DC7AF6",
                             "cachePolicyId": {
                               "Ref": "NextJSPipelineConstructWebsiteCachePolicy27310B96"
                             },
@@ -2723,15 +2723,15 @@
               },
               "NextJSBuild": {
                 "id": "NextJSBuild",
-                "path": "OptimusStack/NextJSPipelineConstruct/NextJSBuild",
+                "path": "asaRacingStack/NextJSPipelineConstruct/NextJSBuild",
                 "children": {
                   "Role": {
                     "id": "Role",
-                    "path": "OptimusStack/NextJSPipelineConstruct/NextJSBuild/Role",
+                    "path": "asaRacingStack/NextJSPipelineConstruct/NextJSBuild/Role",
                     "children": {
                       "ImportRole": {
                         "id": "ImportRole",
-                        "path": "OptimusStack/NextJSPipelineConstruct/NextJSBuild/Role/ImportRole",
+                        "path": "asaRacingStack/NextJSPipelineConstruct/NextJSBuild/Role/ImportRole",
                         "constructInfo": {
                           "fqn": "aws-cdk-lib.Resource",
                           "version": "2.166.0"
@@ -2739,7 +2739,7 @@
                       },
                       "Resource": {
                         "id": "Resource",
-                        "path": "OptimusStack/NextJSPipelineConstruct/NextJSBuild/Role/Resource",
+                        "path": "asaRacingStack/NextJSPipelineConstruct/NextJSBuild/Role/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                           "aws:cdk:cloudformation:props": {
@@ -2764,11 +2764,11 @@
                       },
                       "DefaultPolicy": {
                         "id": "DefaultPolicy",
-                        "path": "OptimusStack/NextJSPipelineConstruct/NextJSBuild/Role/DefaultPolicy",
+                        "path": "asaRacingStack/NextJSPipelineConstruct/NextJSBuild/Role/DefaultPolicy",
                         "children": {
                           "Resource": {
                             "id": "Resource",
-                            "path": "OptimusStack/NextJSPipelineConstruct/NextJSBuild/Role/DefaultPolicy/Resource",
+                            "path": "asaRacingStack/NextJSPipelineConstruct/NextJSBuild/Role/DefaultPolicy/Resource",
                             "attributes": {
                               "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                               "aws:cdk:cloudformation:props": {
@@ -2960,7 +2960,7 @@
                   },
                   "Resource": {
                     "id": "Resource",
-                    "path": "OptimusStack/NextJSPipelineConstruct/NextJSBuild/Resource",
+                    "path": "asaRacingStack/NextJSPipelineConstruct/NextJSBuild/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::CodeBuild::Project",
                       "aws:cdk:cloudformation:props": {
@@ -3012,15 +3012,15 @@
               },
               "NextJSPipeline": {
                 "id": "NextJSPipeline",
-                "path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline",
+                "path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline",
                 "children": {
                   "ArtifactsBucket": {
                     "id": "ArtifactsBucket",
-                    "path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/ArtifactsBucket",
+                    "path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/ArtifactsBucket",
                     "children": {
                       "Resource": {
                         "id": "Resource",
-                        "path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/ArtifactsBucket/Resource",
+                        "path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/ArtifactsBucket/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
                           "aws:cdk:cloudformation:props": {
@@ -3048,11 +3048,11 @@
                       },
                       "Policy": {
                         "id": "Policy",
-                        "path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/ArtifactsBucket/Policy",
+                        "path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/ArtifactsBucket/Policy",
                         "children": {
                           "Resource": {
                             "id": "Resource",
-                            "path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/ArtifactsBucket/Policy/Resource",
+                            "path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/ArtifactsBucket/Policy/Resource",
                             "attributes": {
                               "aws:cdk:cloudformation:type": "AWS::S3::BucketPolicy",
                               "aws:cdk:cloudformation:props": {
@@ -3119,11 +3119,11 @@
                   },
                   "Role": {
                     "id": "Role",
-                    "path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Role",
+                    "path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Role",
                     "children": {
                       "ImportRole": {
                         "id": "ImportRole",
-                        "path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Role/ImportRole",
+                        "path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Role/ImportRole",
                         "constructInfo": {
                           "fqn": "aws-cdk-lib.Resource",
                           "version": "2.166.0"
@@ -3131,7 +3131,7 @@
                       },
                       "Resource": {
                         "id": "Resource",
-                        "path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Role/Resource",
+                        "path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Role/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                           "aws:cdk:cloudformation:props": {
@@ -3156,11 +3156,11 @@
                       },
                       "DefaultPolicy": {
                         "id": "DefaultPolicy",
-                        "path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Role/DefaultPolicy",
+                        "path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Role/DefaultPolicy",
                         "children": {
                           "Resource": {
                             "id": "Resource",
-                            "path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Role/DefaultPolicy/Resource",
+                            "path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Role/DefaultPolicy/Resource",
                             "attributes": {
                               "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                               "aws:cdk:cloudformation:props": {
@@ -3253,7 +3253,7 @@
                   },
                   "Resource": {
                     "id": "Resource",
-                    "path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Resource",
+                    "path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::CodePipeline::Pipeline",
                       "aws:cdk:cloudformation:props": {
@@ -3263,7 +3263,7 @@
                             "Ref": "NextJSPipelineConstructNextJSPipelineArtifactsBucketE6915442"
                           }
                         },
-                        "name": "OptimusUIPipeline",
+                        "name": "asaRacingUIPipeline",
                         "restartExecutionOnUpdate": true,
                         "roleArn": {
                           "Fn::GetAtt": [
@@ -3290,7 +3290,7 @@
                                 },
                                 "configuration": {
                                   "Owner": "mzienert",
-                                  "Repo": "optimus-ui",
+                                  "Repo": "asaRacing-ui",
                                   "Branch": "main",
                                   "OAuthToken": "{{resolve:secretsmanager:github-token-secret-name:SecretString:::}}",
                                   "PollForSourceChanges": false
@@ -3389,15 +3389,15 @@
                   },
                   "Source": {
                     "id": "Source",
-                    "path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Source",
+                    "path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Source",
                     "children": {
                       "GitHub_Source": {
                         "id": "GitHub_Source",
-                        "path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Source/GitHub_Source",
+                        "path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Source/GitHub_Source",
                         "children": {
                           "WebhookResource": {
                             "id": "WebhookResource",
-                            "path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Source/GitHub_Source/WebhookResource",
+                            "path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Source/GitHub_Source/WebhookResource",
                             "attributes": {
                               "aws:cdk:cloudformation:type": "AWS::CodePipeline::Webhook",
                               "aws:cdk:cloudformation:props": {
@@ -3438,19 +3438,19 @@
                   },
                   "Build": {
                     "id": "Build",
-                    "path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Build",
+                    "path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Build",
                     "children": {
                       "Build": {
                         "id": "Build",
-                        "path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Build/Build",
+                        "path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Build/Build",
                         "children": {
                           "CodePipelineActionRole": {
                             "id": "CodePipelineActionRole",
-                            "path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Build/Build/CodePipelineActionRole",
+                            "path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Build/Build/CodePipelineActionRole",
                             "children": {
                               "ImportCodePipelineActionRole": {
                                 "id": "ImportCodePipelineActionRole",
-                                "path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Build/Build/CodePipelineActionRole/ImportCodePipelineActionRole",
+                                "path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Build/Build/CodePipelineActionRole/ImportCodePipelineActionRole",
                                 "constructInfo": {
                                   "fqn": "aws-cdk-lib.Resource",
                                   "version": "2.166.0"
@@ -3458,7 +3458,7 @@
                               },
                               "Resource": {
                                 "id": "Resource",
-                                "path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Build/Build/CodePipelineActionRole/Resource",
+                                "path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Build/Build/CodePipelineActionRole/Resource",
                                 "attributes": {
                                   "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                                   "aws:cdk:cloudformation:props": {
@@ -3494,11 +3494,11 @@
                               },
                               "DefaultPolicy": {
                                 "id": "DefaultPolicy",
-                                "path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Build/Build/CodePipelineActionRole/DefaultPolicy",
+                                "path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Build/Build/CodePipelineActionRole/DefaultPolicy",
                                 "children": {
                                   "Resource": {
                                     "id": "Resource",
-                                    "path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Build/Build/CodePipelineActionRole/DefaultPolicy/Resource",
+                                    "path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Build/Build/CodePipelineActionRole/DefaultPolicy/Resource",
                                     "attributes": {
                                       "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                                       "aws:cdk:cloudformation:props": {
@@ -3560,19 +3560,19 @@
                   },
                   "Deploy": {
                     "id": "Deploy",
-                    "path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Deploy",
+                    "path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Deploy",
                     "children": {
                       "Deploy": {
                         "id": "Deploy",
-                        "path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Deploy/Deploy",
+                        "path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Deploy/Deploy",
                         "children": {
                           "CodePipelineActionRole": {
                             "id": "CodePipelineActionRole",
-                            "path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Deploy/Deploy/CodePipelineActionRole",
+                            "path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Deploy/Deploy/CodePipelineActionRole",
                             "children": {
                               "ImportCodePipelineActionRole": {
                                 "id": "ImportCodePipelineActionRole",
-                                "path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Deploy/Deploy/CodePipelineActionRole/ImportCodePipelineActionRole",
+                                "path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Deploy/Deploy/CodePipelineActionRole/ImportCodePipelineActionRole",
                                 "constructInfo": {
                                   "fqn": "aws-cdk-lib.Resource",
                                   "version": "2.166.0"
@@ -3580,7 +3580,7 @@
                               },
                               "Resource": {
                                 "id": "Resource",
-                                "path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Deploy/Deploy/CodePipelineActionRole/Resource",
+                                "path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Deploy/Deploy/CodePipelineActionRole/Resource",
                                 "attributes": {
                                   "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                                   "aws:cdk:cloudformation:props": {
@@ -3616,11 +3616,11 @@
                               },
                               "DefaultPolicy": {
                                 "id": "DefaultPolicy",
-                                "path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Deploy/Deploy/CodePipelineActionRole/DefaultPolicy",
+                                "path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Deploy/Deploy/CodePipelineActionRole/DefaultPolicy",
                                 "children": {
                                   "Resource": {
                                     "id": "Resource",
-                                    "path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Deploy/Deploy/CodePipelineActionRole/DefaultPolicy/Resource",
+                                    "path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Deploy/Deploy/CodePipelineActionRole/DefaultPolicy/Resource",
                                     "attributes": {
                                       "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                                       "aws:cdk:cloudformation:props": {
@@ -3738,7 +3738,7 @@
               },
               "WebsiteURL": {
                 "id": "WebsiteURL",
-                "path": "OptimusStack/NextJSPipelineConstruct/WebsiteURL",
+                "path": "asaRacingStack/NextJSPipelineConstruct/WebsiteURL",
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.CfnOutput",
                   "version": "2.166.0"
@@ -3746,7 +3746,7 @@
               },
               "WebsiteBucketName": {
                 "id": "WebsiteBucketName",
-                "path": "OptimusStack/NextJSPipelineConstruct/WebsiteBucketName",
+                "path": "asaRacingStack/NextJSPipelineConstruct/WebsiteBucketName",
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.CfnOutput",
                   "version": "2.166.0"
@@ -3758,17 +3758,17 @@
               "version": "10.4.2"
             }
           },
-          "optimusFunction": {
-            "id": "optimusFunction",
-            "path": "OptimusStack/optimusFunction",
+          "asaRacingFunction": {
+            "id": "asaRacingFunction",
+            "path": "asaRacingStack/asaRacingFunction",
             "children": {
               "Code": {
                 "id": "Code",
-                "path": "OptimusStack/optimusFunction/Code",
+                "path": "asaRacingStack/asaRacingFunction/Code",
                 "children": {
                   "Stage": {
                     "id": "Stage",
-                    "path": "OptimusStack/optimusFunction/Code/Stage",
+                    "path": "asaRacingStack/asaRacingFunction/Code/Stage",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.AssetStaging",
                       "version": "2.166.0"
@@ -3776,7 +3776,7 @@
                   },
                   "AssetBucket": {
                     "id": "AssetBucket",
-                    "path": "OptimusStack/optimusFunction/Code/AssetBucket",
+                    "path": "asaRacingStack/asaRacingFunction/Code/AssetBucket",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.aws_s3.BucketBase",
                       "version": "2.166.0"
@@ -3790,7 +3790,7 @@
               },
               "Resource": {
                 "id": "Resource",
-                "path": "OptimusStack/optimusFunction/Resource",
+                "path": "asaRacingStack/asaRacingFunction/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
                   "aws:cdk:cloudformation:props": {
@@ -3829,17 +3829,17 @@
               "version": "2.166.0"
             }
           },
-          "optimusApi": {
-            "id": "optimusApi",
-            "path": "OptimusStack/optimusApi",
+          "asaRacingApi": {
+            "id": "asaRacingApi",
+            "path": "asaRacingStack/asaRacingApi",
             "children": {
               "Resource": {
                 "id": "Resource",
-                "path": "OptimusStack/optimusApi/Resource",
+                "path": "asaRacingStack/asaRacingApi/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::ApiGateway::RestApi",
                   "aws:cdk:cloudformation:props": {
-                    "name": "optimusApi"
+                    "name": "asaRacingApi"
                   }
                 },
                 "constructInfo": {
@@ -3849,11 +3849,11 @@
               },
               "CloudWatchRole": {
                 "id": "CloudWatchRole",
-                "path": "OptimusStack/optimusApi/CloudWatchRole",
+                "path": "asaRacingStack/asaRacingApi/CloudWatchRole",
                 "children": {
                   "ImportCloudWatchRole": {
                     "id": "ImportCloudWatchRole",
-                    "path": "OptimusStack/optimusApi/CloudWatchRole/ImportCloudWatchRole",
+                    "path": "asaRacingStack/asaRacingApi/CloudWatchRole/ImportCloudWatchRole",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.Resource",
                       "version": "2.166.0"
@@ -3861,7 +3861,7 @@
                   },
                   "Resource": {
                     "id": "Resource",
-                    "path": "OptimusStack/optimusApi/CloudWatchRole/Resource",
+                    "path": "asaRacingStack/asaRacingApi/CloudWatchRole/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                       "aws:cdk:cloudformation:props": {
@@ -3906,13 +3906,13 @@
               },
               "Account": {
                 "id": "Account",
-                "path": "OptimusStack/optimusApi/Account",
+                "path": "asaRacingStack/asaRacingApi/Account",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::ApiGateway::Account",
                   "aws:cdk:cloudformation:props": {
                     "cloudWatchRoleArn": {
                       "Fn::GetAtt": [
-                        "optimusApiCloudWatchRole920BB937",
+                        "asaRacingApiCloudWatchRole920BB937",
                         "Arn"
                       ]
                     }
@@ -3925,17 +3925,17 @@
               },
               "Deployment": {
                 "id": "Deployment",
-                "path": "OptimusStack/optimusApi/Deployment",
+                "path": "asaRacingStack/asaRacingApi/Deployment",
                 "children": {
                   "Resource": {
                     "id": "Resource",
-                    "path": "OptimusStack/optimusApi/Deployment/Resource",
+                    "path": "asaRacingStack/asaRacingApi/Deployment/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::ApiGateway::Deployment",
                       "aws:cdk:cloudformation:props": {
                         "description": "Automatically created by the RestApi construct",
                         "restApiId": {
-                          "Ref": "optimusApi903D60A1"
+                          "Ref": "asaRacingApi903D60A1"
                         }
                       }
                     },
@@ -3952,19 +3952,19 @@
               },
               "DeploymentStage.prod": {
                 "id": "DeploymentStage.prod",
-                "path": "OptimusStack/optimusApi/DeploymentStage.prod",
+                "path": "asaRacingStack/asaRacingApi/DeploymentStage.prod",
                 "children": {
                   "Resource": {
                     "id": "Resource",
-                    "path": "OptimusStack/optimusApi/DeploymentStage.prod/Resource",
+                    "path": "asaRacingStack/asaRacingApi/DeploymentStage.prod/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::ApiGateway::Stage",
                       "aws:cdk:cloudformation:props": {
                         "deploymentId": {
-                          "Ref": "optimusApiDeployment275CD8503215a3daf27b0377003eec89a809940b"
+                          "Ref": "asaRacingApiDeployment275CD8503215a3daf27b0377003eec89a809940b"
                         },
                         "restApiId": {
-                          "Ref": "optimusApi903D60A1"
+                          "Ref": "asaRacingApi903D60A1"
                         },
                         "stageName": "prod"
                       }
@@ -3982,7 +3982,7 @@
               },
               "Endpoint": {
                 "id": "Endpoint",
-                "path": "OptimusStack/optimusApi/Endpoint",
+                "path": "asaRacingStack/asaRacingApi/Endpoint",
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.CfnOutput",
                   "version": "2.166.0"
@@ -3990,27 +3990,27 @@
               },
               "Default": {
                 "id": "Default",
-                "path": "OptimusStack/optimusApi/Default",
+                "path": "asaRacingStack/asaRacingApi/Default",
                 "children": {
-                  "optimus": {
-                    "id": "optimus",
-                    "path": "OptimusStack/optimusApi/Default/optimus",
+                  "asaRacing": {
+                    "id": "asaRacing",
+                    "path": "asaRacingStack/asaRacingApi/Default/asaRacing",
                     "children": {
                       "Resource": {
                         "id": "Resource",
-                        "path": "OptimusStack/optimusApi/Default/optimus/Resource",
+                        "path": "asaRacingStack/asaRacingApi/Default/asaRacing/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::ApiGateway::Resource",
                           "aws:cdk:cloudformation:props": {
                             "parentId": {
                               "Fn::GetAtt": [
-                                "optimusApi903D60A1",
+                                "asaRacingApi903D60A1",
                                 "RootResourceId"
                               ]
                             },
-                            "pathPart": "optimus",
+                            "pathPart": "asaRacing",
                             "restApiId": {
-                              "Ref": "optimusApi903D60A1"
+                              "Ref": "asaRacingApi903D60A1"
                             }
                           }
                         },
@@ -4021,18 +4021,18 @@
                       },
                       "GET": {
                         "id": "GET",
-                        "path": "OptimusStack/optimusApi/Default/optimus/GET",
+                        "path": "asaRacingStack/asaRacingApi/Default/asaRacing/GET",
                         "children": {
-                          "ApiPermission.OptimusStackoptimusApiE927145F.GET..optimus": {
-                            "id": "ApiPermission.OptimusStackoptimusApiE927145F.GET..optimus",
-                            "path": "OptimusStack/optimusApi/Default/optimus/GET/ApiPermission.OptimusStackoptimusApiE927145F.GET..optimus",
+                          "ApiPermission.asaRacingStackasaRacingApiE927145F.GET..asaRacing": {
+                            "id": "ApiPermission.asaRacingStackasaRacingApiE927145F.GET..asaRacing",
+                            "path": "asaRacingStack/asaRacingApi/Default/asaRacing/GET/ApiPermission.asaRacingStackasaRacingApiE927145F.GET..asaRacing",
                             "attributes": {
                               "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
                               "aws:cdk:cloudformation:props": {
                                 "action": "lambda:InvokeFunction",
                                 "functionName": {
                                   "Fn::GetAtt": [
-                                    "optimusFunction18897E2B",
+                                    "asaRacingFunction18897E2B",
                                     "Arn"
                                   ]
                                 },
@@ -4047,13 +4047,13 @@
                                       },
                                       ":execute-api:us-west-1:619326977873:",
                                       {
-                                        "Ref": "optimusApi903D60A1"
+                                        "Ref": "asaRacingApi903D60A1"
                                       },
                                       "/",
                                       {
-                                        "Ref": "optimusApiDeploymentStageprod15345340"
+                                        "Ref": "asaRacingApiDeploymentStageprod15345340"
                                       },
-                                      "/GET/optimus"
+                                      "/GET/asaRacing"
                                     ]
                                   ]
                                 }
@@ -4064,16 +4064,16 @@
                               "version": "2.166.0"
                             }
                           },
-                          "ApiPermission.Test.OptimusStackoptimusApiE927145F.GET..optimus": {
-                            "id": "ApiPermission.Test.OptimusStackoptimusApiE927145F.GET..optimus",
-                            "path": "OptimusStack/optimusApi/Default/optimus/GET/ApiPermission.Test.OptimusStackoptimusApiE927145F.GET..optimus",
+                          "ApiPermission.Test.asaRacingStackasaRacingApiE927145F.GET..asaRacing": {
+                            "id": "ApiPermission.Test.asaRacingStackasaRacingApiE927145F.GET..asaRacing",
+                            "path": "asaRacingStack/asaRacingApi/Default/asaRacing/GET/ApiPermission.Test.asaRacingStackasaRacingApiE927145F.GET..asaRacing",
                             "attributes": {
                               "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
                               "aws:cdk:cloudformation:props": {
                                 "action": "lambda:InvokeFunction",
                                 "functionName": {
                                   "Fn::GetAtt": [
-                                    "optimusFunction18897E2B",
+                                    "asaRacingFunction18897E2B",
                                     "Arn"
                                   ]
                                 },
@@ -4088,9 +4088,9 @@
                                       },
                                       ":execute-api:us-west-1:619326977873:",
                                       {
-                                        "Ref": "optimusApi903D60A1"
+                                        "Ref": "asaRacingApi903D60A1"
                                       },
-                                      "/test-invoke-stage/GET/optimus"
+                                      "/test-invoke-stage/GET/asaRacing"
                                     ]
                                   ]
                                 }
@@ -4103,7 +4103,7 @@
                           },
                           "Resource": {
                             "id": "Resource",
-                            "path": "OptimusStack/optimusApi/Default/optimus/GET/Resource",
+                            "path": "asaRacingStack/asaRacingApi/Default/asaRacing/GET/Resource",
                             "attributes": {
                               "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
                               "aws:cdk:cloudformation:props": {
@@ -4122,7 +4122,7 @@
                                         ":apigateway:us-west-1:lambda:path/2015-03-31/functions/",
                                         {
                                           "Fn::GetAtt": [
-                                            "optimusFunction18897E2B",
+                                            "asaRacingFunction18897E2B",
                                             "Arn"
                                           ]
                                         },
@@ -4133,10 +4133,10 @@
                                   "integrationHttpMethod": "POST"
                                 },
                                 "resourceId": {
-                                  "Ref": "optimusApioptimus46B22252"
+                                  "Ref": "asaRacingApiasaRacing46B22252"
                                 },
                                 "restApiId": {
-                                  "Ref": "optimusApi903D60A1"
+                                  "Ref": "asaRacingApi903D60A1"
                                 }
                               }
                             },
@@ -4171,19 +4171,19 @@
           },
           "MyCognitoPool": {
             "id": "MyCognitoPool",
-            "path": "OptimusStack/MyCognitoPool",
+            "path": "asaRacingStack/MyCognitoPool",
             "children": {
               "CognitoPool": {
                 "id": "CognitoPool",
-                "path": "OptimusStack/MyCognitoPool/CognitoPool",
+                "path": "asaRacingStack/MyCognitoPool/CognitoPool",
                 "children": {
                   "smsRole": {
                     "id": "smsRole",
-                    "path": "OptimusStack/MyCognitoPool/CognitoPool/smsRole",
+                    "path": "asaRacingStack/MyCognitoPool/CognitoPool/smsRole",
                     "children": {
                       "ImportsmsRole": {
                         "id": "ImportsmsRole",
-                        "path": "OptimusStack/MyCognitoPool/CognitoPool/smsRole/ImportsmsRole",
+                        "path": "asaRacingStack/MyCognitoPool/CognitoPool/smsRole/ImportsmsRole",
                         "constructInfo": {
                           "fqn": "aws-cdk-lib.Resource",
                           "version": "2.166.0"
@@ -4191,7 +4191,7 @@
                       },
                       "Resource": {
                         "id": "Resource",
-                        "path": "OptimusStack/MyCognitoPool/CognitoPool/smsRole/Resource",
+                        "path": "asaRacingStack/MyCognitoPool/CognitoPool/smsRole/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                           "aws:cdk:cloudformation:props": {
@@ -4201,7 +4201,7 @@
                                   "Action": "sts:AssumeRole",
                                   "Condition": {
                                     "StringEquals": {
-                                      "sts:ExternalId": "OptimusStackMyCognitoPoolC9A3352C"
+                                      "sts:ExternalId": "asaRacingStackMyCognitoPoolC9A3352C"
                                     }
                                   },
                                   "Effect": "Allow",
@@ -4242,7 +4242,7 @@
                   },
                   "Resource": {
                     "id": "Resource",
-                    "path": "OptimusStack/MyCognitoPool/CognitoPool/Resource",
+                    "path": "asaRacingStack/MyCognitoPool/CognitoPool/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::Cognito::UserPool",
                       "aws:cdk:cloudformation:props": {
@@ -4292,7 +4292,7 @@
                           }
                         ],
                         "smsConfiguration": {
-                          "externalId": "OptimusStackMyCognitoPoolC9A3352C",
+                          "externalId": "asaRacingStackMyCognitoPoolC9A3352C",
                           "snsCallerArn": {
                             "Fn::GetAtt": [
                               "MyCognitoPoolsmsRole2DD4266C",
@@ -4324,11 +4324,11 @@
                   },
                   "MyAppClient": {
                     "id": "MyAppClient",
-                    "path": "OptimusStack/MyCognitoPool/CognitoPool/MyAppClient",
+                    "path": "asaRacingStack/MyCognitoPool/CognitoPool/MyAppClient",
                     "children": {
                       "Resource": {
                         "id": "Resource",
-                        "path": "OptimusStack/MyCognitoPool/CognitoPool/MyAppClient/Resource",
+                        "path": "asaRacingStack/MyCognitoPool/CognitoPool/MyAppClient/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::Cognito::UserPoolClient",
                           "aws:cdk:cloudformation:props": {
@@ -4384,7 +4384,7 @@
           },
           "WaitCondition": {
             "id": "WaitCondition",
-            "path": "OptimusStack/WaitCondition",
+            "path": "asaRacingStack/WaitCondition",
             "attributes": {
               "aws:cdk:cloudformation:type": "AWS::CloudFormation::WaitCondition",
               "aws:cdk:cloudformation:props": {
@@ -4402,7 +4402,7 @@
           },
           "InstancePublicIP": {
             "id": "InstancePublicIP",
-            "path": "OptimusStack/InstancePublicIP",
+            "path": "asaRacingStack/InstancePublicIP",
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnOutput",
               "version": "2.166.0"
@@ -4410,7 +4410,7 @@
           },
           "SSHCommand": {
             "id": "SSHCommand",
-            "path": "OptimusStack/SSHCommand",
+            "path": "asaRacingStack/SSHCommand",
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnOutput",
               "version": "2.166.0"
@@ -4418,15 +4418,15 @@
           },
           "DynamoDBTableName": {
             "id": "DynamoDBTableName",
-            "path": "OptimusStack/DynamoDBTableName",
+            "path": "asaRacingStack/DynamoDBTableName",
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnOutput",
               "version": "2.166.0"
             }
           },
-          "OptimusBucketName": {
-            "id": "OptimusBucketName",
-            "path": "OptimusStack/OptimusBucketName",
+          "asaRacingBucketName": {
+            "id": "asaRacingBucketName",
+            "path": "asaRacingStack/asaRacingBucketName",
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnOutput",
               "version": "2.166.0"
@@ -4434,7 +4434,7 @@
           },
           "DeploymentGroupTags": {
             "id": "DeploymentGroupTags",
-            "path": "OptimusStack/DeploymentGroupTags",
+            "path": "asaRacingStack/DeploymentGroupTags",
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnOutput",
               "version": "2.166.0"
@@ -4442,7 +4442,7 @@
           },
           "DeploymentGroupArn": {
             "id": "DeploymentGroupArn",
-            "path": "OptimusStack/DeploymentGroupArn",
+            "path": "asaRacingStack/DeploymentGroupArn",
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnOutput",
               "version": "2.166.0"
@@ -4450,7 +4450,7 @@
           },
           "PipelineArn": {
             "id": "PipelineArn",
-            "path": "OptimusStack/PipelineArn",
+            "path": "asaRacingStack/PipelineArn",
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnOutput",
               "version": "2.166.0"
@@ -4458,7 +4458,7 @@
           },
           "LambdaFunctionArn": {
             "id": "LambdaFunctionArn",
-            "path": "OptimusStack/LambdaFunctionArn",
+            "path": "asaRacingStack/LambdaFunctionArn",
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnOutput",
               "version": "2.166.0"
@@ -4466,7 +4466,7 @@
           },
           "ApiGatewayUrl": {
             "id": "ApiGatewayUrl",
-            "path": "OptimusStack/ApiGatewayUrl",
+            "path": "asaRacingStack/ApiGatewayUrl",
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnOutput",
               "version": "2.166.0"
@@ -4474,7 +4474,7 @@
           },
           "NextJSWebsiteURL": {
             "id": "NextJSWebsiteURL",
-            "path": "OptimusStack/NextJSWebsiteURL",
+            "path": "asaRacingStack/NextJSWebsiteURL",
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnOutput",
               "version": "2.166.0"
@@ -4482,7 +4482,7 @@
           },
           "NextJSPipelineArn": {
             "id": "NextJSPipelineArn",
-            "path": "OptimusStack/NextJSPipelineArn",
+            "path": "asaRacingStack/NextJSPipelineArn",
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnOutput",
               "version": "2.166.0"
@@ -4490,11 +4490,11 @@
           },
           "CDKMetadata": {
             "id": "CDKMetadata",
-            "path": "OptimusStack/CDKMetadata",
+            "path": "asaRacingStack/CDKMetadata",
             "children": {
               "Default": {
                 "id": "Default",
-                "path": "OptimusStack/CDKMetadata/Default",
+                "path": "asaRacingStack/CDKMetadata/Default",
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.CfnResource",
                   "version": "2.166.0"
@@ -4508,7 +4508,7 @@
           },
           "BootstrapVersion": {
             "id": "BootstrapVersion",
-            "path": "OptimusStack/BootstrapVersion",
+            "path": "asaRacingStack/BootstrapVersion",
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnParameter",
               "version": "2.166.0"
@@ -4516,7 +4516,7 @@
           },
           "CheckBootstrapVersion": {
             "id": "CheckBootstrapVersion",
-            "path": "OptimusStack/CheckBootstrapVersion",
+            "path": "asaRacingStack/CheckBootstrapVersion",
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnRule",
               "version": "2.166.0"

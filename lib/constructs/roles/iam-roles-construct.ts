@@ -4,7 +4,7 @@ import * as s3 from 'aws-cdk-lib/aws-s3';
 import { Construct } from 'constructs';
 
 export interface IAMRolesConstructProps {
-  optimusAPIBucket: s3.IBucket;
+  asaRacingAPIBucket: s3.IBucket;
   region: string;
   account: string;
   dynamoTableArn: string;
@@ -133,8 +133,8 @@ export class IAMRolesConstruct extends Construct {
         's3:GetObjectVersion'
       ],
       resources: [
-        props.optimusAPIBucket.bucketArn,
-        `${props.optimusAPIBucket.bucketArn}/*`
+        props.asaRacingAPIBucket.bucketArn,
+        `${props.asaRacingAPIBucket.bucketArn}/*`
       ]
     }));
 
@@ -167,7 +167,7 @@ export class IAMRolesConstruct extends Construct {
     });
 
     // S3 permissions for build role
-    props.optimusAPIBucket.grantReadWrite(this.buildRole);
+    props.asaRacingAPIBucket.grantReadWrite(this.buildRole);
 
     // CodeDeploy permissions for build role
     this.buildRole.addToPolicy(new iam.PolicyStatement({
@@ -185,10 +185,10 @@ export class IAMRolesConstruct extends Construct {
         'codedeploy:ListDeployments'
       ],
       resources: [
-        `${props.optimusAPIBucket.bucketArn}/*`,
-        props.optimusAPIBucket.bucketArn,
-        `arn:aws:codedeploy:${props.region}:${props.account}:deploymentgroup:OptimusApplication/OptimusDeploymentGroup`,
-        `arn:aws:codedeploy:${props.region}:${props.account}:application:OptimusApplication`,
+        `${props.asaRacingAPIBucket.bucketArn}/*`,
+        props.asaRacingAPIBucket.bucketArn,
+        `arn:aws:codedeploy:${props.region}:${props.account}:deploymentgroup:asaRacingApplication/asaRacingDeploymentGroup`,
+        `arn:aws:codedeploy:${props.region}:${props.account}:application:asaRacingApplication`,
         `arn:aws:codedeploy:${props.region}:${props.account}:deploymentconfig:*`
       ]
     }));

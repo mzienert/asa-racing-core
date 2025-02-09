@@ -31,7 +31,7 @@
     },
     "908ce7f208c9c67a24161eac358a4bb62a534d43745c991fdc1eb6a395a922db": {
       "source": {
-        "path": "OptimusStack.template.json",
+        "path": "asaRacingStack.template.json",
         "packaging": "file"
       },
       "destinations": {

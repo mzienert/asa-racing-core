@@ -51,7 +51,7 @@ export class CodePipelineConstruct extends Construct {
     });
 
     this.pipeline = new codepipeline.Pipeline(this, 'Pipeline', {
-      pipelineName: 'OptimusAPIPipeline',
+      pipelineName: 'asaRacingAPIPipeline',
       crossAccountKeys: false,
       artifactBucket: props.artifactBucket,
       restartExecutionOnUpdate: true,

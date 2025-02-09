@@ -12,7 +12,7 @@ export class S3Construct extends Construct {
   constructor(scope: Construct, id: string, props: S3ConstructProps = {}) {
     super(scope, id);
 
-    this.bucket = new s3.Bucket(this, 'OptimusAPIBucket', {
+    this.bucket = new s3.Bucket(this, 'asaRacingAPIBucket', {
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
       accessControl: s3.BucketAccessControl.PRIVATE,
       encryption: s3.BucketEncryption.S3_MANAGED,

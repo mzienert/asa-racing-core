@@ -10,12 +10,12 @@
     "Tags": [
      {
       "Key": "Name",
-      "Value": "OptimusStack/VPCConstruct/VPC"
+      "Value": "asaRacingStack/VPCConstruct/VPC"
      }
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/VPCConstruct/VPC/Resource"
+    "aws:cdk:path": "asaRacingStack/VPCConstruct/VPC/Resource"
    }
   },
   "VPCConstructVPCPublicSubnet1Subnet8CB03D42": {
@@ -35,7 +35,7 @@
      },
      {
       "Key": "Name",
-      "Value": "OptimusStack/VPCConstruct/VPC/PublicSubnet1"
+      "Value": "asaRacingStack/VPCConstruct/VPC/PublicSubnet1"
      }
     ],
     "VpcId": {
@@ -43,7 +43,7 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/VPCConstruct/VPC/PublicSubnet1/Subnet"
+    "aws:cdk:path": "asaRacingStack/VPCConstruct/VPC/PublicSubnet1/Subnet"
    }
   },
   "VPCConstructVPCPublicSubnet1RouteTable46231F4D": {
@@ -52,7 +52,7 @@
     "Tags": [
      {
       "Key": "Name",
-      "Value": "OptimusStack/VPCConstruct/VPC/PublicSubnet1"
+      "Value": "asaRacingStack/VPCConstruct/VPC/PublicSubnet1"
      }
     ],
     "VpcId": {
@@ -60,7 +60,7 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/VPCConstruct/VPC/PublicSubnet1/RouteTable"
+    "aws:cdk:path": "asaRacingStack/VPCConstruct/VPC/PublicSubnet1/RouteTable"
    }
   },
   "VPCConstructVPCPublicSubnet1RouteTableAssociation27D5E21A": {
@@ -74,7 +74,7 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/VPCConstruct/VPC/PublicSubnet1/RouteTableAssociation"
+    "aws:cdk:path": "asaRacingStack/VPCConstruct/VPC/PublicSubnet1/RouteTableAssociation"
    }
   },
   "VPCConstructVPCPublicSubnet1DefaultRoute4CF34A89": {
@@ -92,7 +92,7 @@
     "VPCConstructVPCVPCGWF9DBDABE"
    ],
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/VPCConstruct/VPC/PublicSubnet1/DefaultRoute"
+    "aws:cdk:path": "asaRacingStack/VPCConstruct/VPC/PublicSubnet1/DefaultRoute"
    }
   },
   "VPCConstructVPCIGWBBAD2E97": {
@@ -101,12 +101,12 @@
     "Tags": [
      {
       "Key": "Name",
-      "Value": "OptimusStack/VPCConstruct/VPC"
+      "Value": "asaRacingStack/VPCConstruct/VPC"
      }
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/VPCConstruct/VPC/IGW"
+    "aws:cdk:path": "asaRacingStack/VPCConstruct/VPC/IGW"
    }
   },
   "VPCConstructVPCVPCGWF9DBDABE": {
@@ -120,10 +120,10 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/VPCConstruct/VPC/VPCGW"
+    "aws:cdk:path": "asaRacingStack/VPCConstruct/VPC/VPCGW"
    }
   },
-  "S3ConstructOptimusAPIBucket581D3580": {
+  "S3ConstructasaRacingAPIBucket581D3580": {
    "Type": "AWS::S3::Bucket",
    "Properties": {
     "AccessControl": "Private",
@@ -155,14 +155,14 @@
    "UpdateReplacePolicy": "Delete",
    "DeletionPolicy": "Delete",
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/S3Construct/OptimusAPIBucket/Resource"
+    "aws:cdk:path": "asaRacingStack/S3Construct/asaRacingAPIBucket/Resource"
    }
   },
-  "S3ConstructOptimusAPIBucketPolicyFA761216": {
+  "S3ConstructasaRacingAPIBucketPolicyFA761216": {
    "Type": "AWS::S3::BucketPolicy",
    "Properties": {
     "Bucket": {
-     "Ref": "S3ConstructOptimusAPIBucket581D3580"
+     "Ref": "S3ConstructasaRacingAPIBucket581D3580"
     },
     "PolicyDocument": {
      "Statement": [
@@ -185,7 +185,7 @@
        "Resource": [
         {
          "Fn::GetAtt": [
-          "S3ConstructOptimusAPIBucket581D3580",
+          "S3ConstructasaRacingAPIBucket581D3580",
           "Arn"
          ]
         },
@@ -195,7 +195,7 @@
           [
            {
             "Fn::GetAtt": [
-             "S3ConstructOptimusAPIBucket581D3580",
+             "S3ConstructasaRacingAPIBucket581D3580",
              "Arn"
             ]
            },
@@ -210,10 +210,10 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/S3Construct/OptimusAPIBucket/Policy/Resource"
+    "aws:cdk:path": "asaRacingStack/S3Construct/asaRacingAPIBucket/Policy/Resource"
    }
   },
-  "S3ConstructOptimusAPIBucketAutoDeleteObjectsCustomResourceC002F9EB": {
+  "S3ConstructasaRacingAPIBucketAutoDeleteObjectsCustomResourceC002F9EB": {
    "Type": "Custom::S3AutoDeleteObjects",
    "Properties": {
     "ServiceToken": {
@@ -223,16 +223,16 @@
      ]
     },
     "BucketName": {
-     "Ref": "S3ConstructOptimusAPIBucket581D3580"
+     "Ref": "S3ConstructasaRacingAPIBucket581D3580"
     }
    },
    "DependsOn": [
-    "S3ConstructOptimusAPIBucketPolicyFA761216"
+    "S3ConstructasaRacingAPIBucketPolicyFA761216"
    ],
    "UpdateReplacePolicy": "Delete",
    "DeletionPolicy": "Delete",
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/S3Construct/OptimusAPIBucket/AutoDeleteObjectsCustomResource/Default"
+    "aws:cdk:path": "asaRacingStack/S3Construct/asaRacingAPIBucket/AutoDeleteObjectsCustomResource/Default"
    }
   },
   "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092": {
@@ -257,7 +257,7 @@
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role"
+    "aws:cdk:path": "asaRacingStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role"
    }
   },
   "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F": {
@@ -283,7 +283,7 @@
       [
        "Lambda function for auto-deleting objects in ",
        {
-        "Ref": "S3ConstructOptimusAPIBucket581D3580"
+        "Ref": "S3ConstructasaRacingAPIBucket581D3580"
        },
        " S3 bucket."
       ]
@@ -294,7 +294,7 @@
     "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
    ],
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler",
+    "aws:cdk:path": "asaRacingStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler",
     "aws:asset:path": "asset.faa95a81ae7d7373f3e1f242268f904eb748d8d0fdd306e8a6fe515a1905a7d6",
     "aws:asset:property": "Code"
    }
@@ -352,12 +352,12 @@
     "StreamSpecification": {
      "StreamViewType": "NEW_AND_OLD_IMAGES"
     },
-    "TableName": "OptimusTable"
+    "TableName": "asaRacingTable"
    },
    "UpdateReplacePolicy": "Delete",
    "DeletionPolicy": "Delete",
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/KlineTable/Table/Resource"
+    "aws:cdk:path": "asaRacingStack/KlineTable/Table/Resource"
    }
   },
   "IAMRolesLambdaRole3969EFC6": {
@@ -392,7 +392,7 @@
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/IAMRoles/LambdaRole/Resource"
+    "aws:cdk:path": "asaRacingStack/IAMRoles/LambdaRole/Resource"
    }
   },
   "IAMRolesLambdaRoleDefaultPolicy833CF6E2": {
@@ -476,7 +476,7 @@
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/IAMRoles/LambdaRole/DefaultPolicy/Resource"
+    "aws:cdk:path": "asaRacingStack/IAMRoles/LambdaRole/DefaultPolicy/Resource"
    }
   },
   "IAMRolesEC2RoleC881058A": {
@@ -584,7 +584,7 @@
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/IAMRoles/EC2Role/Resource"
+    "aws:cdk:path": "asaRacingStack/IAMRoles/EC2Role/Resource"
    }
   },
   "IAMRolesEC2RoleDefaultPolicyF8890C98": {
@@ -640,7 +640,7 @@
        "Resource": [
         {
          "Fn::GetAtt": [
-          "S3ConstructOptimusAPIBucket581D3580",
+          "S3ConstructasaRacingAPIBucket581D3580",
           "Arn"
          ]
         },
@@ -650,7 +650,7 @@
           [
            {
             "Fn::GetAtt": [
-             "S3ConstructOptimusAPIBucket581D3580",
+             "S3ConstructasaRacingAPIBucket581D3580",
              "Arn"
             ]
            },
@@ -767,7 +767,7 @@
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/IAMRoles/EC2Role/DefaultPolicy/Resource"
+    "aws:cdk:path": "asaRacingStack/IAMRoles/EC2Role/DefaultPolicy/Resource"
    }
   },
   "IAMRolesBuildRoleD76DE982": {
@@ -813,7 +813,7 @@
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/IAMRoles/BuildRole/Resource"
+    "aws:cdk:path": "asaRacingStack/IAMRoles/BuildRole/Resource"
    }
   },
   "IAMRolesBuildRoleDefaultPolicy33425913": {
@@ -838,7 +838,7 @@
        "Resource": [
         {
          "Fn::GetAtt": [
-          "S3ConstructOptimusAPIBucket581D3580",
+          "S3ConstructasaRacingAPIBucket581D3580",
           "Arn"
          ]
         },
@@ -848,7 +848,7 @@
           [
            {
             "Fn::GetAtt": [
-             "S3ConstructOptimusAPIBucket581D3580",
+             "S3ConstructasaRacingAPIBucket581D3580",
              "Arn"
             ]
            },
@@ -879,7 +879,7 @@
           [
            {
             "Fn::GetAtt": [
-             "S3ConstructOptimusAPIBucket581D3580",
+             "S3ConstructasaRacingAPIBucket581D3580",
              "Arn"
             ]
            },
@@ -889,12 +889,12 @@
         },
         {
          "Fn::GetAtt": [
-          "S3ConstructOptimusAPIBucket581D3580",
+          "S3ConstructasaRacingAPIBucket581D3580",
           "Arn"
          ]
         },
-        "arn:aws:codedeploy:us-west-1:619326977873:deploymentgroup:OptimusApplication/OptimusDeploymentGroup",
-        "arn:aws:codedeploy:us-west-1:619326977873:application:OptimusApplication",
+        "arn:aws:codedeploy:us-west-1:619326977873:deploymentgroup:asaRacingApplication/asaRacingDeploymentGroup",
+        "arn:aws:codedeploy:us-west-1:619326977873:application:asaRacingApplication",
         "arn:aws:codedeploy:us-west-1:619326977873:deploymentconfig:*"
        ]
       },
@@ -1011,7 +1011,7 @@
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/IAMRoles/BuildRole/DefaultPolicy/Resource"
+    "aws:cdk:path": "asaRacingStack/IAMRoles/BuildRole/DefaultPolicy/Resource"
    }
   },
   "IAMRolesCodeDeployServiceRole5E16DA96": {
@@ -1045,7 +1045,7 @@
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/IAMRoles/CodeDeployServiceRole/Resource"
+    "aws:cdk:path": "asaRacingStack/IAMRoles/CodeDeployServiceRole/Resource"
    }
   },
   "IAMRolesCodeDeployServiceRoleDefaultPolicy98C02197": {
@@ -1100,13 +1100,13 @@
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/IAMRoles/CodeDeployServiceRole/DefaultPolicy/Resource"
+    "aws:cdk:path": "asaRacingStack/IAMRoles/CodeDeployServiceRole/DefaultPolicy/Resource"
    }
   },
   "WaitHandle": {
    "Type": "AWS::CloudFormation::WaitConditionHandle",
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/WaitHandle"
+    "aws:cdk:path": "asaRacingStack/WaitHandle"
    }
   },
   "EC2ConstructSecurityGroupFDCA78E4": {
@@ -1148,7 +1148,7 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/EC2Construct/SecurityGroup/Resource"
+    "aws:cdk:path": "asaRacingStack/EC2Construct/SecurityGroup/Resource"
    }
   },
   "EC2ConstructEC2LaunchTemplate57D08D2E": {
@@ -1201,7 +1201,7 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/EC2Construct/EC2LaunchTemplate"
+    "aws:cdk:path": "asaRacingStack/EC2Construct/EC2LaunchTemplate"
    }
   },
   "EC2ConstructInstanceInstanceProfile349BDF7D": {
@@ -1214,7 +1214,7 @@
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/EC2Construct/Instance/InstanceProfile"
+    "aws:cdk:path": "asaRacingStack/EC2Construct/Instance/InstanceProfile"
    }
   },
   "EC2ConstructInstance87AD88E2": {
@@ -1297,17 +1297,17 @@
     "IAMRolesEC2RoleC881058A"
    ],
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/EC2Construct/Instance/Resource"
+    "aws:cdk:path": "asaRacingStack/EC2Construct/Instance/Resource"
    }
   },
   "CodeDeployApplicationE587C27C": {
    "Type": "AWS::CodeDeploy::Application",
    "Properties": {
-    "ApplicationName": "OptimusApplication",
+    "ApplicationName": "asaRacingApplication",
     "ComputePlatform": "Server"
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/CodeDeployApplication/Resource"
+    "aws:cdk:path": "asaRacingStack/CodeDeployApplication/Resource"
    }
   },
   "CodeDeployDeploymentGroupA33AC6C7": {
@@ -1323,7 +1323,7 @@
      ]
     },
     "DeploymentConfigName": "CodeDeployDefault.AllAtOnce",
-    "DeploymentGroupName": "OptimusDeploymentGroup",
+    "DeploymentGroupName": "asaRacingDeploymentGroup",
     "Ec2TagSet": {
      "Ec2TagSetList": [
       {
@@ -1350,7 +1350,7 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/CodeDeployDeploymentGroup/Resource"
+    "aws:cdk:path": "asaRacingStack/CodeDeployDeploymentGroup/Resource"
    }
   },
   "BuildProject097C5DB7": {
@@ -1367,10 +1367,10 @@
      "ComputeType": "BUILD_GENERAL1_SMALL",
      "EnvironmentVariables": [
       {
-       "Name": "OPTIMUS_BUCKET",
+       "Name": "asaRacing_BUCKET",
        "Type": "PLAINTEXT",
        "Value": {
-        "Ref": "S3ConstructOptimusAPIBucket581D3580"
+        "Ref": "S3ConstructasaRacingAPIBucket581D3580"
        }
       }
      ],
@@ -1386,12 +1386,12 @@
      ]
     },
     "Source": {
-     "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"rm -rf /tmp/workspace/*\",\n        \"mkdir -p /tmp/workspace\",\n        \"cp -r . /tmp/workspace/optimus-core\",\n        \"cd /tmp/workspace\",\n        \"git clone https://github.com/mzienert/optimus-api.git || (cd optimus-api && git pull)\"\n      ]\n    },\n    \"pre_build\": {\n      \"commands\": [\n        \"cd /tmp/workspace/optimus-api/lambdas/optimus\",\n        \"rm -rf node_modules dist\",\n        \"npm ci\",\n        \"npm run build\",\n        \"cp -r node_modules dist/\",\n        \"cp package*.json dist/\",\n        \"cd /tmp/workspace/\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"rm -rf node_modules dist\",\n        \"npm ci\",\n        \"npm run build\",\n        \"mkdir -p dist/node_modules\",\n        \"cp -r node_modules/* dist/node_modules/\",\n        \"cp package*.json dist/\"\n      ]\n    },\n    \"post_build\": {\n      \"commands\": [\n        \"mkdir -p dist/logs\",\n        \"chmod -R 755 dist\"\n      ]\n    }\n  },\n  \"artifacts\": {\n    \"base-directory\": \"/tmp/workspace/optimus-api\",\n    \"files\": [\n      \"appspec.yml\",\n      \"scripts/**/*\",\n      \"ecosystem.config.js\",\n      \"package*.json\",\n      \"dist/**/*\",\n      \"lambdas/optimus/dist/**/*\"\n    ]\n  }\n}",
+     "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"rm -rf /tmp/workspace/*\",\n        \"mkdir -p /tmp/workspace\",\n        \"cp -r . /tmp/workspace/asaRacing-core\",\n        \"cd /tmp/workspace\",\n        \"git clone https://github.com/mzienert/asaRacing-api.git || (cd asaRacing-api && git pull)\"\n      ]\n    },\n    \"pre_build\": {\n      \"commands\": [\n        \"cd /tmp/workspace/asaRacing-api/lambdas/asaRacing\",\n        \"rm -rf node_modules dist\",\n        \"npm ci\",\n        \"npm run build\",\n        \"cp -r node_modules dist/\",\n        \"cp package*.json dist/\",\n        \"cd /tmp/workspace/\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"rm -rf node_modules dist\",\n        \"npm ci\",\n        \"npm run build\",\n        \"mkdir -p dist/node_modules\",\n        \"cp -r node_modules/* dist/node_modules/\",\n        \"cp package*.json dist/\"\n      ]\n    },\n    \"post_build\": {\n      \"commands\": [\n        \"mkdir -p dist/logs\",\n        \"chmod -R 755 dist\"\n      ]\n    }\n  },\n  \"artifacts\": {\n    \"base-directory\": \"/tmp/workspace/asaRacing-api\",\n    \"files\": [\n      \"appspec.yml\",\n      \"scripts/**/*\",\n      \"ecosystem.config.js\",\n      \"package*.json\",\n      \"dist/**/*\",\n      \"lambdas/asaRacing/dist/**/*\"\n    ]\n  }\n}",
      "Type": "CODEPIPELINE"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/BuildProject/Resource"
+    "aws:cdk:path": "asaRacingStack/BuildProject/Resource"
    }
   },
   "CodePipelineConstructPipelineRoleBFCEF5C1": {
@@ -1414,7 +1414,7 @@
     "WaitCondition"
    ],
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/CodePipelineConstruct/Pipeline/Role/Resource"
+    "aws:cdk:path": "asaRacingStack/CodePipelineConstruct/Pipeline/Role/Resource"
    }
   },
   "CodePipelineConstructPipelineRoleDefaultPolicyE4495F31": {
@@ -1439,7 +1439,7 @@
        "Resource": [
         {
          "Fn::GetAtt": [
-          "S3ConstructOptimusAPIBucket581D3580",
+          "S3ConstructasaRacingAPIBucket581D3580",
           "Arn"
          ]
         },
@@ -1449,7 +1449,7 @@
           [
            {
             "Fn::GetAtt": [
-             "S3ConstructOptimusAPIBucket581D3580",
+             "S3ConstructasaRacingAPIBucket581D3580",
              "Arn"
             ]
            },
@@ -1493,7 +1493,7 @@
     "WaitCondition"
    ],
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/CodePipelineConstruct/Pipeline/Role/DefaultPolicy/Resource"
+    "aws:cdk:path": "asaRacingStack/CodePipelineConstruct/Pipeline/Role/DefaultPolicy/Resource"
    }
   },
   "CodePipelineConstructPipeline3651447E": {
@@ -1501,11 +1501,11 @@
    "Properties": {
     "ArtifactStore": {
      "Location": {
-      "Ref": "S3ConstructOptimusAPIBucket581D3580"
+      "Ref": "S3ConstructasaRacingAPIBucket581D3580"
      },
      "Type": "S3"
     },
-    "Name": "OptimusAPIPipeline",
+    "Name": "asaRacingAPIPipeline",
     "RestartExecutionOnUpdate": true,
     "RoleArn": {
      "Fn::GetAtt": [
@@ -1525,7 +1525,7 @@
         },
         "Configuration": {
          "Owner": "mzienert",
-         "Repo": "optimus-api",
+         "Repo": "asaRacing-api",
          "Branch": "master",
          "OAuthToken": "{{resolve:secretsmanager:github-token-secret-name:SecretString:::}}",
          "PollForSourceChanges": false
@@ -1620,7 +1620,7 @@
     "WaitCondition"
    ],
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/CodePipelineConstruct/Pipeline/Resource"
+    "aws:cdk:path": "asaRacingStack/CodePipelineConstruct/Pipeline/Resource"
    }
   },
   "CodePipelineConstructPipelineSourceGitHubSourceWebhookResource30B41DE2": {
@@ -1647,7 +1647,7 @@
     "WaitCondition"
    ],
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/CodePipelineConstruct/Pipeline/Source/GitHub_Source/WebhookResource"
+    "aws:cdk:path": "asaRacingStack/CodePipelineConstruct/Pipeline/Source/GitHub_Source/WebhookResource"
    }
   },
   "CodePipelineConstructPipelineBuildCodePipelineActionRoleAEFFFE96": {
@@ -1681,7 +1681,7 @@
     "WaitCondition"
    ],
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/CodePipelineConstruct/Pipeline/Build/Build/CodePipelineActionRole/Resource"
+    "aws:cdk:path": "asaRacingStack/CodePipelineConstruct/Pipeline/Build/Build/CodePipelineActionRole/Resource"
    }
   },
   "CodePipelineConstructPipelineBuildCodePipelineActionRoleDefaultPolicyBA10977B": {
@@ -1717,7 +1717,7 @@
     "WaitCondition"
    ],
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/CodePipelineConstruct/Pipeline/Build/Build/CodePipelineActionRole/DefaultPolicy/Resource"
+    "aws:cdk:path": "asaRacingStack/CodePipelineConstruct/Pipeline/Build/Build/CodePipelineActionRole/DefaultPolicy/Resource"
    }
   },
   "CodePipelineConstructPipelineDeployCodePipelineActionRoleD589F03E": {
@@ -1751,7 +1751,7 @@
     "WaitCondition"
    ],
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/CodePipelineConstruct/Pipeline/Deploy/Deploy/CodePipelineActionRole/Resource"
+    "aws:cdk:path": "asaRacingStack/CodePipelineConstruct/Pipeline/Deploy/Deploy/CodePipelineActionRole/Resource"
    }
   },
   "CodePipelineConstructPipelineDeployCodePipelineActionRoleDefaultPolicyF9B6C32C": {
@@ -1833,7 +1833,7 @@
        "Resource": [
         {
          "Fn::GetAtt": [
-          "S3ConstructOptimusAPIBucket581D3580",
+          "S3ConstructasaRacingAPIBucket581D3580",
           "Arn"
          ]
         },
@@ -1843,7 +1843,7 @@
           [
            {
             "Fn::GetAtt": [
-             "S3ConstructOptimusAPIBucket581D3580",
+             "S3ConstructasaRacingAPIBucket581D3580",
              "Arn"
             ]
            },
@@ -1867,7 +1867,7 @@
     "WaitCondition"
    ],
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/CodePipelineConstruct/Pipeline/Deploy/Deploy/CodePipelineActionRole/DefaultPolicy/Resource"
+    "aws:cdk:path": "asaRacingStack/CodePipelineConstruct/Pipeline/Deploy/Deploy/CodePipelineActionRole/DefaultPolicy/Resource"
    }
   },
   "NextJSPipelineConstructWebsiteBucket01B5A639": {
@@ -1908,7 +1908,7 @@
    "UpdateReplacePolicy": "Delete",
    "DeletionPolicy": "Delete",
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/NextJSPipelineConstruct/WebsiteBucket/Resource"
+    "aws:cdk:path": "asaRacingStack/NextJSPipelineConstruct/WebsiteBucket/Resource"
    }
   },
   "NextJSPipelineConstructWebsiteBucketPolicy36BC8C19": {
@@ -1984,7 +1984,7 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/NextJSPipelineConstruct/WebsiteBucket/Policy/Resource"
+    "aws:cdk:path": "asaRacingStack/NextJSPipelineConstruct/WebsiteBucket/Policy/Resource"
    }
   },
   "NextJSPipelineConstructWebsiteBucketAutoDeleteObjectsCustomResource6CAC92CA": {
@@ -2006,7 +2006,7 @@
    "UpdateReplacePolicy": "Delete",
    "DeletionPolicy": "Delete",
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/NextJSPipelineConstruct/WebsiteBucket/AutoDeleteObjectsCustomResource/Default"
+    "aws:cdk:path": "asaRacingStack/NextJSPipelineConstruct/WebsiteBucket/AutoDeleteObjectsCustomResource/Default"
    }
   },
   "NextJSPipelineConstructWebsiteCachePolicy27310B96": {
@@ -2016,7 +2016,7 @@
      "DefaultTTL": 86400,
      "MaxTTL": 31536000,
      "MinTTL": 0,
-     "Name": "OptimusStackNextJSPipelineConstructWebsiteCachePolicyF45BB767-us-west-1",
+     "Name": "asaRacingStackNextJSPipelineConstructWebsiteCachePolicyF45BB767-us-west-1",
      "ParametersInCacheKeyAndForwardedToOrigin": {
       "CookiesConfig": {
        "CookieBehavior": "none"
@@ -2033,7 +2033,7 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/NextJSPipelineConstruct/WebsiteCachePolicy/Resource"
+    "aws:cdk:path": "asaRacingStack/NextJSPipelineConstruct/WebsiteCachePolicy/Resource"
    }
   },
   "NextJSPipelineConstructWebsiteDistribution07BB2742": {
@@ -2052,7 +2052,7 @@
        "Ref": "NextJSPipelineConstructWebsiteCachePolicy27310B96"
       },
       "Compress": true,
-      "TargetOriginId": "OptimusStackNextJSPipelineConstructWebsiteDistributionOrigin101DC7AF6",
+      "TargetOriginId": "asaRacingStackNextJSPipelineConstructWebsiteDistributionOrigin101DC7AF6",
       "ViewerProtocolPolicy": "redirect-to-https"
      },
      "DefaultRootObject": "index.html",
@@ -2083,13 +2083,13 @@
          }
         ]
        },
-       "Id": "OptimusStackNextJSPipelineConstructWebsiteDistributionOrigin101DC7AF6"
+       "Id": "asaRacingStackNextJSPipelineConstructWebsiteDistributionOrigin101DC7AF6"
       }
      ]
     }
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/NextJSPipelineConstruct/WebsiteDistribution/Resource"
+    "aws:cdk:path": "asaRacingStack/NextJSPipelineConstruct/WebsiteDistribution/Resource"
    }
   },
   "NextJSPipelineConstructNextJSBuildRole997ED1CC": {
@@ -2109,7 +2109,7 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/NextJSPipelineConstruct/NextJSBuild/Role/Resource"
+    "aws:cdk:path": "asaRacingStack/NextJSPipelineConstruct/NextJSBuild/Role/Resource"
    }
   },
   "NextJSPipelineConstructNextJSBuildRoleDefaultPolicyEFD360AB": {
@@ -2284,7 +2284,7 @@
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/NextJSPipelineConstruct/NextJSBuild/Role/DefaultPolicy/Resource"
+    "aws:cdk:path": "asaRacingStack/NextJSPipelineConstruct/NextJSBuild/Role/DefaultPolicy/Resource"
    }
   },
   "NextJSPipelineConstructNextJSBuild91545C5D": {
@@ -2325,7 +2325,7 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/NextJSPipelineConstruct/NextJSBuild/Resource"
+    "aws:cdk:path": "asaRacingStack/NextJSPipelineConstruct/NextJSBuild/Resource"
    }
   },
   "NextJSPipelineConstructNextJSPipelineArtifactsBucketE6915442": {
@@ -2350,7 +2350,7 @@
    "UpdateReplacePolicy": "Retain",
    "DeletionPolicy": "Retain",
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/ArtifactsBucket/Resource"
+    "aws:cdk:path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/ArtifactsBucket/Resource"
    }
   },
   "NextJSPipelineConstructNextJSPipelineArtifactsBucketPolicyE15D5828": {
@@ -2400,7 +2400,7 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/ArtifactsBucket/Policy/Resource"
+    "aws:cdk:path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/ArtifactsBucket/Policy/Resource"
    }
   },
   "NextJSPipelineConstructNextJSPipelineRole89F27E42": {
@@ -2420,7 +2420,7 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Role/Resource"
+    "aws:cdk:path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Role/Resource"
    }
   },
   "NextJSPipelineConstructNextJSPipelineRoleDefaultPolicy8BE21068": {
@@ -2496,7 +2496,7 @@
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Role/DefaultPolicy/Resource"
+    "aws:cdk:path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Role/DefaultPolicy/Resource"
    }
   },
   "NextJSPipelineConstructNextJSPipeline60E99A24": {
@@ -2508,7 +2508,7 @@
      },
      "Type": "S3"
     },
-    "Name": "OptimusUIPipeline",
+    "Name": "asaRacingUIPipeline",
     "RestartExecutionOnUpdate": true,
     "RoleArn": {
      "Fn::GetAtt": [
@@ -2528,7 +2528,7 @@
         },
         "Configuration": {
          "Owner": "mzienert",
-         "Repo": "optimus-ui",
+         "Repo": "asaRacing-ui",
          "Branch": "main",
          "OAuthToken": "{{resolve:secretsmanager:github-token-secret-name:SecretString:::}}",
          "PollForSourceChanges": false
@@ -2631,7 +2631,7 @@
     "NextJSPipelineConstructNextJSPipelineRole89F27E42"
    ],
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Resource"
+    "aws:cdk:path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Resource"
    }
   },
   "NextJSPipelineConstructNextJSPipelineSourceGitHubSourceWebhookResource77275066": {
@@ -2655,7 +2655,7 @@
     "TargetPipelineVersion": 1
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Source/GitHub_Source/WebhookResource"
+    "aws:cdk:path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Source/GitHub_Source/WebhookResource"
    }
   },
   "NextJSPipelineConstructNextJSPipelineBuildCodePipelineActionRoleB2BC70A4": {
@@ -2686,7 +2686,7 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Build/Build/CodePipelineActionRole/Resource"
+    "aws:cdk:path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Build/Build/CodePipelineActionRole/Resource"
    }
   },
   "NextJSPipelineConstructNextJSPipelineBuildCodePipelineActionRoleDefaultPolicyB30F7907": {
@@ -2719,7 +2719,7 @@
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Build/Build/CodePipelineActionRole/DefaultPolicy/Resource"
+    "aws:cdk:path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Build/Build/CodePipelineActionRole/DefaultPolicy/Resource"
    }
   },
   "NextJSPipelineConstructNextJSPipelineDeployCodePipelineActionRoleF12A5608": {
@@ -2750,7 +2750,7 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Deploy/Deploy/CodePipelineActionRole/Resource"
+    "aws:cdk:path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Deploy/Deploy/CodePipelineActionRole/Resource"
    }
   },
   "NextJSPipelineConstructNextJSPipelineDeployCodePipelineActionRoleDefaultPolicyB7D330D6": {
@@ -2833,10 +2833,10 @@
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/NextJSPipelineConstruct/NextJSPipeline/Deploy/Deploy/CodePipelineActionRole/DefaultPolicy/Resource"
+    "aws:cdk:path": "asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Deploy/Deploy/CodePipelineActionRole/DefaultPolicy/Resource"
    }
   },
-  "optimusFunction18897E2B": {
+  "asaRacingFunction18897E2B": {
    "Type": "AWS::Lambda::Function",
    "Properties": {
     "Code": {
@@ -2867,22 +2867,22 @@
     "IAMRolesLambdaRole3969EFC6"
    ],
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/optimusFunction/Resource",
+    "aws:cdk:path": "asaRacingStack/asaRacingFunction/Resource",
     "aws:asset:path": "asset.1fca847a6d22d2ab7fa43275d0ba732198d20d82fabf132380539c54de55c98b",
     "aws:asset:is-bundled": false,
     "aws:asset:property": "Code"
    }
   },
-  "optimusApi903D60A1": {
+  "asaRacingApi903D60A1": {
    "Type": "AWS::ApiGateway::RestApi",
    "Properties": {
-    "Name": "optimusApi"
+    "Name": "asaRacingApi"
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/optimusApi/Resource"
+    "aws:cdk:path": "asaRacingStack/asaRacingApi/Resource"
    }
   },
-  "optimusApiCloudWatchRole920BB937": {
+  "asaRacingApiCloudWatchRole920BB937": {
    "Type": "AWS::IAM::Role",
    "Properties": {
     "AssumeRolePolicyDocument": {
@@ -2915,87 +2915,87 @@
    "UpdateReplacePolicy": "Retain",
    "DeletionPolicy": "Retain",
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/optimusApi/CloudWatchRole/Resource"
+    "aws:cdk:path": "asaRacingStack/asaRacingApi/CloudWatchRole/Resource"
    }
   },
-  "optimusApiAccount08D842F9": {
+  "asaRacingApiAccount08D842F9": {
    "Type": "AWS::ApiGateway::Account",
    "Properties": {
     "CloudWatchRoleArn": {
      "Fn::GetAtt": [
-      "optimusApiCloudWatchRole920BB937",
+      "asaRacingApiCloudWatchRole920BB937",
       "Arn"
      ]
     }
    },
    "DependsOn": [
-    "optimusApi903D60A1"
+    "asaRacingApi903D60A1"
    ],
    "UpdateReplacePolicy": "Retain",
    "DeletionPolicy": "Retain",
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/optimusApi/Account"
+    "aws:cdk:path": "asaRacingStack/asaRacingApi/Account"
    }
   },
-  "optimusApiDeployment275CD8503215a3daf27b0377003eec89a809940b": {
+  "asaRacingApiDeployment275CD8503215a3daf27b0377003eec89a809940b": {
    "Type": "AWS::ApiGateway::Deployment",
    "Properties": {
     "Description": "Automatically created by the RestApi construct",
     "RestApiId": {
-     "Ref": "optimusApi903D60A1"
+     "Ref": "asaRacingApi903D60A1"
     }
    },
    "DependsOn": [
-    "optimusApioptimusGET593A09F8",
-    "optimusApioptimus46B22252"
+    "asaRacingApiasaRacingGET593A09F8",
+    "asaRacingApiasaRacing46B22252"
    ],
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/optimusApi/Deployment/Resource"
+    "aws:cdk:path": "asaRacingStack/asaRacingApi/Deployment/Resource"
    }
   },
-  "optimusApiDeploymentStageprod15345340": {
+  "asaRacingApiDeploymentStageprod15345340": {
    "Type": "AWS::ApiGateway::Stage",
    "Properties": {
     "DeploymentId": {
-     "Ref": "optimusApiDeployment275CD8503215a3daf27b0377003eec89a809940b"
+     "Ref": "asaRacingApiDeployment275CD8503215a3daf27b0377003eec89a809940b"
     },
     "RestApiId": {
-     "Ref": "optimusApi903D60A1"
+     "Ref": "asaRacingApi903D60A1"
     },
     "StageName": "prod"
    },
    "DependsOn": [
-    "optimusApiAccount08D842F9"
+    "asaRacingApiAccount08D842F9"
    ],
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/optimusApi/DeploymentStage.prod/Resource"
+    "aws:cdk:path": "asaRacingStack/asaRacingApi/DeploymentStage.prod/Resource"
    }
   },
-  "optimusApioptimus46B22252": {
+  "asaRacingApiasaRacing46B22252": {
    "Type": "AWS::ApiGateway::Resource",
    "Properties": {
     "ParentId": {
      "Fn::GetAtt": [
-      "optimusApi903D60A1",
+      "asaRacingApi903D60A1",
       "RootResourceId"
      ]
     },
-    "PathPart": "optimus",
+    "PathPart": "asaRacing",
     "RestApiId": {
-     "Ref": "optimusApi903D60A1"
+     "Ref": "asaRacingApi903D60A1"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/optimusApi/Default/optimus/Resource"
+    "aws:cdk:path": "asaRacingStack/asaRacingApi/Default/asaRacing/Resource"
    }
   },
-  "optimusApioptimusGETApiPermissionOptimusStackoptimusApiE927145FGEToptimus7F556B55": {
+  "asaRacingApiasaRacingGETApiPermissionasaRacingStackasaRacingApiE927145FGETasaRacing7F556B55": {
    "Type": "AWS::Lambda::Permission",
    "Properties": {
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "optimusFunction18897E2B",
+      "asaRacingFunction18897E2B",
       "Arn"
      ]
     },
@@ -3010,28 +3010,28 @@
        },
        ":execute-api:us-west-1:619326977873:",
        {
-        "Ref": "optimusApi903D60A1"
+        "Ref": "asaRacingApi903D60A1"
        },
        "/",
        {
-        "Ref": "optimusApiDeploymentStageprod15345340"
+        "Ref": "asaRacingApiDeploymentStageprod15345340"
        },
-       "/GET/optimus"
+       "/GET/asaRacing"
       ]
      ]
     }
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/optimusApi/Default/optimus/GET/ApiPermission.OptimusStackoptimusApiE927145F.GET..optimus"
+    "aws:cdk:path": "asaRacingStack/asaRacingApi/Default/asaRacing/GET/ApiPermission.asaRacingStackasaRacingApiE927145F.GET..asaRacing"
    }
   },
-  "optimusApioptimusGETApiPermissionTestOptimusStackoptimusApiE927145FGEToptimus968FFD13": {
+  "asaRacingApiasaRacingGETApiPermissionTestasaRacingStackasaRacingApiE927145FGETasaRacing968FFD13": {
    "Type": "AWS::Lambda::Permission",
    "Properties": {
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "optimusFunction18897E2B",
+      "asaRacingFunction18897E2B",
       "Arn"
      ]
     },
@@ -3046,18 +3046,18 @@
        },
        ":execute-api:us-west-1:619326977873:",
        {
-        "Ref": "optimusApi903D60A1"
+        "Ref": "asaRacingApi903D60A1"
        },
-       "/test-invoke-stage/GET/optimus"
+       "/test-invoke-stage/GET/asaRacing"
       ]
      ]
     }
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/optimusApi/Default/optimus/GET/ApiPermission.Test.OptimusStackoptimusApiE927145F.GET..optimus"
+    "aws:cdk:path": "asaRacingStack/asaRacingApi/Default/asaRacing/GET/ApiPermission.Test.asaRacingStackasaRacingApiE927145F.GET..asaRacing"
    }
   },
-  "optimusApioptimusGET593A09F8": {
+  "asaRacingApiasaRacingGET593A09F8": {
    "Type": "AWS::ApiGateway::Method",
    "Properties": {
     "AuthorizationType": "NONE",
@@ -3076,7 +3076,7 @@
         ":apigateway:us-west-1:lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
-          "optimusFunction18897E2B",
+          "asaRacingFunction18897E2B",
           "Arn"
          ]
         },
@@ -3086,14 +3086,14 @@
      }
     },
     "ResourceId": {
-     "Ref": "optimusApioptimus46B22252"
+     "Ref": "asaRacingApiasaRacing46B22252"
     },
     "RestApiId": {
-     "Ref": "optimusApi903D60A1"
+     "Ref": "asaRacingApi903D60A1"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/optimusApi/Default/optimus/GET/Resource"
+    "aws:cdk:path": "asaRacingStack/asaRacingApi/Default/asaRacing/GET/Resource"
    }
   },
   "MyCognitoPoolsmsRole2DD4266C": {
@@ -3105,7 +3105,7 @@
        "Action": "sts:AssumeRole",
        "Condition": {
         "StringEquals": {
-         "sts:ExternalId": "OptimusStackMyCognitoPoolC9A3352C"
+         "sts:ExternalId": "asaRacingStackMyCognitoPoolC9A3352C"
         }
        },
        "Effect": "Allow",
@@ -3133,7 +3133,7 @@
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/MyCognitoPool/CognitoPool/smsRole/Resource"
+    "aws:cdk:path": "asaRacingStack/MyCognitoPool/CognitoPool/smsRole/Resource"
    }
   },
   "MyCognitoPoolC77DE011": {
@@ -3185,7 +3185,7 @@
      }
     ],
     "SmsConfiguration": {
-     "ExternalId": "OptimusStackMyCognitoPoolC9A3352C",
+     "ExternalId": "asaRacingStackMyCognitoPoolC9A3352C",
      "SnsCallerArn": {
       "Fn::GetAtt": [
        "MyCognitoPoolsmsRole2DD4266C",
@@ -3212,7 +3212,7 @@
    "UpdateReplacePolicy": "Retain",
    "DeletionPolicy": "Retain",
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/MyCognitoPool/CognitoPool/Resource"
+    "aws:cdk:path": "asaRacingStack/MyCognitoPool/CognitoPool/Resource"
    }
   },
   "MyCognitoPoolMyAppClientF485F915": {
@@ -3245,7 +3245,7 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/MyCognitoPool/CognitoPool/MyAppClient/Resource"
+    "aws:cdk:path": "asaRacingStack/MyCognitoPool/CognitoPool/MyAppClient/Resource"
    }
   },
   "WaitCondition": {
@@ -3258,7 +3258,7 @@
     "Timeout": "300"
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/WaitCondition"
+    "aws:cdk:path": "asaRacingStack/WaitCondition"
    }
   },
   "CDKMetadata": {
@@ -3267,7 +3267,7 @@
     "Analytics": "v2:deflate64:H4sIAAAAAAAA/21SXW/bIBT9LX0nrEmlvrup1lXqNCvpuscKw01yEwwWXBJFyP99Ahw76fbEOYfj+3HMgs8fH/n9nTj5mVSHmcaGxzUJeWDi5D8jyAWPH51ky435qJesDo1GuQ6NAUrahFY2ELyLRsOkT1rlvZUoCK0ZzQm8GgJngF4EwUmchzYDq4iE3LVgiK1BBod0fnE2dLnBV+FNBCN379B2WhCwV+NJGDk0Kbhn/oHHpyAPZeQBlaO2GuV5kgdeyJPw0DN1NqK1quFx3DODnqFoeVzZouVzKjehyxy1sxtMn0mrQEGn7ZnHNbgjuKrrNMoxp2taDM/ZnjIZN/8ilbJNQK14rLEDjSa13IPMWw+w2LrhfnJmyxX+A83O2kPPpLZBbZw1xONSyB1Mi13TZ/TksAmXFa55z7RoGyV4/B6MvDiucQ2uRe+z1z98Cu+BPK/SwUSH2/IweHzLdVbgqeowhz7BSkobDLEpl9uU2JrEtrzSDFbgbXAS0k8eyVCz4J9AO6uSVFDKbmuQLI+/PbjaWp0uR3wBS41D91ul76/6BE+2/W/b26va2SMqcHnMnEgaH802/yWBtLRGYQryhzCqPMVaONECgUvkV6Au0D/unhmrgO/9t+Niwedzfn+394gzFwxhC3xVzr+6KLAAKgQAAA=="
    },
    "Metadata": {
-    "aws:cdk:path": "OptimusStack/CDKMetadata/Default"
+    "aws:cdk:path": "asaRacingStack/CDKMetadata/Default"
    }
   }
  },
@@ -3306,14 +3306,14 @@
     "Ref": "NextJSPipelineConstructWebsiteBucket01B5A639"
    }
   },
-  "optimusApiEndpointF031850E": {
+  "asaRacingApiEndpointF031850E": {
    "Value": {
     "Fn::Join": [
      "",
      [
       "https://",
       {
-       "Ref": "optimusApi903D60A1"
+       "Ref": "asaRacingApi903D60A1"
       },
       ".execute-api.us-west-1.",
       {
@@ -3321,7 +3321,7 @@
       },
       "/",
       {
-       "Ref": "optimusApiDeploymentStageprod15345340"
+       "Ref": "asaRacingApiDeploymentStageprod15345340"
       },
       "/"
      ]
@@ -3343,7 +3343,7 @@
     "Fn::Join": [
      "",
      [
-      "ssh -i ~/.ssh/optimus-core-key-2 ec2-user@",
+      "ssh -i ~/.ssh/asaRacing-core-key-2 ec2-user@",
       {
        "Fn::GetAtt": [
         "EC2ConstructInstance87AD88E2",
@@ -3360,13 +3360,13 @@
     "Ref": "KlineTable986A720B"
    },
    "Export": {
-    "Name": "OptimusTableName"
+    "Name": "asaRacingTableName"
    }
   },
-  "OptimusBucketName": {
+  "asaRacingBucketName": {
    "Description": "Name of the S3 bucket for deployments",
    "Value": {
-    "Ref": "S3ConstructOptimusAPIBucket581D3580"
+    "Ref": "S3ConstructasaRacingAPIBucket581D3580"
    }
   },
   "DeploymentGroupTags": {
@@ -3414,15 +3414,15 @@
    }
   },
   "LambdaFunctionArn": {
-   "Description": "ARN of the optimus Lambda function",
+   "Description": "ARN of the asaRacing Lambda function",
    "Value": {
     "Fn::GetAtt": [
-     "optimusFunction18897E2B",
+     "asaRacingFunction18897E2B",
      "Arn"
     ]
    },
    "Export": {
-    "Name": "optimusLambdaArn"
+    "Name": "asaRacingLambdaArn"
    }
   },
   "ApiGatewayUrl": {
@@ -3433,7 +3433,7 @@
      [
       "https://",
       {
-       "Ref": "optimusApi903D60A1"
+       "Ref": "asaRacingApi903D60A1"
       },
       ".execute-api.us-west-1.",
       {
@@ -3441,14 +3441,14 @@
       },
       "/",
       {
-       "Ref": "optimusApiDeploymentStageprod15345340"
+       "Ref": "asaRacingApiDeploymentStageprod15345340"
       },
       "/"
      ]
     ]
    },
    "Export": {
-    "Name": "optimusApiUrl"
+    "Name": "asaRacingApiUrl"
    }
   },
   "NextJSWebsiteURL": {

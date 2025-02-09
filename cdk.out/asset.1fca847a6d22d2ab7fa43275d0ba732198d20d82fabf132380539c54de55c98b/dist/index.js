@@ -48,7 +48,7 @@ const queryTable = async () => {
     try {
         console.log('Starting table query');
         const scanParams = {
-            TableName: process.env.DYNAMODB_TABLE || 'OptimusTable',
+            TableName: process.env.DYNAMODB_TABLE || 'asaRacingTable',
             FilterExpression: '#type = :type',
             ExpressionAttributeNames: {
                 '#type': 'type'

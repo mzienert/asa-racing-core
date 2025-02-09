@@ -1,8 +1,8 @@
 {
-  "name": "optimus-core",
+  "name": "asaRacing-core",
   "version": "0.1.0",
   "bin": {
-    "optimus-core": "bin/optimus-core.js"
+    "asaRacing-core": "bin/asaRacing-core.js"
   },
   "scripts": {
     "build": "tsc",
