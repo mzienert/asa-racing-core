@@ -1,5 +1,5 @@
 {
-  "name": "asaRacing-core",
+  "name": "asa-racing-core",
   "version": "0.1.0",
   "bin": {
     "asaRacing-core": "bin/asaRacing-core.js"

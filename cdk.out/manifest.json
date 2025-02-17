@@ -19,7 +19,7 @@
         "notificationArns": [],
         "assumeRoleArn": "arn:${AWS::Partition}:iam::619326977873:role/cdk-hnb659fds-deploy-role-619326977873-us-west-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::619326977873:role/cdk-hnb659fds-cfn-exec-role-619326977873-us-west-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-619326977873-us-west-1/908ce7f208c9c67a24161eac358a4bb62a534d43745c991fdc1eb6a395a922db.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-619326977873-us-west-1/6f1eb8cc542d25602c0ea5e96138918b0b584fee15c05c80f223c0c2f97788ed.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -35,64 +35,22 @@
         "asaRacingStack.assets"
       ],
       "metadata": {
-        "/asaRacingStack/VPCConstruct/VPC/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "VPCConstructVPC3A049706"
-          }
-        ],
-        "/asaRacingStack/VPCConstruct/VPC/PublicSubnet1/Subnet": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "VPCConstructVPCPublicSubnet1Subnet8CB03D42"
-          }
-        ],
-        "/asaRacingStack/VPCConstruct/VPC/PublicSubnet1/RouteTable": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "VPCConstructVPCPublicSubnet1RouteTable46231F4D"
-          }
-        ],
-        "/asaRacingStack/VPCConstruct/VPC/PublicSubnet1/RouteTableAssociation": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "VPCConstructVPCPublicSubnet1RouteTableAssociation27D5E21A"
-          }
-        ],
-        "/asaRacingStack/VPCConstruct/VPC/PublicSubnet1/DefaultRoute": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "VPCConstructVPCPublicSubnet1DefaultRoute4CF34A89"
-          }
-        ],
-        "/asaRacingStack/VPCConstruct/VPC/IGW": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "VPCConstructVPCIGWBBAD2E97"
-          }
-        ],
-        "/asaRacingStack/VPCConstruct/VPC/VPCGW": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "VPCConstructVPCVPCGWF9DBDABE"
-          }
-        ],
         "/asaRacingStack/S3Construct/asaRacingAPIBucket/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "S3ConstructasaRacingAPIBucket581D3580"
+            "data": "S3ConstructasaRacingAPIBucketCDB90C88"
           }
         ],
         "/asaRacingStack/S3Construct/asaRacingAPIBucket/Policy/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "S3ConstructasaRacingAPIBucketPolicyFA761216"
+            "data": "S3ConstructasaRacingAPIBucketPolicyD2D01430"
           }
         ],
         "/asaRacingStack/S3Construct/asaRacingAPIBucket/AutoDeleteObjectsCustomResource/Default": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "S3ConstructasaRacingAPIBucketAutoDeleteObjectsCustomResourceC002F9EB"
+            "data": "S3ConstructasaRacingAPIBucketAutoDeleteObjectsCustomResourceA70B874B"
           }
         ],
         "/asaRacingStack/Custom::S3AutoDeleteObjectsCustomResourceProvider": [
@@ -125,6 +83,12 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "KlineTable986A720B"
+          }
+        ],
+        "/asaRacingStack/IAMRoles/CognitoSNSRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IAMRolesCognitoSNSRole28FB15C6"
           }
         ],
         "/asaRacingStack/IAMRoles/LambdaRole/Resource": [
@@ -175,141 +139,129 @@
             "data": "IAMRolesCodeDeployServiceRoleDefaultPolicy98C02197"
           }
         ],
-        "/asaRacingStack/WaitHandle": [
+        "/asaRacingStack/asaRacingFunction/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "WaitHandle"
+            "data": "asaRacingFunction7F580843"
           }
         ],
-        "/asaRacingStack/EC2Construct/SecurityGroup/Resource": [
+        "/asaRacingStack/LambdaPipeline/BuildProject/Role/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "EC2ConstructSecurityGroupFDCA78E4"
+            "data": "LambdaPipelineBuildProjectRole183E19D9"
           }
         ],
-        "/asaRacingStack/EC2Construct/EC2LaunchTemplate": [
+        "/asaRacingStack/LambdaPipeline/BuildProject/Role/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "EC2ConstructEC2LaunchTemplate57D08D2E"
+            "data": "LambdaPipelineBuildProjectRoleDefaultPolicyC7C4555B"
           }
         ],
-        "/asaRacingStack/EC2Construct/Instance/InstanceProfile": [
+        "/asaRacingStack/LambdaPipeline/BuildProject/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "EC2ConstructInstanceInstanceProfile349BDF7D"
+            "data": "LambdaPipelineBuildProject98484B8D"
           }
         ],
-        "/asaRacingStack/EC2Construct/Instance/Resource": [
+        "/asaRacingStack/LambdaPipeline/UpdateLambdaProject/Role/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "EC2ConstructInstance87AD88E2"
+            "data": "LambdaPipelineUpdateLambdaProjectRoleAB02C72B"
           }
         ],
-        "/asaRacingStack/SsmParameterValue:--aws--service--ami-amazon-linux-latest--al2023-ami-kernel-6.1-x86_64:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter": [
+        "/asaRacingStack/LambdaPipeline/UpdateLambdaProject/Role/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "SsmParameterValueawsserviceamiamazonlinuxlatestal2023amikernel61x8664C96584B6F00A464EAD1953AFF4B05118Parameter"
+            "data": "LambdaPipelineUpdateLambdaProjectRoleDefaultPolicy4F8AA9E7"
           }
         ],
-        "/asaRacingStack/CodeDeployApplication/Resource": [
+        "/asaRacingStack/LambdaPipeline/UpdateLambdaProject/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CodeDeployApplicationE587C27C"
+            "data": "LambdaPipelineUpdateLambdaProject4C9714E2"
           }
         ],
-        "/asaRacingStack/CodeDeployDeploymentGroup/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CodeDeployDeploymentGroupA33AC6C7"
-          }
-        ],
-        "/asaRacingStack/BuildProject/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "BuildProject097C5DB7"
-          }
-        ],
-        "/asaRacingStack/CodePipelineConstruct/Pipeline": [
+        "/asaRacingStack/LambdaPipeline/Pipeline": [
           {
             "type": "aws:cdk:warning",
             "data": "V1 pipeline type is implicitly selected when `pipelineType` is not set. If you want to use V2 type, set `PipelineType.V2`. [ack: @aws-cdk/aws-codepipeline:unspecifiedPipelineType]",
             "trace": [
-              "Annotations.addMessage (/home/megatron/Documents/asaRacing/asaRacing-core/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1608)",
-              "Annotations.addWarningV2 (/home/megatron/Documents/asaRacing/asaRacing-core/node_modules/aws-cdk-lib/core/lib/annotations.js:1:825)",
-              "new Pipeline (/home/megatron/Documents/asaRacing/asaRacing-core/node_modules/aws-cdk-lib/aws-codepipeline/lib/pipeline.js:1:6677)",
-              "new CodePipelineConstruct (/home/megatron/Documents/asaRacing/asaRacing-core/lib/constructs/pipeline/codepipeline-construct.ts:53:21)",
-              "new asaRacingStack (/home/megatron/Documents/asaRacing/asaRacing-core/lib/asaRacing-stack.ts:309:31)",
-              "Object.<anonymous> (/home/megatron/Documents/asaRacing/asaRacing-core/bin/asaRacing.ts:6:1)",
-              "Module._compile (node:internal/modules/cjs/loader:1546:14)",
-              "Module.m._compile (/home/megatron/Documents/asaRacing/asaRacing-core/node_modules/ts-node/src/index.ts:1618:23)",
-              "node:internal/modules/cjs/loader:1689:10",
-              "Object.require.extensions.<computed> [as .ts] (/home/megatron/Documents/asaRacing/asaRacing-core/node_modules/ts-node/src/index.ts:1621:12)",
-              "Module.load (node:internal/modules/cjs/loader:1318:32)",
-              "Function._load (node:internal/modules/cjs/loader:1128:12)",
-              "TracingChannel.traceSync (node:diagnostics_channel:315:14)",
-              "wrapModuleLoad (node:internal/modules/cjs/loader:218:24)",
+              "Annotations.addMessage (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1608)",
+              "Annotations.addWarningV2 (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/node_modules/aws-cdk-lib/core/lib/annotations.js:1:825)",
+              "new Pipeline (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/node_modules/aws-cdk-lib/aws-codepipeline/lib/pipeline.js:1:6677)",
+              "new LambdaPipelineConstruct (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/lib/constructs/pipeline/lambda-pipeline-construct.ts:118:21)",
+              "new asaRacingStack (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/lib/asaRacingStack.ts:68:28)",
+              "Object.<anonymous> (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/bin/asaRacing.ts:6:1)",
+              "Module._compile (node:internal/modules/cjs/loader:1562:14)",
+              "Module.m._compile (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/node_modules/ts-node/src/index.ts:1618:23)",
+              "node:internal/modules/cjs/loader:1699:10",
+              "Object.require.extensions.<computed> [as .ts] (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/node_modules/ts-node/src/index.ts:1621:12)",
+              "Module.load (node:internal/modules/cjs/loader:1313:32)",
+              "Function._load (node:internal/modules/cjs/loader:1123:12)",
+              "TracingChannel.traceSync (node:diagnostics_channel:322:14)",
+              "wrapModuleLoad (node:internal/modules/cjs/loader:217:24)",
               "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:170:5)",
-              "phase4 (/home/megatron/Documents/asaRacing/asaRacing-core/node_modules/ts-node/src/bin.ts:649:14)",
-              "bootstrap (/home/megatron/Documents/asaRacing/asaRacing-core/node_modules/ts-node/src/bin.ts:95:10)",
-              "main (/home/megatron/Documents/asaRacing/asaRacing-core/node_modules/ts-node/src/bin.ts:55:10)",
-              "Object.<anonymous> (/home/megatron/Documents/asaRacing/asaRacing-core/node_modules/ts-node/src/bin.ts:800:3)",
-              "Module._compile (node:internal/modules/cjs/loader:1546:14)",
-              "Object.<anonymous> (node:internal/modules/cjs/loader:1689:10)",
-              "Module.load (node:internal/modules/cjs/loader:1318:32)",
-              "Function._load (node:internal/modules/cjs/loader:1128:12)",
-              "TracingChannel.traceSync (node:diagnostics_channel:315:14)",
-              "wrapModuleLoad (node:internal/modules/cjs/loader:218:24)",
+              "phase4 (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/node_modules/ts-node/src/bin.ts:649:14)",
+              "bootstrap (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/node_modules/ts-node/src/bin.ts:95:10)",
+              "main (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/node_modules/ts-node/src/bin.ts:55:10)",
+              "Object.<anonymous> (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/node_modules/ts-node/src/bin.ts:800:3)",
+              "Module._compile (node:internal/modules/cjs/loader:1562:14)",
+              "Object.<anonymous> (node:internal/modules/cjs/loader:1699:10)",
+              "Module.load (node:internal/modules/cjs/loader:1313:32)",
+              "Function._load (node:internal/modules/cjs/loader:1123:12)",
+              "TracingChannel.traceSync (node:diagnostics_channel:322:14)",
+              "wrapModuleLoad (node:internal/modules/cjs/loader:217:24)",
               "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:170:5)",
               "node:internal/main/run_main_module:36:49"
             ]
           }
         ],
-        "/asaRacingStack/CodePipelineConstruct/Pipeline/Role/Resource": [
+        "/asaRacingStack/LambdaPipeline/Pipeline/Role/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CodePipelineConstructPipelineRoleBFCEF5C1"
+            "data": "LambdaPipelineRole3B18F415"
           }
         ],
-        "/asaRacingStack/CodePipelineConstruct/Pipeline/Role/DefaultPolicy/Resource": [
+        "/asaRacingStack/LambdaPipeline/Pipeline/Role/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CodePipelineConstructPipelineRoleDefaultPolicyE4495F31"
+            "data": "LambdaPipelineRoleDefaultPolicyDCA6C922"
           }
         ],
-        "/asaRacingStack/CodePipelineConstruct/Pipeline/Resource": [
+        "/asaRacingStack/LambdaPipeline/Pipeline/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CodePipelineConstructPipeline3651447E"
+            "data": "LambdaPipeline477B9585"
           }
         ],
-        "/asaRacingStack/CodePipelineConstruct/Pipeline/Source/GitHub_Source/WebhookResource": [
+        "/asaRacingStack/LambdaPipeline/Pipeline/Source/GitHub_Source/WebhookResource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CodePipelineConstructPipelineSourceGitHubSourceWebhookResource30B41DE2"
+            "data": "LambdaPipelineSourceGitHubSourceWebhookResourceAFF1BB2C"
           }
         ],
-        "/asaRacingStack/CodePipelineConstruct/Pipeline/Build/Build/CodePipelineActionRole/Resource": [
+        "/asaRacingStack/LambdaPipeline/Pipeline/Build/Build/CodePipelineActionRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CodePipelineConstructPipelineBuildCodePipelineActionRoleAEFFFE96"
+            "data": "LambdaPipelineBuildCodePipelineActionRole0BEF84FE"
           }
         ],
-        "/asaRacingStack/CodePipelineConstruct/Pipeline/Build/Build/CodePipelineActionRole/DefaultPolicy/Resource": [
+        "/asaRacingStack/LambdaPipeline/Pipeline/Build/Build/CodePipelineActionRole/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CodePipelineConstructPipelineBuildCodePipelineActionRoleDefaultPolicyBA10977B"
+            "data": "LambdaPipelineBuildCodePipelineActionRoleDefaultPolicy6398C71D"
           }
         ],
-        "/asaRacingStack/CodePipelineConstruct/Pipeline/Deploy/Deploy/CodePipelineActionRole/Resource": [
+        "/asaRacingStack/LambdaPipeline/Pipeline/Deploy/UpdateLambda/CodePipelineActionRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CodePipelineConstructPipelineDeployCodePipelineActionRoleD589F03E"
+            "data": "LambdaPipelineDeployUpdateLambdaCodePipelineActionRoleBCE48DE6"
           }
         ],
-        "/asaRacingStack/CodePipelineConstruct/Pipeline/Deploy/Deploy/CodePipelineActionRole/DefaultPolicy/Resource": [
+        "/asaRacingStack/LambdaPipeline/Pipeline/Deploy/UpdateLambda/CodePipelineActionRole/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CodePipelineConstructPipelineDeployCodePipelineActionRoleDefaultPolicyF9B6C32C"
+            "data": "LambdaPipelineDeployUpdateLambdaCodePipelineActionRoleDefaultPolicy3068B61C"
           }
         ],
         "/asaRacingStack/NextJSPipelineConstruct/WebsiteBucket/Resource": [
@@ -360,99 +312,99 @@
             "data": "NextJSPipelineConstructNextJSBuild91545C5D"
           }
         ],
-        "/asaRacingStack/NextJSPipelineConstruct/NextJSPipeline": [
+        "/asaRacingStack/NextJSPipelineConstruct/NextPipeline": [
           {
             "type": "aws:cdk:warning",
             "data": "V1 pipeline type is implicitly selected when `pipelineType` is not set. If you want to use V2 type, set `PipelineType.V2`. [ack: @aws-cdk/aws-codepipeline:unspecifiedPipelineType]",
             "trace": [
-              "Annotations.addMessage (/home/megatron/Documents/asaRacing/asaRacing-core/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1608)",
-              "Annotations.addWarningV2 (/home/megatron/Documents/asaRacing/asaRacing-core/node_modules/aws-cdk-lib/core/lib/annotations.js:1:825)",
-              "new Pipeline (/home/megatron/Documents/asaRacing/asaRacing-core/node_modules/aws-cdk-lib/aws-codepipeline/lib/pipeline.js:1:6677)",
-              "new NextJSPipelineConstruct (/home/megatron/Documents/asaRacing/asaRacing-core/lib/constructs/pipeline/nextjs-pipeline-construct.ts:143:21)",
-              "new asaRacingStack (/home/megatron/Documents/asaRacing/asaRacing-core/lib/asaRacing-stack.ts:319:37)",
-              "Object.<anonymous> (/home/megatron/Documents/asaRacing/asaRacing-core/bin/asaRacing.ts:6:1)",
-              "Module._compile (node:internal/modules/cjs/loader:1546:14)",
-              "Module.m._compile (/home/megatron/Documents/asaRacing/asaRacing-core/node_modules/ts-node/src/index.ts:1618:23)",
-              "node:internal/modules/cjs/loader:1689:10",
-              "Object.require.extensions.<computed> [as .ts] (/home/megatron/Documents/asaRacing/asaRacing-core/node_modules/ts-node/src/index.ts:1621:12)",
-              "Module.load (node:internal/modules/cjs/loader:1318:32)",
-              "Function._load (node:internal/modules/cjs/loader:1128:12)",
-              "TracingChannel.traceSync (node:diagnostics_channel:315:14)",
-              "wrapModuleLoad (node:internal/modules/cjs/loader:218:24)",
+              "Annotations.addMessage (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1608)",
+              "Annotations.addWarningV2 (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/node_modules/aws-cdk-lib/core/lib/annotations.js:1:825)",
+              "new Pipeline (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/node_modules/aws-cdk-lib/aws-codepipeline/lib/pipeline.js:1:6677)",
+              "new asaRacingUIPipelineConstruct (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/lib/constructs/pipeline/asa-racing-pipeline-construct.ts:143:21)",
+              "new asaRacingStack (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/lib/asaRacingStack.ts:78:37)",
+              "Object.<anonymous> (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/bin/asaRacing.ts:6:1)",
+              "Module._compile (node:internal/modules/cjs/loader:1562:14)",
+              "Module.m._compile (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/node_modules/ts-node/src/index.ts:1618:23)",
+              "node:internal/modules/cjs/loader:1699:10",
+              "Object.require.extensions.<computed> [as .ts] (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/node_modules/ts-node/src/index.ts:1621:12)",
+              "Module.load (node:internal/modules/cjs/loader:1313:32)",
+              "Function._load (node:internal/modules/cjs/loader:1123:12)",
+              "TracingChannel.traceSync (node:diagnostics_channel:322:14)",
+              "wrapModuleLoad (node:internal/modules/cjs/loader:217:24)",
               "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:170:5)",
-              "phase4 (/home/megatron/Documents/asaRacing/asaRacing-core/node_modules/ts-node/src/bin.ts:649:14)",
-              "bootstrap (/home/megatron/Documents/asaRacing/asaRacing-core/node_modules/ts-node/src/bin.ts:95:10)",
-              "main (/home/megatron/Documents/asaRacing/asaRacing-core/node_modules/ts-node/src/bin.ts:55:10)",
-              "Object.<anonymous> (/home/megatron/Documents/asaRacing/asaRacing-core/node_modules/ts-node/src/bin.ts:800:3)",
-              "Module._compile (node:internal/modules/cjs/loader:1546:14)",
-              "Object.<anonymous> (node:internal/modules/cjs/loader:1689:10)",
-              "Module.load (node:internal/modules/cjs/loader:1318:32)",
-              "Function._load (node:internal/modules/cjs/loader:1128:12)",
-              "TracingChannel.traceSync (node:diagnostics_channel:315:14)",
-              "wrapModuleLoad (node:internal/modules/cjs/loader:218:24)",
+              "phase4 (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/node_modules/ts-node/src/bin.ts:649:14)",
+              "bootstrap (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/node_modules/ts-node/src/bin.ts:95:10)",
+              "main (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/node_modules/ts-node/src/bin.ts:55:10)",
+              "Object.<anonymous> (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/node_modules/ts-node/src/bin.ts:800:3)",
+              "Module._compile (node:internal/modules/cjs/loader:1562:14)",
+              "Object.<anonymous> (node:internal/modules/cjs/loader:1699:10)",
+              "Module.load (node:internal/modules/cjs/loader:1313:32)",
+              "Function._load (node:internal/modules/cjs/loader:1123:12)",
+              "TracingChannel.traceSync (node:diagnostics_channel:322:14)",
+              "wrapModuleLoad (node:internal/modules/cjs/loader:217:24)",
               "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:170:5)",
               "node:internal/main/run_main_module:36:49"
             ]
           }
         ],
-        "/asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/ArtifactsBucket/Resource": [
+        "/asaRacingStack/NextJSPipelineConstruct/NextPipeline/ArtifactsBucket/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "NextJSPipelineConstructNextJSPipelineArtifactsBucketE6915442"
+            "data": "NextJSPipelineConstructNextPipelineArtifactsBucket9D1C1517"
           }
         ],
-        "/asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/ArtifactsBucket/Policy/Resource": [
+        "/asaRacingStack/NextJSPipelineConstruct/NextPipeline/ArtifactsBucket/Policy/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "NextJSPipelineConstructNextJSPipelineArtifactsBucketPolicyE15D5828"
+            "data": "NextJSPipelineConstructNextPipelineArtifactsBucketPolicy7E2E30A3"
           }
         ],
-        "/asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Role/Resource": [
+        "/asaRacingStack/NextJSPipelineConstruct/NextPipeline/Role/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "NextJSPipelineConstructNextJSPipelineRole89F27E42"
+            "data": "NextJSPipelineConstructNextPipelineRole6AA14A3E"
           }
         ],
-        "/asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Role/DefaultPolicy/Resource": [
+        "/asaRacingStack/NextJSPipelineConstruct/NextPipeline/Role/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "NextJSPipelineConstructNextJSPipelineRoleDefaultPolicy8BE21068"
+            "data": "NextJSPipelineConstructNextPipelineRoleDefaultPolicy30239945"
           }
         ],
-        "/asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Resource": [
+        "/asaRacingStack/NextJSPipelineConstruct/NextPipeline/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "NextJSPipelineConstructNextJSPipeline60E99A24"
+            "data": "NextJSPipelineConstructNextPipeline1D394AC8"
           }
         ],
-        "/asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Source/GitHub_Source/WebhookResource": [
+        "/asaRacingStack/NextJSPipelineConstruct/NextPipeline/Source/GitHub_Source/WebhookResource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "NextJSPipelineConstructNextJSPipelineSourceGitHubSourceWebhookResource77275066"
+            "data": "NextJSPipelineConstructNextPipelineSourceGitHubSourceWebhookResource5B3AEB95"
           }
         ],
-        "/asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Build/Build/CodePipelineActionRole/Resource": [
+        "/asaRacingStack/NextJSPipelineConstruct/NextPipeline/Build/Build/CodePipelineActionRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "NextJSPipelineConstructNextJSPipelineBuildCodePipelineActionRoleB2BC70A4"
+            "data": "NextJSPipelineConstructNextPipelineBuildCodePipelineActionRole9AF9D780"
           }
         ],
-        "/asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Build/Build/CodePipelineActionRole/DefaultPolicy/Resource": [
+        "/asaRacingStack/NextJSPipelineConstruct/NextPipeline/Build/Build/CodePipelineActionRole/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "NextJSPipelineConstructNextJSPipelineBuildCodePipelineActionRoleDefaultPolicyB30F7907"
+            "data": "NextJSPipelineConstructNextPipelineBuildCodePipelineActionRoleDefaultPolicyC50226DD"
           }
         ],
-        "/asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Deploy/Deploy/CodePipelineActionRole/Resource": [
+        "/asaRacingStack/NextJSPipelineConstruct/NextPipeline/Deploy/Deploy/CodePipelineActionRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "NextJSPipelineConstructNextJSPipelineDeployCodePipelineActionRoleF12A5608"
+            "data": "NextJSPipelineConstructNextPipelineDeployCodePipelineActionRole51EEF7B5"
           }
         ],
-        "/asaRacingStack/NextJSPipelineConstruct/NextJSPipeline/Deploy/Deploy/CodePipelineActionRole/DefaultPolicy/Resource": [
+        "/asaRacingStack/NextJSPipelineConstruct/NextPipeline/Deploy/Deploy/CodePipelineActionRole/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "NextJSPipelineConstructNextJSPipelineDeployCodePipelineActionRoleDefaultPolicyB7D330D6"
+            "data": "NextJSPipelineConstructNextPipelineDeployCodePipelineActionRoleDefaultPolicyC0A61848"
           }
         ],
         "/asaRacingStack/NextJSPipelineConstruct/WebsiteURL": [
@@ -467,76 +419,64 @@
             "data": "NextJSPipelineConstructWebsiteBucketName99BC5DC6"
           }
         ],
-        "/asaRacingStack/asaRacingFunction/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "asaRacingFunction18897E2B"
-          }
-        ],
         "/asaRacingStack/asaRacingApi/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "asaRacingApi903D60A1"
+            "data": "asaRacingApiD62F2AE3"
           }
         ],
         "/asaRacingStack/asaRacingApi/CloudWatchRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "asaRacingApiCloudWatchRole920BB937"
+            "data": "asaRacingApiCloudWatchRoleA823BB14"
           }
         ],
         "/asaRacingStack/asaRacingApi/Account": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "asaRacingApiAccount08D842F9"
+            "data": "asaRacingApiAccount65AC8F47"
           }
         ],
         "/asaRacingStack/asaRacingApi/Deployment/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "asaRacingApiDeployment275CD8503215a3daf27b0377003eec89a809940b"
+            "data": "asaRacingApiDeploymentAC2D2E5D60d7d7e1f68cf8fc908227e3c08e100a"
           }
         ],
         "/asaRacingStack/asaRacingApi/DeploymentStage.prod/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "asaRacingApiDeploymentStageprod15345340"
+            "data": "asaRacingApiDeploymentStageprod3AFE24D9"
           }
         ],
         "/asaRacingStack/asaRacingApi/Endpoint": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "asaRacingApiEndpointF031850E"
+            "data": "asaRacingApiEndpoint09D24E30"
           }
         ],
         "/asaRacingStack/asaRacingApi/Default/asaRacing/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "asaRacingApiasaRacing46B22252"
+            "data": "asaRacingApiasaRacing80359E78"
           }
         ],
-        "/asaRacingStack/asaRacingApi/Default/asaRacing/GET/ApiPermission.asaRacingStackasaRacingApiE927145F.GET..asaRacing": [
+        "/asaRacingStack/asaRacingApi/Default/asaRacing/GET/ApiPermission.asaRacingStackasaRacingApi74B0DC76.GET..asaRacing": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "asaRacingApiasaRacingGETApiPermissionasaRacingStackasaRacingApiE927145FGETasaRacing7F556B55"
+            "data": "asaRacingApiasaRacingGETApiPermissionasaRacingStackasaRacingApi74B0DC76GETasaRacing22BF8611"
           }
         ],
-        "/asaRacingStack/asaRacingApi/Default/asaRacing/GET/ApiPermission.Test.asaRacingStackasaRacingApiE927145F.GET..asaRacing": [
+        "/asaRacingStack/asaRacingApi/Default/asaRacing/GET/ApiPermission.Test.asaRacingStackasaRacingApi74B0DC76.GET..asaRacing": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "asaRacingApiasaRacingGETApiPermissionTestasaRacingStackasaRacingApiE927145FGETasaRacing968FFD13"
+            "data": "asaRacingApiasaRacingGETApiPermissionTestasaRacingStackasaRacingApi74B0DC76GETasaRacing1CB8616D"
           }
         ],
         "/asaRacingStack/asaRacingApi/Default/asaRacing/GET/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "asaRacingApiasaRacingGET593A09F8"
-          }
-        ],
-        "/asaRacingStack/MyCognitoPool/CognitoPool/smsRole/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "MyCognitoPoolsmsRole2DD4266C"
+            "data": "asaRacingApiasaRacingGET70525864"
           }
         ],
         "/asaRacingStack/MyCognitoPool/CognitoPool/Resource": [
@@ -551,22 +491,255 @@
             "data": "MyCognitoPoolMyAppClientF485F915"
           }
         ],
-        "/asaRacingStack/WaitCondition": [
+        "/asaRacingStack/CognitoSNSRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "WaitCondition"
+            "data": "CognitoSNSRoleEDBAE792"
           }
         ],
-        "/asaRacingStack/InstancePublicIP": [
+        "/asaRacingStack/CognitoSNSRole/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "InstancePublicIP"
+            "data": "CognitoSNSRoleDefaultPolicy0B46D46A"
           }
         ],
-        "/asaRacingStack/SSHCommand": [
+        "/asaRacingStack/AuthFunction/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "SSHCommand"
+            "data": "AuthFunctionA1CD5E0F"
+          }
+        ],
+        "/asaRacingStack/AuthLambdaPipeline/BuildProject/Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdaPipelineBuildProjectRoleCB308A65"
+          }
+        ],
+        "/asaRacingStack/AuthLambdaPipeline/BuildProject/Role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdaPipelineBuildProjectRoleDefaultPolicyDB9BBEE4"
+          }
+        ],
+        "/asaRacingStack/AuthLambdaPipeline/BuildProject/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdaPipelineBuildProject86C31E69"
+          }
+        ],
+        "/asaRacingStack/AuthLambdaPipeline/UpdateLambdaProject/Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdaPipelineUpdateLambdaProjectRole5F819486"
+          }
+        ],
+        "/asaRacingStack/AuthLambdaPipeline/UpdateLambdaProject/Role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdaPipelineUpdateLambdaProjectRoleDefaultPolicy3266DAD8"
+          }
+        ],
+        "/asaRacingStack/AuthLambdaPipeline/UpdateLambdaProject/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdaPipelineUpdateLambdaProject9A796940"
+          }
+        ],
+        "/asaRacingStack/AuthLambdaPipeline/Pipeline": [
+          {
+            "type": "aws:cdk:warning",
+            "data": "V1 pipeline type is implicitly selected when `pipelineType` is not set. If you want to use V2 type, set `PipelineType.V2`. [ack: @aws-cdk/aws-codepipeline:unspecifiedPipelineType]",
+            "trace": [
+              "Annotations.addMessage (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1608)",
+              "Annotations.addWarningV2 (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/node_modules/aws-cdk-lib/core/lib/annotations.js:1:825)",
+              "new Pipeline (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/node_modules/aws-cdk-lib/aws-codepipeline/lib/pipeline.js:1:6677)",
+              "new LambdaPipelineConstruct (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/lib/constructs/pipeline/lambda-pipeline-construct.ts:118:21)",
+              "new asaRacingStack (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/lib/asaRacingStack.ts:142:32)",
+              "Object.<anonymous> (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/bin/asaRacing.ts:6:1)",
+              "Module._compile (node:internal/modules/cjs/loader:1562:14)",
+              "Module.m._compile (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/node_modules/ts-node/src/index.ts:1618:23)",
+              "node:internal/modules/cjs/loader:1699:10",
+              "Object.require.extensions.<computed> [as .ts] (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/node_modules/ts-node/src/index.ts:1621:12)",
+              "Module.load (node:internal/modules/cjs/loader:1313:32)",
+              "Function._load (node:internal/modules/cjs/loader:1123:12)",
+              "TracingChannel.traceSync (node:diagnostics_channel:322:14)",
+              "wrapModuleLoad (node:internal/modules/cjs/loader:217:24)",
+              "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:170:5)",
+              "phase4 (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/node_modules/ts-node/src/bin.ts:649:14)",
+              "bootstrap (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/node_modules/ts-node/src/bin.ts:95:10)",
+              "main (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/node_modules/ts-node/src/bin.ts:55:10)",
+              "Object.<anonymous> (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/node_modules/ts-node/src/bin.ts:800:3)",
+              "Module._compile (node:internal/modules/cjs/loader:1562:14)",
+              "Object.<anonymous> (node:internal/modules/cjs/loader:1699:10)",
+              "Module.load (node:internal/modules/cjs/loader:1313:32)",
+              "Function._load (node:internal/modules/cjs/loader:1123:12)",
+              "TracingChannel.traceSync (node:diagnostics_channel:322:14)",
+              "wrapModuleLoad (node:internal/modules/cjs/loader:217:24)",
+              "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:170:5)",
+              "node:internal/main/run_main_module:36:49"
+            ]
+          }
+        ],
+        "/asaRacingStack/AuthLambdaPipeline/Pipeline/Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdaPipelineRoleE25B37BA"
+          }
+        ],
+        "/asaRacingStack/AuthLambdaPipeline/Pipeline/Role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdaPipelineRoleDefaultPolicyCDC538FD"
+          }
+        ],
+        "/asaRacingStack/AuthLambdaPipeline/Pipeline/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdaPipelineDBA66FB3"
+          }
+        ],
+        "/asaRacingStack/AuthLambdaPipeline/Pipeline/Source/GitHub_Source/WebhookResource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdaPipelineSourceGitHubSourceWebhookResourceAE98C356"
+          }
+        ],
+        "/asaRacingStack/AuthLambdaPipeline/Pipeline/Build/Build/CodePipelineActionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdaPipelineBuildCodePipelineActionRoleE76BB3D5"
+          }
+        ],
+        "/asaRacingStack/AuthLambdaPipeline/Pipeline/Build/Build/CodePipelineActionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdaPipelineBuildCodePipelineActionRoleDefaultPolicyC23B3140"
+          }
+        ],
+        "/asaRacingStack/AuthLambdaPipeline/Pipeline/Deploy/UpdateLambda/CodePipelineActionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdaPipelineDeployUpdateLambdaCodePipelineActionRole3740DE7B"
+          }
+        ],
+        "/asaRacingStack/AuthLambdaPipeline/Pipeline/Deploy/UpdateLambda/CodePipelineActionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdaPipelineDeployUpdateLambdaCodePipelineActionRoleDefaultPolicyE1E4DA91"
+          }
+        ],
+        "/asaRacingStack/AuthApi/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthApi4BD72F20"
+          }
+        ],
+        "/asaRacingStack/AuthApi/CloudWatchRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthApiCloudWatchRoleA6649822"
+          }
+        ],
+        "/asaRacingStack/AuthApi/Account": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthApiAccountAEA89C16"
+          }
+        ],
+        "/asaRacingStack/AuthApi/Deployment/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthApiDeploymentB62B2E4639450c2e8430375a826a0b2edd6ed9ea"
+          }
+        ],
+        "/asaRacingStack/AuthApi/DeploymentStage.prod/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthApiDeploymentStageprodB0E4172A"
+          }
+        ],
+        "/asaRacingStack/AuthApi/Endpoint": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthApiEndpointF49088BF"
+          }
+        ],
+        "/asaRacingStack/AuthApi/Default/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthApiOPTIONS3BD43A91"
+          }
+        ],
+        "/asaRacingStack/AuthApi/Default/auth/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthApiauthCDCDCAC9"
+          }
+        ],
+        "/asaRacingStack/AuthApi/Default/auth/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthApiauthOPTIONSFFC8BF39"
+          }
+        ],
+        "/asaRacingStack/AuthApi/Default/auth/initiate/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthApiauthinitiateED413679"
+          }
+        ],
+        "/asaRacingStack/AuthApi/Default/auth/initiate/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthApiauthinitiateOPTIONS63617F1F"
+          }
+        ],
+        "/asaRacingStack/AuthApi/Default/auth/initiate/POST/ApiPermission.asaRacingStackAuthApiA971AB71.POST..auth.initiate": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthApiauthinitiatePOSTApiPermissionasaRacingStackAuthApiA971AB71POSTauthinitiate37F9D7DF"
+          }
+        ],
+        "/asaRacingStack/AuthApi/Default/auth/initiate/POST/ApiPermission.Test.asaRacingStackAuthApiA971AB71.POST..auth.initiate": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthApiauthinitiatePOSTApiPermissionTestasaRacingStackAuthApiA971AB71POSTauthinitiate16AF1DA9"
+          }
+        ],
+        "/asaRacingStack/AuthApi/Default/auth/initiate/POST/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthApiauthinitiatePOSTA6D9E330"
+          }
+        ],
+        "/asaRacingStack/AuthApi/Default/auth/verify/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthApiauthverifyE5F4E838"
+          }
+        ],
+        "/asaRacingStack/AuthApi/Default/auth/verify/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthApiauthverifyOPTIONSA089FAF5"
+          }
+        ],
+        "/asaRacingStack/AuthApi/Default/auth/verify/POST/ApiPermission.asaRacingStackAuthApiA971AB71.POST..auth.verify": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthApiauthverifyPOSTApiPermissionasaRacingStackAuthApiA971AB71POSTauthverify88C2A019"
+          }
+        ],
+        "/asaRacingStack/AuthApi/Default/auth/verify/POST/ApiPermission.Test.asaRacingStackAuthApiA971AB71.POST..auth.verify": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthApiauthverifyPOSTApiPermissionTestasaRacingStackAuthApiA971AB71POSTauthverify967AF22F"
+          }
+        ],
+        "/asaRacingStack/AuthApi/Default/auth/verify/POST/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthApiauthverifyPOST40CAA76E"
           }
         ],
         "/asaRacingStack/DynamoDBTableName": [
@@ -579,24 +752,6 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "asaRacingBucketName"
-          }
-        ],
-        "/asaRacingStack/DeploymentGroupTags": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "DeploymentGroupTags"
-          }
-        ],
-        "/asaRacingStack/DeploymentGroupArn": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "DeploymentGroupArn"
-          }
-        ],
-        "/asaRacingStack/PipelineArn": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "PipelineArn"
           }
         ],
         "/asaRacingStack/LambdaFunctionArn": [
@@ -617,10 +772,22 @@
             "data": "NextJSWebsiteURL"
           }
         ],
+        "/asaRacingStack/LambdaPipelineArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LambdaPipelineArn"
+          }
+        ],
         "/asaRacingStack/NextJSPipelineArn": [
           {
             "type": "aws:cdk:logicalId",
             "data": "NextJSPipelineArn"
+          }
+        ],
+        "/asaRacingStack/AuthApiUrl": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthApiUrl"
           }
         ],
         "/asaRacingStack/CDKMetadata/Default": [

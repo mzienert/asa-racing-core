@@ -1,33 +1,31 @@
 import { Duration, RemovalPolicy } from 'aws-cdk-lib';
 import * as cognito from 'aws-cdk-lib/aws-cognito';
 import { Construct } from 'constructs';
+import * as iam from 'aws-cdk-lib/aws-iam';
+import { Stack } from 'aws-cdk-lib';
 
 export interface CognitoPoolProps {
   readonly stage: string;
+  readonly snsRole?: iam.IRole;
 }
 
 export class CognitoPool extends Construct {
+  public readonly userPool: cognito.UserPool;
+  public readonly client: cognito.UserPoolClient;
+
   constructor(scope: Construct, id: string, props: CognitoPoolProps) {
     super(scope, id);
 
-      const cognitoPool = new cognito.UserPool(this, 'CognitoPool', {
+    this.userPool = new cognito.UserPool(this, 'CognitoPool', {
       userPoolName: `${props.stage}-CognitoPool`,
-      selfSignUpEnabled: true,
+      selfSignUpEnabled: false,
       signInCaseSensitive: false,
       signInAliases: {
         email: true,
-        phone: true,
-      },
-      autoVerify: {
-        email: true,
-      },
-      userVerification: {
-        emailSubject: 'Hello from My Cool App!',
-        emailBody: 'Hello, Thanks for registering in My cool app! Verification code is {####}.',
-        emailStyle: cognito.VerificationEmailStyle.CODE
+        phone: false,
       },
       standardAttributes: {
-        fullname: {
+        givenName: {
           required: true,
           mutable: true,
         },
@@ -36,32 +34,39 @@ export class CognitoPool extends Construct {
           mutable: true,
         }
       },
-      customAttributes: {
-        company: new cognito.StringAttribute({ mutable: true }),
-      },
       passwordPolicy: {
-        minLength: 8,
-        requireLowercase: true,
-        requireDigits: true,
-        requireSymbols: true,
+        minLength: 6,
+        requireLowercase: false,
+        requireDigits: false,
+        requireSymbols: false,
+        requireUppercase: false,
       },
-      accountRecovery: cognito.AccountRecovery.EMAIL_AND_PHONE_WITHOUT_MFA,
       removalPolicy: RemovalPolicy.RETAIN,
+      userVerification: {
+        emailStyle: cognito.VerificationEmailStyle.CODE,
+      },
+      email: cognito.UserPoolEmail.withCognito(),
     });
 
-    const client = cognitoPool.addClient('MyAppClient', {
-        userPoolClientName: 'MyAppClient',
-        oAuth: {
-          flows: { authorizationCodeGrant: true },
-          scopes: [cognito.OAuthScope.OPENID],
-          callbackUrls: ["https://bellerustica.com"]
-        },
-        supportedIdentityProviders: [
-          cognito.UserPoolClientIdentityProvider.COGNITO,
-        ],
-        refreshTokenValidity: Duration.minutes(60),
-        idTokenValidity: Duration.minutes(30),
-        accessTokenValidity: Duration.minutes(30),
+    if (props.snsRole) {
+      const cfnUserPool = this.userPool.node.defaultChild as cognito.CfnUserPool;
+      cfnUserPool.smsConfiguration = {
+        externalId: Stack.of(this).stackName,
+        snsCallerArn: props.snsRole.roleArn
+      };
+    }
+
+    this.client = this.userPool.addClient('MyAppClient', {
+      userPoolClientName: 'MyAppClient',
+      authFlows: {
+        userPassword: false,
+        custom: true,
+        userSrp: false,
+        adminUserPassword: true,
+      },
+      refreshTokenValidity: Duration.minutes(60),
+      accessTokenValidity: Duration.minutes(30),
+      idTokenValidity: Duration.minutes(30),
     });
   }
 }
