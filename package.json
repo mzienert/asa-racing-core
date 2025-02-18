@@ -13,6 +13,7 @@
     "cdk:synth": "cdk synth"
   },
   "devDependencies": {
+    "@types/aws-lambda": "^8.10.147",
     "@types/jest": "^29.5.14",
     "@types/node": "22.7.9",
     "aws-cdk": "2.166.0",
@@ -26,6 +27,7 @@
     "@aws-cdk/aws-s3-deployment": "^1.204.0",
     "aws-cdk-lib": "2.166.0",
     "constructs": "^10.0.0",
+    "dotenv": "^16.4.7",
     "source-map-support": "^0.5.21"
   }
 }
