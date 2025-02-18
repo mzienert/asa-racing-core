@@ -1,0 +1,10 @@
+{
+    "name": "edge-handler",
+    "version": "1.0.0",
+    "type": "module",
+    "main": "index.mjs",
+    "dependencies": {},
+    "devDependencies": {
+      "@types/node": "^18.0.0"
+    }
+  }
