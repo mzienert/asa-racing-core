@@ -6,9 +6,11 @@ import * as origins from 'aws-cdk-lib/aws-cloudfront-origins';
 import * as codepipeline from 'aws-cdk-lib/aws-codepipeline';
 import * as codepipeline_actions from 'aws-cdk-lib/aws-codepipeline-actions';
 import * as codebuild from 'aws-cdk-lib/aws-codebuild';
+import { StackProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
+import * as iam from 'aws-cdk-lib/aws-iam';
 
-export interface asaRacingUIPipelineConstructProps {
+export interface asaRacingUIPipelineConstructProps extends StackProps {
   readonly githubOwner: string;
   readonly githubRepo: string;
   readonly githubBranch: string;
@@ -34,27 +36,60 @@ export class asaRacingUIPipelineConstruct extends Construct {
       removalPolicy: cdk.RemovalPolicy.DESTROY,
       autoDeleteObjects: true,
       encryption: s3.BucketEncryption.S3_MANAGED,
-      blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL
+      blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
+      enforceSSL: true,
+      versioned: true,
+      objectOwnership: s3.ObjectOwnership.BUCKET_OWNER_ENFORCED,
     });
 
-    // Create single OAI
+    // Create CloudFront OAI
     const originAccessIdentity = new cloudfront.OriginAccessIdentity(this, 'WebsiteOAI');
     
-    // Grant read access to bucket
-    websiteBucket.grantRead(originAccessIdentity);
+    // Grant read access using bucket policy
+    websiteBucket.addToResourcePolicy(new iam.PolicyStatement({
+      actions: ['s3:GetObject'],
+      resources: [websiteBucket.arnForObjects('*')],
+      principals: [new iam.CanonicalUserPrincipal(originAccessIdentity.cloudFrontOriginAccessIdentityS3CanonicalUserId)]
+    }));
 
-    // Create CloudFront distribution using the same OAI
+    // Create CloudFront distribution
     this.distribution = new cloudfront.Distribution(this, 'WebsiteDistribution', {
       defaultBehavior: {
         origin: new origins.S3Origin(websiteBucket, {
-          originAccessIdentity  // Reuse the same OAI
+          originAccessIdentity
         }),
         viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
-        edgeLambdas: [{
-          functionVersion: props.edgeFunction.currentVersion,
-          eventType: cloudfront.LambdaEdgeEventType.ORIGIN_REQUEST,
-        }],
+        compress: true,
+        cachePolicy: cloudfront.CachePolicy.CACHING_OPTIMIZED,
+        originRequestPolicy: cloudfront.OriginRequestPolicy.ALL_VIEWER,
       },
+      defaultRootObject: 'index.html',
+      errorResponses: [
+        {
+          httpStatus: 403,
+          responseHttpStatus: 200,
+          responsePagePath: '/index.html',
+          ttl: cdk.Duration.minutes(0)
+        },
+        {
+          httpStatus: 404,
+          responseHttpStatus: 200,
+          responsePagePath: '/index.html',
+          ttl: cdk.Duration.minutes(0)
+        }
+      ],
+      additionalBehaviors: {
+        '/*': {
+          origin: new origins.S3Origin(websiteBucket, {
+            originAccessIdentity
+          }),
+          viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+          compress: true,
+          cachePolicy: cloudfront.CachePolicy.CACHING_OPTIMIZED,
+        }
+      },
+      enableLogging: true,
+      minimumProtocolVersion: cloudfront.SecurityPolicyProtocol.TLS_V1_2_2021,
     });
 
     // Create build project
@@ -84,26 +119,25 @@ export class asaRacingUIPipelineConstruct extends Construct {
           build: {
             commands: [
               'npm run build',
+              'echo "Build output directory contents:"',
+              'ls -la out',
+              'echo "Checking for index.html:"',
+              'ls -la out/index.html || echo "index.html not found!"'
             ],
           },
           post_build: {
             commands: [
-              // Copy the entire .next directory
-              'aws s3 sync .next s3://${WEBSITE_BUCKET_NAME}/.next --delete',
-              // Copy public directory
-              'aws s3 sync public s3://${WEBSITE_BUCKET_NAME}/public --delete',
-              // Copy package.json and server.js
-              'aws s3 cp package.json s3://${WEBSITE_BUCKET_NAME}/package.json',
-              'aws s3 cp .next/standalone/server.js s3://${WEBSITE_BUCKET_NAME}/server.js',
-              // Create CloudFront invalidation
+              'aws s3 sync out/ s3://${WEBSITE_BUCKET_NAME} --delete',
+              'echo "Verifying index.html in S3:"',
+              'aws s3 ls s3://${WEBSITE_BUCKET_NAME}/index.html || echo "index.html not found in S3!"',
               'aws cloudfront create-invalidation --distribution-id ${DISTRIBUTION_ID} --paths "/*"',
-              // Debug output
               'echo "Contents of S3 bucket:"',
               'aws s3 ls s3://${WEBSITE_BUCKET_NAME}/ --recursive'
             ],
           },
         },
         artifacts: {
+          'base-directory': 'out',
           files: [
             '**/*'
           ],
@@ -119,8 +153,17 @@ export class asaRacingUIPipelineConstruct extends Construct {
     const sourceOutput = new codepipeline.Artifact('SourceOutput');
     const buildOutput = new codepipeline.Artifact('BuildOutput');
 
+    // Add this before creating the pipeline
+    const pipelineRole = new iam.Role(this, 'PipelineRole', {
+      assumedBy: new iam.ServicePrincipal('codepipeline.amazonaws.com'),
+      managedPolicies: [
+        iam.ManagedPolicy.fromAwsManagedPolicyName('AWSCodePipeline_FullAccess')
+      ]
+    });
+
     this.pipeline = new codepipeline.Pipeline(this, 'Pipeline', {
       artifactBucket: artifactBucket,
+      role: pipelineRole,
       stages: [
         {
           stageName: 'Source',
@@ -132,6 +175,7 @@ export class asaRacingUIPipelineConstruct extends Construct {
               branch: props.githubBranch,
               oauthToken: cdk.SecretValue.secretsManager(props.githubTokenSecretName),
               output: sourceOutput,
+              trigger: codepipeline_actions.GitHubTrigger.WEBHOOK
             }),
           ],
         },

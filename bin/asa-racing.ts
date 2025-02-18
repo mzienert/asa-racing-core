@@ -18,7 +18,7 @@ new AsaRacingStack(app, 'AsaRacingStack', {
     region: 'us-west-1'
   },
   githubOwner: 'mzienert',
-  githubRepo: 'asa-racing-core',
+  githubRepo: 'asa-racing-ui',
   githubBranch: 'main',
   githubTokenSecretName: 'github-token-secret-name',
   tags: {

@@ -17,7 +17,7 @@ export class CognitoPool extends Construct {
     super(scope, id);
 
     this.userPool = new cognito.UserPool(this, 'CognitoPool', {
-      userPoolName: `${props.stage}-CognitoPool`,
+      userPoolName: `${props.stage}-asa-racing-user-pool`,
       selfSignUpEnabled: false,
       signInCaseSensitive: false,
       signInAliases: {
@@ -57,7 +57,7 @@ export class CognitoPool extends Construct {
     }
 
     this.client = this.userPool.addClient('MyAppClient', {
-      userPoolClientName: 'MyAppClient',
+      userPoolClientName: `${props.stage}-asa-racing-client`,
       authFlows: {
         userPassword: false,
         custom: true,

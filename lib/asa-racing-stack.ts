@@ -37,7 +37,7 @@ export class AsaRacingStack extends cdk.Stack {
     });
 
     // Create NextJS Pipeline
-    const nextjsPipelineConstruct = new asaRacingUIPipelineConstruct(this, 'AsaRacingNextJSPipelineConstruct', {
+    const nextjsPipelineConstruct = new asaRacingUIPipelineConstruct(this, 'AsaRacingNextJSPipelineConstructV2', {
       githubOwner: props.githubOwner,
       githubRepo: props.githubRepo,
       githubBranch: props.githubBranch,
