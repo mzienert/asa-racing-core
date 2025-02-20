@@ -9,6 +9,7 @@
     "watch": "tsc -w",
     "test": "jest",
     "cdk:deploy": "cdk deploy",
+    "cdk:deploy:cert": "cdk deploy --app \"npx ts-node bin/asa-racing.ts cert\" AsaRacingCertStack",
     "cdk:destroy": "cdk destroy",
     "cdk:synth": "cdk synth"
   },
@@ -25,7 +26,10 @@
   "dependencies": {
     "@aws-cdk/aws-cloudfront-origins": "^1.204.0",
     "@aws-cdk/aws-s3-deployment": "^1.204.0",
+    "@aws-sdk/client-cognito-identity-provider": "^3.750.0",
+    "@aws-sdk/client-ses": "^3.750.0",
     "aws-cdk-lib": "2.166.0",
+    "aws-lambda": "^1.0.7",
     "constructs": "^10.0.0",
     "dotenv": "^16.4.7",
     "source-map-support": "^0.5.21"

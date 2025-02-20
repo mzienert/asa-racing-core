@@ -1,0 +1,10 @@
+{
+  "hosted-zone:account=619326977873:domainName=asaracing.live:region=us-west-1": {
+    "Id": "/hostedzone/Z04794862UTJ4V1BLEDTH",
+    "Name": "asaracing.live."
+  },
+  "hosted-zone:account=619326977873:domainName=asaracing.live:region=us-east-1": {
+    "Id": "/hostedzone/Z04794862UTJ4V1BLEDTH",
+    "Name": "asaracing.live."
+  }
+}

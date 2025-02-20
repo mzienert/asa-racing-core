@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../asset-input/src/functions/auth/verify-auth-challenge/index.ts"],
+  "sourcesContent": ["import { VerifyAuthChallengeResponseTriggerEvent, VerifyAuthChallengeResponseTriggerHandler } from 'aws-lambda';\n\nexport const handler: VerifyAuthChallengeResponseTriggerHandler = async (\n  event: VerifyAuthChallengeResponseTriggerEvent\n) => {\n  const expectedAnswer = event.request.privateChallengeParameters.secretLoginCode;\n  const providedAnswer = event.request.challengeAnswer;\n\n  event.response.answerCorrect = expectedAnswer === providedAnswer;\n\n  return event;\n};"],
+  "mappings": "yaAAA,IAAAA,EAAA,GAAAC,EAAAD,EAAA,aAAAE,IAAA,eAAAC,EAAAH,GAEO,IAAME,EAAqD,MAChEE,GACG,CACH,IAAMC,EAAiBD,EAAM,QAAQ,2BAA2B,gBAC1DE,EAAiBF,EAAM,QAAQ,gBAErC,OAAAA,EAAM,SAAS,cAAgBC,IAAmBC,EAE3CF,CACT",
+  "names": ["verify_auth_challenge_exports", "__export", "handler", "__toCommonJS", "event", "expectedAnswer", "providedAnswer"]
+}

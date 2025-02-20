@@ -6,15 +6,17 @@ import * as origins from 'aws-cdk-lib/aws-cloudfront-origins';
 import * as codepipeline from 'aws-cdk-lib/aws-codepipeline';
 import * as codepipeline_actions from 'aws-cdk-lib/aws-codepipeline-actions';
 import * as codebuild from 'aws-cdk-lib/aws-codebuild';
-import { StackProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import * as iam from 'aws-cdk-lib/aws-iam';
+import * as acm from 'aws-cdk-lib/aws-certificatemanager';
 
-export interface asaRacingUIPipelineConstructProps extends StackProps {
+export interface asaRacingUIPipelineConstructProps {
   readonly githubOwner: string;
   readonly githubRepo: string;
   readonly githubBranch: string;
   readonly githubTokenSecretName: string;
+  readonly certificate: acm.ICertificate;
+  readonly domainNames: string[];
 }
 
 export class asaRacingUIPipelineConstruct extends Construct {
@@ -42,10 +44,12 @@ export class asaRacingUIPipelineConstruct extends Construct {
       objectOwnership: s3.ObjectOwnership.BUCKET_OWNER_ENFORCED,
     });
 
-    // Create CloudFront OAI
-    const originAccessIdentity = new cloudfront.OriginAccessIdentity(this, 'WebsiteOAI');
-    
-    // Grant read access using bucket policy
+    // Create OAI
+    const originAccessIdentity = new cloudfront.OriginAccessIdentity(this, 'OAI', {
+      comment: 'OAI for asaracing.live'
+    });
+
+    // Grant read permissions to CloudFront
     websiteBucket.addToResourcePolicy(new iam.PolicyStatement({
       actions: ['s3:GetObject'],
       resources: [websiteBucket.arnForObjects('*')],
@@ -56,7 +60,7 @@ export class asaRacingUIPipelineConstruct extends Construct {
     this.distribution = new cloudfront.Distribution(this, 'WebsiteDistribution', {
       defaultBehavior: {
         origin: new origins.S3Origin(websiteBucket, {
-          originAccessIdentity
+          originAccessIdentity: originAccessIdentity
         }),
         viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
         compress: true,
@@ -90,6 +94,8 @@ export class asaRacingUIPipelineConstruct extends Construct {
       },
       enableLogging: true,
       minimumProtocolVersion: cloudfront.SecurityPolicyProtocol.TLS_V1_2_2021,
+      domainNames: props.domainNames,
+      certificate: props.certificate,
     });
 
     // Create build project

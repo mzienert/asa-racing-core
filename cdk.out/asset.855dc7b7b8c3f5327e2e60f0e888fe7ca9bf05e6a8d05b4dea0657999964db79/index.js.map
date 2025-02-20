@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../asset-input/src/functions/auth/create-auth-challenge/index.ts"],
+  "sourcesContent": ["import * as crypto from 'crypto';\n\nexport const handler = async (event: any) => {\n    let secretLoginCode: string;\n    if (!event.request.session || !event.request.session.length) {\n        // Generate the secret login code\n        secretLoginCode = crypto.randomInt(100000, 999999).toString();\n        // Cognito will automatically send the code using its default email sender\n    } else {\n        secretLoginCode = event.request.session.slice(-1)[0].challengeMetadata;\n    }\n\n    return {\n        publicChallengeParameters: {\n            email: event.request.userAttributes.email\n        },\n        privateChallengeParameters: {\n            secretLoginCode\n        },\n        challengeMetadata: secretLoginCode\n    };\n}; "],
+  "mappings": "0jBAAA,IAAAA,EAAA,GAAAC,EAAAD,EAAA,aAAAE,IAAA,eAAAC,EAAAH,GAAA,IAAAI,EAAwB,qBAEXF,EAAU,MAAOG,GAAe,CACzC,IAAIC,EACJ,MAAI,CAACD,EAAM,QAAQ,SAAW,CAACA,EAAM,QAAQ,QAAQ,OAEjDC,EAAyB,YAAU,IAAQ,MAAM,EAAE,SAAS,EAG5DA,EAAkBD,EAAM,QAAQ,QAAQ,MAAM,EAAE,EAAE,CAAC,EAAE,kBAGlD,CACH,0BAA2B,CACvB,MAAOA,EAAM,QAAQ,eAAe,KACxC,EACA,2BAA4B,CACxB,gBAAAC,CACJ,EACA,kBAAmBA,CACvB,CACJ",
+  "names": ["create_auth_challenge_exports", "__export", "handler", "__toCommonJS", "crypto", "event", "secretLoginCode"]
+}

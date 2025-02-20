@@ -1,0 +1,20 @@
+{
+  "version": "38.0.1",
+  "files": {
+    "841228792507d59a0ef90b6266bea2b1b5f9bd9bf7f362b56afcdd3f5b656e03": {
+      "source": {
+        "path": "AsaRacingCertStack.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "619326977873-us-east-1": {
+          "bucketName": "cdk-hnb659fds-assets-619326977873-us-east-1",
+          "objectKey": "841228792507d59a0ef90b6266bea2b1b5f9bd9bf7f362b56afcdd3f5b656e03.json",
+          "region": "us-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::619326977873:role/cdk-hnb659fds-file-publishing-role-619326977873-us-east-1"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

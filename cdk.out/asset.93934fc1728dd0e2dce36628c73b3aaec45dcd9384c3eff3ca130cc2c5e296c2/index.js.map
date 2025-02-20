@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../asset-input/src/functions/auth/define-auth-challenge/index.ts"],
+  "sourcesContent": ["exports.handler = async (event) => {\n    const { session, request } = event;\n    \n    // If user is not found, fail\n    if (request.userNotFound) {\n        return {\n            isValid: false,\n            failAuthentication: true\n        };\n    }\n\n    if (session.length === 0) {\n        // First challenge - send OTP\n        return {\n            challengeName: 'CUSTOM_CHALLENGE',\n            issueTokens: false,\n            failAuthentication: false\n        };\n    } else if (session.length === 1 && session[0].challengeName === 'CUSTOM_CHALLENGE') {\n        // Verify the OTP\n        if (session[0].challengeResult === true) {\n            return {\n                issueTokens: true,\n                failAuthentication: false\n            };\n        } else {\n            return {\n                issueTokens: false,\n                failAuthentication: true\n            };\n        }\n    }\n\n    return {\n        issueTokens: false,\n        failAuthentication: true\n    };\n};"],
+  "mappings": "aAAA,QAAQ,QAAU,MAAOA,GAAU,CAC/B,GAAM,CAAE,QAAAC,EAAS,QAAAC,CAAQ,EAAIF,EAG7B,OAAIE,EAAQ,aACD,CACH,QAAS,GACT,mBAAoB,EACxB,EAGAD,EAAQ,SAAW,EAEZ,CACH,cAAe,mBACf,YAAa,GACb,mBAAoB,EACxB,EACOA,EAAQ,SAAW,GAAKA,EAAQ,CAAC,EAAE,gBAAkB,mBAExDA,EAAQ,CAAC,EAAE,kBAAoB,GACxB,CACH,YAAa,GACb,mBAAoB,EACxB,EAEO,CACH,YAAa,GACb,mBAAoB,EACxB,EAID,CACH,YAAa,GACb,mBAAoB,EACxB,CACJ",
+  "names": ["event", "session", "request"]
+}

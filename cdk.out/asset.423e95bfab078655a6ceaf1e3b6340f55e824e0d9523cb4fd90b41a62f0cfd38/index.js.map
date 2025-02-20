@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../asset-input/src/functions/auth/verify-auth-challenge/index.ts"],
+  "sourcesContent": ["exports.handler = async (event) => {\n    const expectedAnswer = event.request.privateChallengeParameters.secretLoginCode;\n    const givenAnswer = event.request.challengeAnswer;\n    \n    return {\n        answerCorrect: expectedAnswer === givenAnswer\n    };\n};"],
+  "mappings": "aAAA,QAAQ,QAAU,MAAOA,GAAU,CAC/B,IAAMC,EAAiBD,EAAM,QAAQ,2BAA2B,gBAC1DE,EAAcF,EAAM,QAAQ,gBAElC,MAAO,CACH,cAAeC,IAAmBC,CACtC,CACJ",
+  "names": ["event", "expectedAnswer", "givenAnswer"]
+}

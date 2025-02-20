@@ -1,0 +1,55 @@
+{
+ "Outputs": {
+  "CertificateArn": {
+   "Value": "arn:aws:acm:us-east-1:619326977873:certificate/8a0ae5ae-7a92-4c22-a236-877c03d78559",
+   "Export": {
+    "Name": "AsaRacingCertificateArn"
+   }
+  }
+ },
+ "Resources": {
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/zPSMzQz0zNQTCwv1k1OydbNyUzSqw4uSUzO1glKLc4vLUpO1XFOy/MvLSkoLQGxYKK1Onn5Kal6WcX6ZUZGeobGeoaKWcWZmbpFpXklmbmpekEQGgBcfwtdYAAAAA=="
+   },
+   "Metadata": {
+    "aws:cdk:path": "AsaRacingCertStack/CDKMetadata/Default"
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}
