@@ -1,9 +1,9 @@
-const crypto = require('crypto');
-const { SESClient, SendEmailCommand } = require('@aws-sdk/client-ses');
+import * as crypto from 'crypto';
+import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
 
-const sesClient = new SESClient();
+const sesClient = new SESClient({ region: 'us-west-1' });
 
-exports.handler = async (event) => {
+export const handler = async (event) => {
     let secretLoginCode;
     if (!event.request.session || !event.request.session.length) {
         // Generate a new 6 digit code
@@ -17,18 +17,19 @@ exports.handler = async (event) => {
             Message: {
                 Body: {
                     Text: {
-                        Data: `Your verification code is ${secretLoginCode}`
+                        Data: `Your ASA Racing verification code is: ${secretLoginCode}\n\nThis code will expire in 5 minutes.`
                     }
                 },
                 Subject: {
-                    Data: 'Your login code'
+                    Data: 'ASA Racing Verification Code'
                 }
             },
-            Source: 'your-verified-email@domain.com' // Replace with your SES verified email
+            Source: 'noreply@asaracing.live'
         };
 
         try {
             await sesClient.send(new SendEmailCommand(params));
+            console.log('OTP email sent successfully to:', event.request.userAttributes.email);
         } catch (error) {
             console.error('Error sending email:', error);
             throw error;

@@ -6,6 +6,9 @@ import * as targets from 'aws-cdk-lib/aws-route53-targets';
 import * as ses from 'aws-cdk-lib/aws-ses';
 import * as sesActions from 'aws-cdk-lib/aws-ses-actions';
 import * as sns from 'aws-cdk-lib/aws-sns';
+import * as iam from 'aws-cdk-lib/aws-iam';
+import * as lambda from 'aws-cdk-lib/aws-lambda';
+import * as nodejs from 'aws-cdk-lib/aws-lambda-nodejs';
 
 import { S3Construct } from './constructs/storage/s3-construct';
 import { DynamoDBConstruct } from './constructs/database/dynamodb-construct';
@@ -21,6 +24,7 @@ export interface AsaRacingStackProps extends cdk.StackProps {
   readonly githubBranch: string;
   readonly githubTokenSecretName: string;
   readonly certificateArn: string;
+  readonly stage: string;
 }
 console.log('Available SES Actions:', Object.keys(sesActions));
 export class AsaRacingStack extends cdk.Stack {
@@ -48,6 +52,13 @@ export class AsaRacingStack extends cdk.Stack {
       account: this.account,
       dynamoTableArn: this.dynamoConstruct.table.tableArn
     });
+
+    // Add SES permissions to Lambda role
+    iamRoles.lambdaRole.addToPolicy(new iam.PolicyStatement({
+      effect: iam.Effect.ALLOW,
+      actions: ['ses:SendEmail', 'ses:SendRawEmail'],
+      resources: ['*']
+    }));
 
     // Create NextJS Pipeline
     const certificate = acm.Certificate.fromCertificateArn(this, 'Certificate', props.certificateArn);
@@ -88,9 +99,42 @@ export class AsaRacingStack extends cdk.Stack {
       exportName: 'HostedZoneId'
     });
 
-    // Create Cognito Pool
-    const cognitoPool = new CognitoPool(this, 'MyCognitoPool', {
-      stage: 'Beta'
+    // Create Lambda functions for Cognito triggers
+    const defineAuthChallengeFn = new nodejs.NodejsFunction(this, 'DefineAuthChallenge', {
+      runtime: lambda.Runtime.NODEJS_18_X,
+      entry: 'src/functions/auth/define-auth-challenge/index.ts',
+      handler: 'handler',
+    });
+
+    const createAuthChallengeFn = new nodejs.NodejsFunction(this, 'CreateAuthChallenge', {
+      runtime: lambda.Runtime.NODEJS_18_X,
+      entry: 'src/functions/auth/create-auth-challenge/index.ts',
+      handler: 'handler',
+    });
+
+    const verifyAuthChallengeFn = new nodejs.NodejsFunction(this, 'VerifyAuthChallenge', {
+      runtime: lambda.Runtime.NODEJS_18_X,
+      entry: 'src/functions/auth/verify-auth-challenge/index.ts',
+      handler: 'handler',
+    });
+
+    // Add SES permissions to CreateAuthChallenge function
+    const sesPolicy = new iam.PolicyStatement({
+      effect: iam.Effect.ALLOW,
+      actions: ['ses:SendEmail', 'ses:SendRawEmail'],
+      resources: ['*']  // Or specify your SES ARN for better security
+    });
+
+    createAuthChallengeFn.addToRolePolicy(sesPolicy);
+
+    // Create Cognito Pool with Lambda triggers
+    const cognitoPool = new CognitoPool(this, 'CognitoPool', {
+      stage: props.stage,
+      lambdaTriggers: {
+        defineAuthChallenge: defineAuthChallengeFn,
+        createAuthChallenge: createAuthChallengeFn,
+        verifyAuthChallengeResponse: verifyAuthChallengeFn
+      }
     });
 
     // Create Lambda Functions for API

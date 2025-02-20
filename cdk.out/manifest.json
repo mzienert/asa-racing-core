@@ -23,7 +23,7 @@
         "notificationArns": [],
         "assumeRoleArn": "arn:${AWS::Partition}:iam::619326977873:role/cdk-hnb659fds-deploy-role-619326977873-us-west-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::619326977873:role/cdk-hnb659fds-cfn-exec-role-619326977873-us-west-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-619326977873-us-west-1/685fa14ce316fd2c2fba12ca6d22deda0d986561a79457e4ba51fc28df23f426.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-619326977873-us-west-1/e6f4a9acef1fc87de8c82f30ed63c0e96659d7888f6a3fa127707a27912ff225.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -233,7 +233,7 @@
               "Annotations.addWarningV2 (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/node_modules/aws-cdk-lib/core/lib/annotations.js:1:825)",
               "new Pipeline (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/node_modules/aws-cdk-lib/aws-codepipeline/lib/pipeline.js:1:6677)",
               "new asaRacingUIPipelineConstruct (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/lib/constructs/pipeline/asa-racing-pipeline-construct.ts:170:21)",
-              "new AsaRacingStack (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/lib/asa-racing-stack.ts:54:37)",
+              "new AsaRacingStack (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/lib/asa-racing-stack.ts:65:37)",
               "Object.<anonymous> (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/bin/asa-racing.ts:39:3)",
               "Module._compile (node:internal/modules/cjs/loader:1562:14)",
               "Module.m._compile (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/node_modules/ts-node/src/index.ts:1618:23)",
@@ -307,16 +307,76 @@
             "data": "HostedZoneId"
           }
         ],
-        "/AsaRacingStack/MyCognitoPool/CognitoPool/Resource": [
+        "/AsaRacingStack/DefineAuthChallenge/ServiceRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "MyCognitoPoolC77DE011"
+            "data": "DefineAuthChallengeServiceRole1D83696B"
           }
         ],
-        "/AsaRacingStack/MyCognitoPool/CognitoPool/MyAppClient/Resource": [
+        "/AsaRacingStack/DefineAuthChallenge/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "MyCognitoPoolMyAppClientF485F915"
+            "data": "DefineAuthChallengeE7E3BC7B"
+          }
+        ],
+        "/AsaRacingStack/CreateAuthChallenge/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CreateAuthChallengeServiceRoleCE50EC04"
+          }
+        ],
+        "/AsaRacingStack/CreateAuthChallenge/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CreateAuthChallengeServiceRoleDefaultPolicy637265A4"
+          }
+        ],
+        "/AsaRacingStack/CreateAuthChallenge/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CreateAuthChallengeB2F8D873"
+          }
+        ],
+        "/AsaRacingStack/VerifyAuthChallenge/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VerifyAuthChallengeServiceRole0AEAA465"
+          }
+        ],
+        "/AsaRacingStack/VerifyAuthChallenge/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VerifyAuthChallenge610ED36B"
+          }
+        ],
+        "/AsaRacingStack/CognitoPool/CognitoPool/DefineAuthChallengeCognito": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CognitoPoolDefineAuthChallengeCognitoD50A066D"
+          }
+        ],
+        "/AsaRacingStack/CognitoPool/CognitoPool/CreateAuthChallengeCognito": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CognitoPoolCreateAuthChallengeCognitoB37B4515"
+          }
+        ],
+        "/AsaRacingStack/CognitoPool/CognitoPool/VerifyAuthChallengeResponseCognito": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CognitoPoolVerifyAuthChallengeResponseCognito480B7C15"
+          }
+        ],
+        "/AsaRacingStack/CognitoPool/CognitoPool/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CognitoPool9328EF5E"
+          }
+        ],
+        "/AsaRacingStack/CognitoPool/CognitoPool/MyAppClient/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CognitoPoolMyAppClient1CD10A1A"
           }
         ],
         "/AsaRacingStack/ApiLambdas": [
@@ -335,7 +395,7 @@
               "LambdaConstruct.walkDirectory (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/lib/constructs/lambda/lambda-construct.ts:42:14)",
               "LambdaConstruct.discoverAndCreateFunctions (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/lib/constructs/lambda/lambda-construct.ts:29:10)",
               "new LambdaConstruct (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/lib/constructs/lambda/lambda-construct.ts:22:10)",
-              "new AsaRacingStack (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/lib/asa-racing-stack.ts:97:29)",
+              "new AsaRacingStack (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/lib/asa-racing-stack.ts:141:29)",
               "Object.<anonymous> (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/bin/asa-racing.ts:39:3)",
               "Module._compile (node:internal/modules/cjs/loader:1562:14)",
               "Module.m._compile (/Users/matthewzienert/Documents/asa-racing/asa-racing-core/node_modules/ts-node/src/index.ts:1618:23)",

@@ -504,6 +504,14 @@
        ],
        "Effect": "Allow",
        "Resource": "arn:aws:cognito-idp:us-west-1:619326977873:userpool/*"
+      },
+      {
+       "Action": [
+        "ses:SendEmail",
+        "ses:SendRawEmail"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
       }
      ],
      "Version": "2012-10-17"
@@ -1523,7 +1531,281 @@
     "aws:cdk:path": "AsaRacingStack/WWWARecord/Resource"
    }
   },
-  "MyCognitoPoolC77DE011": {
+  "DefineAuthChallengeServiceRole1D83696B": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AsaRacingStack/DefineAuthChallenge/ServiceRole/Resource"
+   }
+  },
+  "DefineAuthChallengeE7E3BC7B": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-619326977873-us-west-1",
+     "S3Key": "f15abf240e4b3ed0e0750547d8d6eed4d42a0438cbf367bdfddf6b81245503bd.zip"
+    },
+    "Handler": "index.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "DefineAuthChallengeServiceRole1D83696B",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x"
+   },
+   "DependsOn": [
+    "DefineAuthChallengeServiceRole1D83696B"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "AsaRacingStack/DefineAuthChallenge/Resource",
+    "aws:asset:path": "asset.f15abf240e4b3ed0e0750547d8d6eed4d42a0438cbf367bdfddf6b81245503bd",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "CreateAuthChallengeServiceRoleCE50EC04": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AsaRacingStack/CreateAuthChallenge/ServiceRole/Resource"
+   }
+  },
+  "CreateAuthChallengeServiceRoleDefaultPolicy637265A4": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "ses:SendEmail",
+        "ses:SendRawEmail"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "CreateAuthChallengeServiceRoleDefaultPolicy637265A4",
+    "Roles": [
+     {
+      "Ref": "CreateAuthChallengeServiceRoleCE50EC04"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AsaRacingStack/CreateAuthChallenge/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "CreateAuthChallengeB2F8D873": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-619326977873-us-west-1",
+     "S3Key": "12051d9dc2369d8ebee224029fbe9a574d3968b2b26c86fd611028599234bc6c.zip"
+    },
+    "Handler": "index.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "CreateAuthChallengeServiceRoleCE50EC04",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x"
+   },
+   "DependsOn": [
+    "CreateAuthChallengeServiceRoleDefaultPolicy637265A4",
+    "CreateAuthChallengeServiceRoleCE50EC04"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "AsaRacingStack/CreateAuthChallenge/Resource",
+    "aws:asset:path": "asset.12051d9dc2369d8ebee224029fbe9a574d3968b2b26c86fd611028599234bc6c",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "VerifyAuthChallengeServiceRole0AEAA465": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AsaRacingStack/VerifyAuthChallenge/ServiceRole/Resource"
+   }
+  },
+  "VerifyAuthChallenge610ED36B": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-619326977873-us-west-1",
+     "S3Key": "62355abb1139fd520e0b73fa1c55ff3f1a649bcf59c6fae9e40b31ed95a5c1a2.zip"
+    },
+    "Handler": "index.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "VerifyAuthChallengeServiceRole0AEAA465",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x"
+   },
+   "DependsOn": [
+    "VerifyAuthChallengeServiceRole0AEAA465"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "AsaRacingStack/VerifyAuthChallenge/Resource",
+    "aws:asset:path": "asset.62355abb1139fd520e0b73fa1c55ff3f1a649bcf59c6fae9e40b31ed95a5c1a2",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "CognitoPoolDefineAuthChallengeCognitoD50A066D": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "DefineAuthChallengeE7E3BC7B",
+      "Arn"
+     ]
+    },
+    "Principal": "cognito-idp.amazonaws.com",
+    "SourceArn": {
+     "Fn::GetAtt": [
+      "CognitoPool9328EF5E",
+      "Arn"
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AsaRacingStack/CognitoPool/CognitoPool/DefineAuthChallengeCognito"
+   }
+  },
+  "CognitoPoolCreateAuthChallengeCognitoB37B4515": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "CreateAuthChallengeB2F8D873",
+      "Arn"
+     ]
+    },
+    "Principal": "cognito-idp.amazonaws.com",
+    "SourceArn": {
+     "Fn::GetAtt": [
+      "CognitoPool9328EF5E",
+      "Arn"
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AsaRacingStack/CognitoPool/CognitoPool/CreateAuthChallengeCognito"
+   }
+  },
+  "CognitoPoolVerifyAuthChallengeResponseCognito480B7C15": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "VerifyAuthChallenge610ED36B",
+      "Arn"
+     ]
+    },
+    "Principal": "cognito-idp.amazonaws.com",
+    "SourceArn": {
+     "Fn::GetAtt": [
+      "CognitoPool9328EF5E",
+      "Arn"
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AsaRacingStack/CognitoPool/CognitoPool/VerifyAuthChallengeResponseCognito"
+   }
+  },
+  "CognitoPool9328EF5E": {
    "Type": "AWS::Cognito::UserPool",
    "Properties": {
     "AccountRecoverySetting": {
@@ -1549,6 +1831,26 @@
     },
     "EmailVerificationMessage": "The verification code to your new account is {####}",
     "EmailVerificationSubject": "Verify your new account",
+    "LambdaConfig": {
+     "CreateAuthChallenge": {
+      "Fn::GetAtt": [
+       "CreateAuthChallengeB2F8D873",
+       "Arn"
+      ]
+     },
+     "DefineAuthChallenge": {
+      "Fn::GetAtt": [
+       "DefineAuthChallengeE7E3BC7B",
+       "Arn"
+      ]
+     },
+     "VerifyAuthChallengeResponse": {
+      "Fn::GetAtt": [
+       "VerifyAuthChallenge610ED36B",
+       "Arn"
+      ]
+     }
+    },
     "Policies": {
      "PasswordPolicy": {
       "MinimumLength": 6,
@@ -1571,7 +1873,7 @@
      }
     ],
     "SmsVerificationMessage": "The verification code to your new account is {####}",
-    "UserPoolName": "Beta-asa-racing-user-pool",
+    "UserPoolName": "beta-asa-racing-user-pool",
     "UsernameAttributes": [
      "email"
     ],
@@ -1588,10 +1890,10 @@
    "UpdateReplacePolicy": "Retain",
    "DeletionPolicy": "Retain",
    "Metadata": {
-    "aws:cdk:path": "AsaRacingStack/MyCognitoPool/CognitoPool/Resource"
+    "aws:cdk:path": "AsaRacingStack/CognitoPool/CognitoPool/Resource"
    }
   },
-  "MyCognitoPoolMyAppClientF485F915": {
+  "CognitoPoolMyAppClient1CD10A1A": {
    "Type": "AWS::Cognito::UserPoolClient",
    "Properties": {
     "AccessTokenValidity": 30,
@@ -1610,13 +1912,14 @@
     "CallbackURLs": [
      "https://example.com"
     ],
-    "ClientName": "Beta-asa-racing-client",
+    "ClientName": "beta-asa-racing-client",
     "ExplicitAuthFlows": [
-     "ALLOW_ADMIN_USER_PASSWORD_AUTH",
      "ALLOW_CUSTOM_AUTH",
+     "ALLOW_USER_SRP_AUTH",
      "ALLOW_REFRESH_TOKEN_AUTH"
     ],
     "IdTokenValidity": 30,
+    "PreventUserExistenceErrors": "ENABLED",
     "RefreshTokenValidity": 60,
     "SupportedIdentityProviders": [
      "COGNITO"
@@ -1627,11 +1930,11 @@
      "RefreshToken": "minutes"
     },
     "UserPoolId": {
-     "Ref": "MyCognitoPoolC77DE011"
+     "Ref": "CognitoPool9328EF5E"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AsaRacingStack/MyCognitoPool/CognitoPool/MyAppClient/Resource"
+    "aws:cdk:path": "AsaRacingStack/CognitoPool/CognitoPool/MyAppClient/Resource"
    }
   },
   "ApiLambdasLambdaauthcreateauthchallengeB9D8C488": {
@@ -1645,7 +1948,7 @@
      "Variables": {
       "COGNITO_USER_POOL_ARN": {
        "Fn::GetAtt": [
-        "MyCognitoPoolC77DE011",
+        "CognitoPool9328EF5E",
         "Arn"
        ]
       },
@@ -1682,13 +1985,13 @@
    "Properties": {
     "Code": {
      "S3Bucket": "cdk-hnb659fds-assets-619326977873-us-west-1",
-     "S3Key": "6ada68de9b05214b15cb7824f22ea65526a38d3e9b0757744f0c624f577e2196.zip"
+     "S3Key": "ef4d3ca024b4cf7bc26a366ff1c980d14d62f48d8aed5945cdb1dbe836630d3f.zip"
     },
     "Environment": {
      "Variables": {
       "COGNITO_USER_POOL_ARN": {
        "Fn::GetAtt": [
-        "MyCognitoPoolC77DE011",
+        "CognitoPool9328EF5E",
         "Arn"
        ]
       },
@@ -1715,7 +2018,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "AsaRacingStack/ApiLambdas/Lambda-auth-define-auth-challenge/Resource",
-    "aws:asset:path": "asset.6ada68de9b05214b15cb7824f22ea65526a38d3e9b0757744f0c624f577e2196",
+    "aws:asset:path": "asset.ef4d3ca024b4cf7bc26a366ff1c980d14d62f48d8aed5945cdb1dbe836630d3f",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -1731,7 +2034,7 @@
      "Variables": {
       "COGNITO_USER_POOL_ARN": {
        "Fn::GetAtt": [
-        "MyCognitoPoolC77DE011",
+        "CognitoPool9328EF5E",
         "Arn"
        ]
       },
@@ -2490,7 +2793,7 @@
     "ProviderARNs": [
      {
       "Fn::GetAtt": [
-       "MyCognitoPoolC77DE011",
+       "CognitoPool9328EF5E",
        "Arn"
       ]
      }
@@ -2666,7 +2969,7 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/22STW/bMAyGf0vvqrYkWO+uuwI7ZA2SDjsGssQkTGTREKWmmeD/Pkh2voCe+JB8bZIvNJWTpyf5/UEd+VGbw6PFRqZVUPog1JHXiWcyPUd9gCDqjRtpCAuyqE/X8pgPybNi6IU5OdWSaWR6V42FrC3QC1StTEsaaiVefzdQL7SlaDaeXJDpzeMWXaU1MP8y4AKGoq2z5jVrvlS8IAePTQxILstv815oMtBEtEamBXZg0cHC0x50OXbEQdaN/auySG74LzQ7okMvPMUAP2YyVUvQ5E25sNAqu+hUC2Pj/TOMNP8cIA/bOgwk0x8GvyCy+fMLn6G2CC7ctoZKL6xqG6PWjgzsWf4u4TU6XRzg2VoxQ2BZ5TCKZao37qLJZ4Fvkbl4pDrcqgBHdZJpCRyqDoeDLlhpTdEF8QKdpVM77nWTrYLaFosGWAJT9BryExFzCDsqFo107o5DRh5MOd/KVQw78vgPfFngkvWCgWX62Sq0t6/krtD3oo4cqP161F1r4ekDDfiya/Es34Bue7fnXHVdrtUb9xZDF0Mvsv9yz98+plM5mcnJw54RH310AVuQyyH+B7Fa7HR9AwAA"
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/22STW/bMAyGf0vvqrYkWO+uuwI7ZA2SDjsGsswkTGzREKWmmaD/PkhWvoCe+JB8IfGlNJWTpyf5/UEd+VG3h8cOGxlWTumDUEdeB57J8Oz1AZyoN6bQGBbUoT5dyyUfk2fFEEV7MqqntpHhXTUdJG2GKFD1MixprOV4PW6kKHRHvt1YMk6GN4tbNJXWwPyrBePQZW2dNK9J86XiBdlZbLxDMkl+m0ehqYXGY9fKsMABOjSwsLQHnc0WHGVD6V+VWXLDf6HZER2isOQd/JjJUC1Bk22zw0yrtEWjeiiN909XaP45QhSd6ptWrQ21sGf5O4dXb3R2wLO1YgbHskqhiGWoN+aiSWOB7ZG5eNwadCTDHwa7IOqS4MJnqDsE425bYyUKNeBWOTiqkwxLYFcNOBq6YKU1eePECwwdnfpyzk22cmqbVzTCEpi81ZC+iJiD21FeUaFzt1xSeDRxno0r73Zk8R/YPMAli4KBZfjZK+xuf8ldIUZRe3bUf33VXWth6QNbsHnWvPPkAc32bs65GoZUqzfmzbvBuyjS+8k9f/uYTuVkJicPe0Z8tN447EEux/gfevywRX0DAAA="
    },
    "Metadata": {
     "aws:cdk:path": "AsaRacingStack/CDKMetadata/Default"
@@ -2766,7 +3069,7 @@
   "CognitoUserPoolId": {
    "Description": "Cognito User Pool ID",
    "Value": {
-    "Ref": "MyCognitoPoolC77DE011"
+    "Ref": "CognitoPool9328EF5E"
    },
    "Export": {
     "Name": "CognitoUserPoolId"
@@ -2775,7 +3078,7 @@
   "CognitoClientId": {
    "Description": "Cognito Client ID",
    "Value": {
-    "Ref": "MyCognitoPoolMyAppClientF485F915"
+    "Ref": "CognitoPoolMyAppClient1CD10A1A"
    },
    "Export": {
     "Name": "CognitoClientId"

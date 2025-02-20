@@ -37,10 +37,11 @@ if (stackName === 'cert') {
   }
 
   new AsaRacingStack(app, 'AsaRacingStack', {
-    env: { 
-      account: process.env.AWS_ACCOUNT_ID,
-      region: 'us-west-1'
+    env: {
+      account: process.env.CDK_DEFAULT_ACCOUNT,
+      region: process.env.CDK_DEFAULT_REGION,
     },
+    stage: 'beta',
     githubOwner: 'mzienert',
     githubRepo: 'asa-racing-ui',
     githubBranch: 'main',

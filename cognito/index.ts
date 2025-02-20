@@ -3,10 +3,16 @@ import * as cognito from 'aws-cdk-lib/aws-cognito';
 import { Construct } from 'constructs';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import { Stack } from 'aws-cdk-lib';
+import * as lambda from 'aws-cdk-lib/aws-lambda';
 
 export interface CognitoPoolProps {
   readonly stage: string;
   readonly snsRole?: iam.IRole;
+  readonly lambdaTriggers?: {
+    defineAuthChallenge: lambda.IFunction;
+    createAuthChallenge: lambda.IFunction;
+    verifyAuthChallengeResponse: lambda.IFunction;
+  };
 }
 
 export class CognitoPool extends Construct {
@@ -46,6 +52,7 @@ export class CognitoPool extends Construct {
         emailStyle: cognito.VerificationEmailStyle.CODE,
       },
       email: cognito.UserPoolEmail.withCognito(),
+      lambdaTriggers: props.lambdaTriggers,
     });
 
     if (props.snsRole) {
@@ -61,12 +68,13 @@ export class CognitoPool extends Construct {
       authFlows: {
         userPassword: false,
         custom: true,
-        userSrp: false,
-        adminUserPassword: true,
+        userSrp: true,
+        adminUserPassword: false
       },
       refreshTokenValidity: Duration.minutes(60),
       accessTokenValidity: Duration.minutes(30),
       idTokenValidity: Duration.minutes(30),
+      preventUserExistenceErrors: true
     });
   }
 }

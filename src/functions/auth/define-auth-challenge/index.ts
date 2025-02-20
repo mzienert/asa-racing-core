@@ -1,3 +1,5 @@
+import { DefineAuthChallengeTriggerHandler } from 'aws-lambda';
+
 interface ChallengeSession {
     challengeName: string;
     challengeResult: boolean;
@@ -18,13 +20,12 @@ interface AuthResponse {
     failAuthentication: boolean;
 }
 
-export const handler = async (event: AuthEvent): Promise<AuthEvent> => {
+export const handler: DefineAuthChallengeTriggerHandler = async (event) => {
     const { request } = event;
     
     // If user is not found, fail
     if (request.userNotFound) {
         event.response = {
-            isValid: false,
             failAuthentication: true,
             issueTokens: false
         };
@@ -37,30 +38,23 @@ export const handler = async (event: AuthEvent): Promise<AuthEvent> => {
     }
 
     if (request.session.length === 0) {
-        // First challenge - send OTP
-        event.response = {
-            challengeName: 'CUSTOM_CHALLENGE',
-            issueTokens: false,
-            failAuthentication: false
-        };
+        // First challenge
+        event.response.challengeName = 'CUSTOM_CHALLENGE';
+        event.response.issueTokens = false;
+        event.response.failAuthentication = false;
     } else if (request.session.length === 1 && request.session[0].challengeName === 'CUSTOM_CHALLENGE') {
         // Verify the OTP
         if (request.session[0].challengeResult === true) {
-            event.response = {
-                issueTokens: true,
-                failAuthentication: false
-            };
+            event.response.issueTokens = true;
+            event.response.failAuthentication = false;
         } else {
-            event.response = {
-                issueTokens: false,
-                failAuthentication: true
-            };
+            event.response.issueTokens = false;
+            event.response.failAuthentication = true;
         }
     } else {
-        event.response = {
-            issueTokens: false,
-            failAuthentication: true
-        };
+        // Fail auth for all other cases
+        event.response.issueTokens = false;
+        event.response.failAuthentication = true;
     }
 
     return event;
