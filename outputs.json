@@ -1,0 +1,13 @@
+{
+  "AsaRacingStack": {
+    "asaRacingBucketName": "asaracingstack-s3constructasaracingapibucketcdb90c-nxrddgecosl3",
+    "ApiGatewayUrl": "https://0wq09bpeu5.execute-api.us-west-1.amazonaws.com/prod/",
+    "AsaRacingApiEndpointFA9C9D72": "https://0wq09bpeu5.execute-api.us-west-1.amazonaws.com/prod/",
+    "CognitoUserPoolId": "us-west-1_msvUZR6aJ",
+    "CognitoClientId": "2qrfou6at2d6sl72l3l0t4au5s",
+    "NextJSPipelineArn": "arn:aws:codepipeline:us-west-1:619326977873:AsaRacingStack-AsaRacingNextJSPipelineConstructV2Pipeline383ACCBF-zVmySGEriEUO",
+    "HostedZoneId": "Z04794862UTJ4V1BLEDTH",
+    "DynamoDBTableName": "asaRacingTable",
+    "NextJSWebsiteURL": "https://d2wk4j32hn15w2.cloudfront.net"
+  }
+}
