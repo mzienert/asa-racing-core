@@ -31,14 +31,14 @@ export const handler = async (event: CreateAuthChallengeTriggerEvent) => {
                 Source: 'admin@asaracing.live',
             }));
 
-            // Set up the challenge
+            // Set up the challenge with session
             event.response.privateChallengeParameters = {
                 secretLoginCode,
             };
             event.response.publicChallengeParameters = {
-                email: event.request.userAttributes.email,
+                email: event.request.userAttributes.email
             };
-            event.response.challengeMetadata = 'CUSTOM_CHALLENGE';
+            event.response.challengeMetadata = secretLoginCode;  // Store code in metadata
         } catch (error) {
             console.error('Error in create-auth-challenge:', error);
             throw error;
@@ -46,11 +46,14 @@ export const handler = async (event: CreateAuthChallengeTriggerEvent) => {
     } else {
         // Use the code from the previous challenge
         const lastSession = event.request.session.slice(-1)[0];
-        secretLoginCode = lastSession?.challengeMetadata || 'INVALID';
+        secretLoginCode = lastSession.challengeMetadata || 'INVALID';
         event.response.privateChallengeParameters = {
             secretLoginCode,
         };
-        event.response.challengeMetadata = 'CUSTOM_CHALLENGE';
+        event.response.publicChallengeParameters = {
+            email: event.request.userAttributes.email
+        };
+        event.response.challengeMetadata = secretLoginCode;
     }
 
     return event;

@@ -41,15 +41,15 @@ if (stackName === 'cert') {
       account: process.env.CDK_DEFAULT_ACCOUNT,
       region: process.env.CDK_DEFAULT_REGION,
     },
-    stage: 'beta',
-    githubOwner: 'mzienert',
-    githubRepo: 'asa-racing-ui',
-    githubBranch: 'main',
-    githubTokenSecretName: 'github-token-secret-name',
-    certificateArn: process.env.CERTIFICATE_ARN,
+    stage: process.env.STAGE || 'dev',
+    certificateArn: process.env.CERTIFICATE_ARN!,
+    allowedOrigin: process.env.ALLOWED_ORIGIN || 'http://localhost:3000',
+    githubOwner: process.env.GITHUB_OWNER!,
+    githubRepo: process.env.GITHUB_REPO!,
+    githubBranch: process.env.GITHUB_BRANCH!,
+    githubTokenSecretName: process.env.GITHUB_TOKEN_SECRET_NAME!,
     tags: {
-      Environment: 'production',
-      Project: 'AsaRacing'
+      Environment: process.env.STAGE || 'dev',
     }
   });
 }

@@ -19,9 +19,10 @@ export class ApiGatewayConstruct extends Construct {
     this.api = new apigateway.RestApi(this, 'AsaRacingApi', {
       restApiName: 'ASA Racing API',
       defaultCorsPreflightOptions: {
-        allowOrigins: apigateway.Cors.ALL_ORIGINS,
+        allowOrigins: ['http://localhost:3000', 'https://asaracing.live', 'https://www.asaracing.live'],
         allowMethods: apigateway.Cors.ALL_METHODS,
-        allowHeaders: apigateway.Cors.DEFAULT_HEADERS,
+        allowHeaders: [...apigateway.Cors.DEFAULT_HEADERS, 'Authorization'],
+        allowCredentials: true,
       },
     });
 

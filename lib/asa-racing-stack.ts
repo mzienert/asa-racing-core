@@ -9,6 +9,8 @@ import * as sns from 'aws-cdk-lib/aws-sns';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as nodejs from 'aws-cdk-lib/aws-lambda-nodejs';
+import * as apigateway from 'aws-cdk-lib/aws-apigateway';
+import * as path from 'path';
 
 import { S3Construct } from './constructs/storage/s3-construct';
 import { DynamoDBConstruct } from './constructs/database/dynamodb-construct';
@@ -19,12 +21,13 @@ import { LambdaConstruct } from './constructs/lambda/lambda-construct';
 import { ApiGatewayConstruct } from './constructs/api/api-gateway-construct';
 
 export interface AsaRacingStackProps extends cdk.StackProps {
-  readonly githubOwner: string;
-  readonly githubRepo: string;
-  readonly githubBranch: string;
-  readonly githubTokenSecretName: string;
-  readonly certificateArn: string;
-  readonly stage: string;
+  stage: string;
+  certificateArn: string;
+  allowedOrigin: string;
+  githubOwner: string;
+  githubRepo: string;
+  githubBranch: string;
+  githubTokenSecretName: string;
 }
 console.log('Available SES Actions:', Object.keys(sesActions));
 export class AsaRacingStack extends cdk.Stack {
@@ -184,11 +187,10 @@ export class AsaRacingStack extends cdk.Stack {
       exportName: 'CognitoClientId'
     });
 
-    // Add API Gateway URL output
+    // Add stack output for API Gateway URL
     new cdk.CfnOutput(this, 'ApiGatewayUrl', {
       value: apiGateway.api.url,
-      description: 'API Gateway URL',
-      exportName: 'ApiGatewayUrl'
+      description: 'API Gateway URL'
     });
 
     // Create SES Email Identity
@@ -229,6 +231,45 @@ export class AsaRacingStack extends cdk.Stack {
       zone,
       recordName: 'mail.asaracing.live',
       values: ['v=spf1 include:amazonses.com ~all']
+    });
+
+    // Create manage-session Lambda
+    const manageSessionLambda = new nodejs.NodejsFunction(this, 'ManageSessionFunction', {
+      runtime: lambda.Runtime.NODEJS_18_X,
+      entry: 'src/functions/auth/manage-session/index.ts',
+      handler: 'handler',
+      environment: {
+        ALLOWED_ORIGIN: props.allowedOrigin,
+      },
+    });
+
+    // Add to existing auth resource
+    const authResource = apiGateway.api.root.getResource('auth') || apiGateway.api.root.addResource('auth');
+    const sessionResource = authResource.getResource('session') || authResource.addResource('session');
+    
+    // Add POST method for session
+    sessionResource.addMethod('POST', new apigateway.LambdaIntegration(manageSessionLambda), {
+      methodResponses: [{
+        statusCode: '200',
+        responseParameters: {
+          'method.response.header.Access-Control-Allow-Origin': true,
+          'method.response.header.Access-Control-Allow-Credentials': true,
+          'method.response.header.Set-Cookie': true
+        }
+      }]
+    });
+
+    // Add verify endpoint
+    const verifyResource = sessionResource.addResource('verify');
+    verifyResource.addMethod('GET', new apigateway.LambdaIntegration(manageSessionLambda), {
+      methodResponses: [{
+        statusCode: '200',
+        responseParameters: {
+          'method.response.header.Set-Cookie': true,
+          'method.response.header.Access-Control-Allow-Origin': true,
+          'method.response.header.Access-Control-Allow-Credentials': true
+        }
+      }]
     });
   }
 }
