@@ -65,7 +65,7 @@ export class asaRacingUIPipelineConstruct extends Construct {
         viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
         compress: true,
         cachePolicy: cloudfront.CachePolicy.CACHING_OPTIMIZED,
-        originRequestPolicy: cloudfront.OriginRequestPolicy.ALL_VIEWER,
+        originRequestPolicy: cloudfront.OriginRequestPolicy.CORS_S3_ORIGIN,
       },
       defaultRootObject: 'index.html',
       errorResponses: [
@@ -82,16 +82,6 @@ export class asaRacingUIPipelineConstruct extends Construct {
           ttl: cdk.Duration.minutes(0)
         }
       ],
-      additionalBehaviors: {
-        '/*': {
-          origin: new origins.S3Origin(websiteBucket, {
-            originAccessIdentity
-          }),
-          viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
-          compress: true,
-          cachePolicy: cloudfront.CachePolicy.CACHING_OPTIMIZED,
-        }
-      },
       enableLogging: true,
       minimumProtocolVersion: cloudfront.SecurityPolicyProtocol.TLS_V1_2_2021,
       domainNames: props.domainNames,
@@ -112,6 +102,18 @@ export class asaRacingUIPipelineConstruct extends Construct {
         DISTRIBUTION_ID: { 
           value: this.distribution.distributionId,
           type: codebuild.BuildEnvironmentVariableType.PLAINTEXT 
+        },
+        NEXT_PUBLIC_COGNITO_USER_POOL_ID: {
+          value: cdk.Fn.importValue('CognitoUserPoolId'),
+          type: codebuild.BuildEnvironmentVariableType.PLAINTEXT
+        },
+        NEXT_PUBLIC_COGNITO_CLIENT_ID: {
+          value: cdk.Fn.importValue('CognitoClientId'),
+          type: codebuild.BuildEnvironmentVariableType.PLAINTEXT
+        },
+        NEXT_PUBLIC_STAGE: {
+          value: 'prod',
+          type: codebuild.BuildEnvironmentVariableType.PLAINTEXT
         }
       },
       buildSpec: codebuild.BuildSpec.fromObject({

@@ -150,7 +150,8 @@ export class AsaRacingStack extends cdk.Stack {
     // Create API Gateway
     const apiGateway = new ApiGatewayConstruct(this, 'AsaRacingApi', {
       lambdaFunctions: lambdaConstruct.functions,
-      cognitoUserPool: cognitoPool.userPool
+      cognitoUserPool: cognitoPool.userPool,
+      stage: props.stage
     });
 
     // Stack Outputs
@@ -231,45 +232,6 @@ export class AsaRacingStack extends cdk.Stack {
       zone,
       recordName: 'mail.asaracing.live',
       values: ['v=spf1 include:amazonses.com ~all']
-    });
-
-    // Create manage-session Lambda
-    const manageSessionLambda = new nodejs.NodejsFunction(this, 'ManageSessionFunction', {
-      runtime: lambda.Runtime.NODEJS_18_X,
-      entry: 'src/functions/auth/manage-session/index.ts',
-      handler: 'handler',
-      environment: {
-        ALLOWED_ORIGIN: props.allowedOrigin,
-      },
-    });
-
-    // Add to existing auth resource
-    const authResource = apiGateway.api.root.getResource('auth') || apiGateway.api.root.addResource('auth');
-    const sessionResource = authResource.getResource('session') || authResource.addResource('session');
-    
-    // Add POST method for session
-    sessionResource.addMethod('POST', new apigateway.LambdaIntegration(manageSessionLambda), {
-      methodResponses: [{
-        statusCode: '200',
-        responseParameters: {
-          'method.response.header.Access-Control-Allow-Origin': true,
-          'method.response.header.Access-Control-Allow-Credentials': true,
-          'method.response.header.Set-Cookie': true
-        }
-      }]
-    });
-
-    // Add verify endpoint
-    const verifyResource = sessionResource.addResource('verify');
-    verifyResource.addMethod('GET', new apigateway.LambdaIntegration(manageSessionLambda), {
-      methodResponses: [{
-        statusCode: '200',
-        responseParameters: {
-          'method.response.header.Set-Cookie': true,
-          'method.response.header.Access-Control-Allow-Origin': true,
-          'method.response.header.Access-Control-Allow-Credentials': true
-        }
-      }]
     });
   }
 }

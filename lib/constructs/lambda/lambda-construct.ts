@@ -58,11 +58,30 @@ export class LambdaConstruct extends Construct {
     functionName: string,
     props: LambdaConstructProps
   ): lambda.Function {
+    // Create explicit role with required permissions
+    const lambdaRole = new iam.Role(this, `${functionName}-Role`, {
+      assumedBy: new iam.ServicePrincipal('lambda.amazonaws.com'),
+      managedPolicies: [
+        iam.ManagedPolicy.fromAwsManagedPolicyName('service-role/AWSLambdaBasicExecutionRole')
+      ]
+    });
+
+    // Add explicit CloudWatch permissions
+    lambdaRole.addToPolicy(new iam.PolicyStatement({
+      effect: iam.Effect.ALLOW,
+      actions: [
+        'logs:CreateLogGroup',
+        'logs:CreateLogStream',
+        'logs:PutLogEvents'
+      ],
+      resources: ['*']
+    }));
+
     return new nodejs.NodejsFunction(this, `Lambda-${functionName}`, {
       entry: filePath,
       handler: 'handler',
       runtime: lambda.Runtime.NODEJS_18_X,
-      role: props.iamRole,
+      role: lambdaRole,  // Use our new role instead of props.iamRole
       environment: {
         COGNITO_USER_POOL_ARN: props.cognitoUserPoolArn,
         DYNAMO_TABLE_ARN: props.dynamoTableArn,
@@ -70,9 +89,9 @@ export class LambdaConstruct extends Construct {
       bundling: {
         minify: true,
         sourceMap: true,
-        target: 'node18',
-        externalModules: ['aws-sdk'],
       },
+      logRetention: cdk.aws_logs.RetentionDays.ONE_WEEK,
+      tracing: lambda.Tracing.ACTIVE
     });
   }
 }
